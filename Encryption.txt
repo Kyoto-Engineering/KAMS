@@ -1,0 +1,47 @@
+bNhWotDLbjjynFyGvfMp04MUZKs=
+bNhWotDLbjjynFyGvfMp04MUZKs=
+bNhWotDLbjjynFyGvfMp04MUZKs=
+
+
+
+                string clearText = txtPassword.Text.Trim();
+                string password = clearText;
+                byte[] bytes = Encoding.Unicode.GetBytes(password);
+                byte[] inArray = HashAlgorithm.Create("SHA1").ComputeHash(bytes);
+                string readyPassword1 = Convert.ToBase64String(inArray);
+                readyPassword = readyPassword1;
+
+
+
+
+                SqlConnection myConnection = default(SqlConnection);
+                myConnection = new SqlConnection(cs.DBConn);
+
+                SqlCommand myCommand = default(SqlCommand);
+
+                myCommand = new SqlCommand("SELECT Username,passwords FROM Registration WHERE Username = @username AND passwords = @UserPassword", myConnection);
+                SqlParameter uName = new SqlParameter("@username", SqlDbType.VarChar);
+                SqlParameter uPassword = new SqlParameter("@UserPassword", SqlDbType.VarChar);
+                uName.Value = txtUserName.Text;
+                uPassword.Value = readyPassword;
+                myCommand.Parameters.Add(uName);
+                myCommand.Parameters.Add(uPassword);
+
+                myCommand.Connection.Open();
+
+                SqlDataReader myReader = myCommand.ExecuteReader(CommandBehavior.CloseConnection);
+
+                if (myReader.Read() == true)
+                {
+                    int i;
+                    ProgressBar1.Visible = true;
+                    ProgressBar1.Maximum = 5000;
+                    //ProgressBar1.Maximum = 5;
+                    ProgressBar1.Minimum = 0;
+                    ProgressBar1.Value = 4;
+                    ProgressBar1.Step = 1;
+
+                    for (i = 0; i <= 5000; i++)
+                    {
+                        ProgressBar1.PerformStep();
+                    }

@@ -1,0 +1,700 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{E90E7250-53CE-4F2A-9C77-0B7920A8235A}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AccountsManagementSystem</RootNamespace>
+    <AssemblyName>Kyoto Accounts Management System 2015-16</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>\\KYOTOSERVER\Share\Softwares\Kyoto Accounts Management System 2015-16\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Unc</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>true</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ProductName>Kyoto Accounts Management System</ProductName>
+    <PublisherName>IT Department, Kyoto Engineering and Automation Ltd</PublisherName>
+    <MinimumRequiredVersion>1.0.0.9</MinimumRequiredVersion>
+    <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
+    <WebPage>publish.htm</WebPage>
+    <ApplicationRevision>8</ApplicationRevision>
+    <ApplicationVersion>1.0.1.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <CreateDesktopShortcut>true</CreateDesktopShortcut>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>account_management_system03_NOB_icon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Accounting Systems|AnyCPU'">
+    <OutputPath>bin\Accounting Systems\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>0DBEED2F51D4A25219C9B37AB8EFCAB8FFC2B119</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>AccountsManagementSystem_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Windows.Forms, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="FlashControlV71, Version=1.0.3187.32366, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DAO\Encryption.cs" />
+    <Compile Include="DAO\Voucher.cs" />
+    <Compile Include="DbGateway\ConnectionGateway.cs" />
+    <Compile Include="DbGateway\ConnectionString.cs" />
+    <Compile Include="Gateway\VoucherGateway.cs" />
+    <Compile Include="LogInUI\ChangePassword.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LogInUI\ChangePassword.Designer.cs">
+      <DependentUpon>ChangePassword.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LogInUI\frmLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LogInUI\frmLogin.Designer.cs">
+      <DependentUpon>frmLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LogInUI\frmRegistration.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LogInUI\frmRegistration.Designer.cs">
+      <DependentUpon>frmRegistration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LogInUI\RegistrationForUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LogInUI\RegistrationForUser.Designer.cs">
+      <DependentUpon>RegistrationForUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LogInUI\ResetPassword.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LogInUI\ResetPassword.Designer.cs">
+      <DependentUpon>ResetPassword.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LogInUI\UpdateUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LogInUI\UpdateUser.Designer.cs">
+      <DependentUpon>UpdateUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LogInUI\UpdateUserForAdmin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LogInUI\UpdateUserForAdmin.Designer.cs">
+      <DependentUpon>UpdateUserForAdmin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LogInUI\UserManagementUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LogInUI\UserManagementUI.Designer.cs">
+      <DependentUpon>UserManagementUI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Manager\VoucherManager.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reports\CrystalReport2.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CrystalReport2.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\CrystalReportN.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CrystalReportN.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\CrystalReportNX.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CrystalReportNX.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\JournalReport.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>JournalReport.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\JournalReportN.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>JournalReportN.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\JournalReportNX.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>JournalReportNX.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\LedgerDetails.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LedgerDetails.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\LedgerDetailsN.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LedgerDetailsN.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\LedgerList.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LedgerList.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\LedgerListN.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LedgerListN.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\ReportsUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\ReportsUI.Designer.cs">
+      <DependentUpon>ReportsUI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\ReportViewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\ReportViewer.Designer.cs">
+      <DependentUpon>ReportViewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\TrialBalance.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TrialBalance.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\TrialBalanceCN.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TrialBalanceCN.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\TrialBalanceN.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TrialBalanceN.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Splash.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Splash.Designer.cs">
+      <DependentUpon>Splash.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SplashForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SplashForm.Designer.cs">
+      <DependentUpon>SplashForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\ClosingFiscalYear.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\ClosingFiscalYear.Designer.cs">
+      <DependentUpon>ClosingFiscalYear.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\DailyBalance.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\DailyBalance.Designer.cs">
+      <DependentUpon>DailyBalance.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\FiscalYear.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\FiscalYear.Designer.cs">
+      <DependentUpon>FiscalYear.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\FiscalYearManagementUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\FiscalYearManagementUI.Designer.cs">
+      <DependentUpon>FiscalYearManagementUI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\GridAsJournal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\GridAsJournal.Designer.cs">
+      <DependentUpon>GridAsJournal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\JournalForLedgerEntry.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\JournalForLedgerEntry.Designer.cs">
+      <DependentUpon>JournalForLedgerEntry.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\JournalForSubLedgerEntry.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\JournalForSubLedgerEntry.Designer.cs">
+      <DependentUpon>JournalForSubLedgerEntry.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Ledger.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Ledger.Designer.cs">
+      <DependentUpon>Ledger.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\LedgerEntryForIndividualPosting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\LedgerEntryForIndividualPosting.Designer.cs">
+      <DependentUpon>LedgerEntryForIndividualPosting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\LedgerEntryForOneCreditManyDebit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\LedgerEntryForOneCreditManyDebit.Designer.cs">
+      <DependentUpon>LedgerEntryForOneCreditManyDebit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\LedgerEntryUpdate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\LedgerEntryUpdate.Designer.cs">
+      <DependentUpon>LedgerEntryUpdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\MainUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\MainUI.Designer.cs">
+      <DependentUpon>MainUI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\MainUIForAdmin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\MainUIForAdmin.Designer.cs">
+      <DependentUpon>MainUIForAdmin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\MainUIForUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\MainUIForUser.Designer.cs">
+      <DependentUpon>MainUIForUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\MultipleBatchPosting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\MultipleBatchPosting.Designer.cs">
+      <DependentUpon>MultipleBatchPosting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\NewEntryForFiscalYear.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\NewEntryForFiscalYear.Designer.cs">
+      <DependentUpon>NewEntryForFiscalYear.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\NewEntryForLedger.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\NewEntryForLedger.Designer.cs">
+      <DependentUpon>NewEntryForLedger.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\OnlyUpdateForLedgerEntry.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\OnlyUpdateForLedgerEntry.Designer.cs">
+      <DependentUpon>OnlyUpdateForLedgerEntry.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\PreliStepsOfLedgerEntry.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\PreliStepsOfLedgerEntry.Designer.cs">
+      <DependentUpon>PreliStepsOfLedgerEntry.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\PreYearOpeningTransaction.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\PreYearOpeningTransaction.Designer.cs">
+      <DependentUpon>PreYearOpeningTransaction.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\ReOpeninigFiscalYear.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\ReOpeninigFiscalYear.Designer.cs">
+      <DependentUpon>ReOpeninigFiscalYear.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\SubLedger.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\SubLedger.Designer.cs">
+      <DependentUpon>SubLedger.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\SubLedgerEntry.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\SubLedgerEntry.Designer.cs">
+      <DependentUpon>SubLedgerEntry.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\TemporaryLedgerNewEntry.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\TemporaryLedgerNewEntry.Designer.cs">
+      <DependentUpon>TemporaryLedgerNewEntry.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\ThreeParamUpdateForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\ThreeParamUpdateForm.Designer.cs">
+      <DependentUpon>ThreeParamUpdateForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\UpdateSubLedger.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\UpdateSubLedger.Designer.cs">
+      <DependentUpon>UpdateSubLedger.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\UpdateSubLedgerEntry.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\UpdateSubLedgerEntry.Designer.cs">
+      <DependentUpon>UpdateSubLedgerEntry.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\UpdateTempLedger.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\UpdateTempLedger.Designer.cs">
+      <DependentUpon>UpdateTempLedger.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\VoucherNoLoader.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\VoucherNoLoader.Designer.cs">
+      <DependentUpon>VoucherNoLoader.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\VoucherNumberUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\VoucherNumberUI.Designer.cs">
+      <DependentUpon>VoucherNumberUI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\YearOpeningAproval.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\YearOpeningAproval.Designer.cs">
+      <DependentUpon>YearOpeningAproval.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\YearOpeningTransaction.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\YearOpeningTransaction.Designer.cs">
+      <DependentUpon>YearOpeningTransaction.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WaterMarkTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <EmbeddedResource Include="LogInUI\ChangePassword.resx">
+      <DependentUpon>ChangePassword.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LogInUI\frmLogin.resx">
+      <DependentUpon>frmLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LogInUI\frmRegistration.resx">
+      <DependentUpon>frmRegistration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LogInUI\RegistrationForUser.resx">
+      <DependentUpon>RegistrationForUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LogInUI\ResetPassword.resx">
+      <DependentUpon>ResetPassword.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LogInUI\UpdateUser.resx">
+      <DependentUpon>UpdateUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LogInUI\UpdateUserForAdmin.resx">
+      <DependentUpon>UpdateUserForAdmin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LogInUI\UserManagementUI.resx">
+      <DependentUpon>UserManagementUI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="Reports\CrystalReport2.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CrystalReport2.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\CrystalReportN.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CrystalReportN.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\CrystalReportNX.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CrystalReportNX.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\JournalReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>JournalReport.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\JournalReportN.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>JournalReportN.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\JournalReportNX.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>JournalReportNX.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\LedgerDetails.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>LedgerDetails.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\LedgerDetailsN.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>LedgerDetailsN.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\LedgerList.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>LedgerList.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\LedgerListN.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>LedgerListN.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\ReportsUI.resx">
+      <DependentUpon>ReportsUI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\ReportViewer.resx">
+      <DependentUpon>ReportViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\TrialBalance.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>TrialBalance.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\TrialBalanceCN.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>TrialBalanceCN.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\TrialBalanceN.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>TrialBalanceN.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Splash.resx">
+      <DependentUpon>Splash.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\ClosingFiscalYear.resx">
+      <DependentUpon>ClosingFiscalYear.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\DailyBalance.resx">
+      <DependentUpon>DailyBalance.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\FiscalYear.resx">
+      <DependentUpon>FiscalYear.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\FiscalYearManagementUI.resx">
+      <DependentUpon>FiscalYearManagementUI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\GridAsJournal.resx">
+      <DependentUpon>GridAsJournal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\JournalForLedgerEntry.resx">
+      <DependentUpon>JournalForLedgerEntry.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\JournalForSubLedgerEntry.resx">
+      <DependentUpon>JournalForSubLedgerEntry.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Ledger.resx">
+      <DependentUpon>Ledger.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\LedgerEntryForIndividualPosting.resx">
+      <DependentUpon>LedgerEntryForIndividualPosting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\LedgerEntryForOneCreditManyDebit.resx">
+      <DependentUpon>LedgerEntryForOneCreditManyDebit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\LedgerEntryUpdate.resx">
+      <DependentUpon>LedgerEntryUpdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\MainUI.resx">
+      <DependentUpon>MainUI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\MainUIForAdmin.resx">
+      <DependentUpon>MainUIForAdmin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\MainUIForUser.resx">
+      <DependentUpon>MainUIForUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\MultipleBatchPosting.resx">
+      <DependentUpon>MultipleBatchPosting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\NewEntryForFiscalYear.resx">
+      <DependentUpon>NewEntryForFiscalYear.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\NewEntryForLedger.resx">
+      <DependentUpon>NewEntryForLedger.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\OnlyUpdateForLedgerEntry.resx">
+      <DependentUpon>OnlyUpdateForLedgerEntry.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\PreliStepsOfLedgerEntry.resx">
+      <DependentUpon>PreliStepsOfLedgerEntry.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\PreYearOpeningTransaction.resx">
+      <DependentUpon>PreYearOpeningTransaction.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\ReOpeninigFiscalYear.resx">
+      <DependentUpon>ReOpeninigFiscalYear.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\SubLedger.resx">
+      <DependentUpon>SubLedger.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\SubLedgerEntry.resx">
+      <DependentUpon>SubLedgerEntry.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\TemporaryLedgerNewEntry.resx">
+      <DependentUpon>TemporaryLedgerNewEntry.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\ThreeParamUpdateForm.resx">
+      <DependentUpon>ThreeParamUpdateForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\UpdateSubLedger.resx">
+      <DependentUpon>UpdateSubLedger.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\UpdateSubLedgerEntry.resx">
+      <DependentUpon>UpdateSubLedgerEntry.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\UpdateTempLedger.resx">
+      <DependentUpon>UpdateTempLedger.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\VoucherNoLoader.resx">
+      <DependentUpon>VoucherNoLoader.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\VoucherNumberUI.resx">
+      <DependentUpon>VoucherNumberUI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\YearOpeningAproval.resx">
+      <DependentUpon>YearOpeningAproval.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\YearOpeningTransaction.resx">
+      <DependentUpon>YearOpeningTransaction.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="AccountsManagementSystem_TemporaryKey.pfx" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\KyotoFontPage.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="accounting_management_system_nkX_icon.ico" />
+    <Content Include="account_management_system03_NOB_icon.ico" />
+    <None Include="Resources\abc.jpg" />
+    <None Include="Resources\splash.jpg" />
+    <None Include="Resources\animation.bmp" />
+    <None Include="Resources\Accounting  System 66.jpg" />
+    <None Include="Resources\Accounting  System 44.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
