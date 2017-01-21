@@ -332,10 +332,14 @@ namespace AccountsManagementSystem.UI
                 MessageBox.Show("This Credit Amount must be equal to Debit amount.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtIndCrdeitBalance.Clear();
                 txtIndCrdeitBalance.Focus();
-                return;
+               
+            }
+
+            else
+            {
+                submitButton.Enabled = true;
             }
             
-            submitButton.Enabled = true;
         }
         
         private void SaveNewTransaction()
@@ -727,14 +731,14 @@ namespace AccountsManagementSystem.UI
             //    txtInd2Particulars.Focus();
             //    return;
             //}
-            if (txtIndDebitBalance.Text == "")
+            if (string.IsNullOrWhiteSpace(txtIndCrdeitBalance.Text))
             {
                 MessageBox.Show("Please Enter Debit balance", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtIndDebitBalance.Focus();
-                return;
+                
             }
 
-            try
+            else try
             {
 
                 debitAmount = Convert.ToDecimal(txtIndDebitBalance.Text);
@@ -754,6 +758,7 @@ namespace AccountsManagementSystem.UI
                     MessageBox.Show("Transaction Completed Successfully", "Record", MessageBoxButtons.OK,MessageBoxIcon.Information);
                     Reset();
                     groupBox2.Enabled = false;
+                    cmbInd1LedgerName.Focus();
                 }
                 else
                 {
@@ -864,7 +869,7 @@ namespace AccountsManagementSystem.UI
             if (((e.KeyChar < 48 || e.KeyChar > 57) && e.KeyChar != 8 && e.KeyChar != 46))
             {
                 e.Handled = true;
-                return;
+              
             }
 
             if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
@@ -885,7 +890,7 @@ namespace AccountsManagementSystem.UI
             if (((e.KeyChar < 48 || e.KeyChar > 57) && e.KeyChar != 8 && e.KeyChar != 46))
             {
                 e.Handled = true;
-                return;
+               
             }
         }
 
@@ -894,7 +899,7 @@ namespace AccountsManagementSystem.UI
             if (((e.KeyChar < 48 || e.KeyChar > 57) && e.KeyChar != 8 && e.KeyChar != 46))
             {
                 e.Handled = true;
-                return;
+               
             }
         }
 
@@ -903,7 +908,7 @@ namespace AccountsManagementSystem.UI
             if (((e.KeyChar < 48 || e.KeyChar > 57) && e.KeyChar != 8 && e.KeyChar != 46))
             {
                 e.Handled = true;
-                return;
+               
             }
         }
 
@@ -912,7 +917,7 @@ namespace AccountsManagementSystem.UI
             if (((e.KeyChar < 48 || e.KeyChar > 57) && e.KeyChar != 8 && e.KeyChar != 46))
             {
                 e.Handled = true;
-                return;
+               
             }
         }
 
@@ -1124,32 +1129,30 @@ namespace AccountsManagementSystem.UI
 
         private void txtIndCrdeitBalance_Enter(object sender, EventArgs e)
         {
-            if (textBox2.Visible == true)
-            {
-                if (textBox2.Text == "")
+            if (textBox2.Visible && string.IsNullOrWhiteSpace(textBox2.Text))
                 {
                     MessageBox.Show("Please Insert Bill Or Invoice No ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Hand);
-                    textBox2.Focus();
-                    return;
+                    this.BeginInvoke(new ChangeFocusDelegate(changeFocus),textBox2);
+                  
                 }
-            }
-            if (txtInd2Particulars.Text == "")
+            
+
+            else if (string.IsNullOrWhiteSpace(txtInd2Particulars.Text))
             {
                 MessageBox.Show("Please Enter Debit Particulars", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtInd2Particulars.Focus();
-                return;
+                this.BeginInvoke(new ChangeFocusDelegate(changeFocus),txtInd2Particulars);
+                
             }
            
-            submitButton.Enabled = true;
+            //submitButton.Enabled = true;
         }
 
         private void cmbInd2LedgerName_Enter(object sender, EventArgs e)
         {
-            if (txtIndDebitBalance.Text == "")
+            if (string.IsNullOrWhiteSpace(txtIndDebitBalance.Text))
             {
                 MessageBox.Show("Please Enter Debit balance", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtIndDebitBalance.Focus();
-                return;
+                this.BeginInvoke(new ChangeFocusDelegate(changeFocus),txtIndDebitBalance);
             }
             else
             {
@@ -1166,8 +1169,7 @@ namespace AccountsManagementSystem.UI
             {
                 MessageBox.Show("Please Select A Valid Voucher No", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 cmbVoucherNoC.ResetText();
-                cmbVoucherNoC.Focus();
-                return;
+                this.BeginInvoke(new ChangeFocusDelegate(changeFocus),cmbVoucherNoC);
             }
            
         }
@@ -1208,51 +1210,46 @@ namespace AccountsManagementSystem.UI
 
         private void txtInd1RequisitionNo_Enter(object sender, EventArgs e)
         {
-            if (cmbInd1LedgerName.Text == "")
+            if (string.IsNullOrWhiteSpace(cmbInd1LedgerName.Text))
             {
                 MessageBox.Show("Please select Ledger Name", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                cmbInd1LedgerName.Focus();
-                return;
+                this.BeginInvoke(new ChangeFocusDelegate(changeFocus), cmbInd1LedgerName);
             }
         }
 
         private void cmbVoucherNoC_Enter(object sender, EventArgs e)
         {
-            if (cmbInd2LedgerName.Text == "")
+            if (string.IsNullOrWhiteSpace(cmbInd2LedgerName.Text))
             {
                 MessageBox.Show("Please select Ledger Name", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                cmbInd2LedgerName.Focus();
-                return;
+                this.BeginInvoke(new ChangeFocusDelegate(changeFocus),cmbInd2LedgerName);
             }
         }
 
         private void txtInd2FundRequisition_Enter(object sender, EventArgs e)
         {
-            if (cmbInd2LedgerName.Text == "")
+            if (string.IsNullOrWhiteSpace(cmbInd2LedgerName.Text))
             {
                 MessageBox.Show("Please select Ledger Name", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                cmbInd2LedgerName.Focus();
-                return;
+                this.BeginInvoke(new ChangeFocusDelegate(changeFocus),cmbInd2LedgerName);
             }
         }
 
         private void textBox1_Enter(object sender, EventArgs e)
         {
-            if (cmbVoucherNoD.Text == "")
+            if (string.IsNullOrWhiteSpace(cmbVoucherNoD.Text))
             {
                 MessageBox.Show("Please Type Voucher No first", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                cmbVoucherNoD.Focus();
-                return;
+                this.BeginInvoke(new ChangeFocusDelegate(changeFocus),cmbVoucherNoD);
             }
         }
 
         private void textBox2_Enter(object sender, EventArgs e)
         {
-            if (cmbVoucherNoC.Text == "")
+            if (string.IsNullOrWhiteSpace(cmbVoucherNoC.Text))
             {
                 MessageBox.Show("Please Type Voucher No before Particulars", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                cmbVoucherNoC.Focus();
-                return;
+                this.BeginInvoke(new ChangeFocusDelegate(changeFocus),cmbVoucherNoC);
             }
         }
         protected override void OnClosing(System.ComponentModel.CancelEventArgs e)
