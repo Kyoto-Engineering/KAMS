@@ -118,11 +118,12 @@ namespace AccountsManagementSystem.UI
             }
             txtInd1RequisitionNo.Clear();
             cmbVoucherNoD.Items.Remove(cmbVoucherNoD.Text);
+            cmbVoucherNoD.Items.Remove(cmbVoucherNoC.Text);
             cmbVoucherNoD.Refresh();
             cmbVoucherNoC.Items.Remove(cmbVoucherNoC.Text);
-            cmbVoucherNoD.Items.Remove(cmbVoucherNoD.Text);
+            
             cmbVoucherNoC.Refresh();
-            cmbVoucherNoD.Refresh();
+           
             //cmbVoucherNoD.SelectedIndex=-1;
             txtInd1Particulars.Clear();
             txtIndDebitBalance.TextChanged -= txtDebitBalance_TextChanged;
@@ -509,7 +510,7 @@ namespace AccountsManagementSystem.UI
                 cmd.Parameters.AddWithValue("d7", lID2);
                 creditLedgerEntryId = (int)cmd.ExecuteScalar();
                 con.Close();
-                if (textBox2.Visible == true)
+                if (textBox2.Visible)
                 {
                     con = new SqlConnection(cs.DBConn);
                     con.Open();
@@ -572,7 +573,7 @@ namespace AccountsManagementSystem.UI
                     con.Close();
                     SaveDebitContraEntry();
 
-                    if (textBox1.Visible == true)
+                    if (textBox1.Visible)
                     {
                         con = new SqlConnection(cs.DBConn);
                         con.Open();
@@ -790,6 +791,7 @@ namespace AccountsManagementSystem.UI
         {
             try
             {
+                UseWaitCursor = true;
                 con = new SqlConnection(cs.DBConn);
 
                 con.Open();
@@ -857,7 +859,8 @@ namespace AccountsManagementSystem.UI
                     cmbInd2LedgerName.Items.Add(rdr[0]);
                 }
                 con.Close();
-
+                UseWaitCursor = false;
+                txtInd1Entrydate.Focus();
             }
 
             catch (Exception ex)
@@ -1063,20 +1066,18 @@ namespace AccountsManagementSystem.UI
 
         private void txtInd2Particulars_TextChanged(object sender, EventArgs e)
         {
-            if (textBox2.Visible == true)
-            {
-                if (textBox2.Text == "")
+            if (textBox2.Visible && string.IsNullOrWhiteSpace(textBox2.Text))
                 {
                     MessageBox.Show("Please Insert Bill Or Invoice No ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Hand);
                     textBox2.Focus();
-                    return;
+                   
                 }
-            }
-            else if (cmbVoucherNoC.Text == "")
+            
+            else if (string.IsNullOrWhiteSpace(cmbVoucherNoC.Text))
             {
                 MessageBox.Show("Please Type voucher No before Particulars", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 cmbVoucherNoC.Focus();
-                return;
+               
             }
         }
 
@@ -1100,28 +1101,29 @@ namespace AccountsManagementSystem.UI
 
         private void txtIndDebitBalance_Enter(object sender, EventArgs e)
         {
-            if (cmbInd1LedgerName.Text == "")
+            if (string.IsNullOrWhiteSpace( cmbInd1LedgerName.Text))
             {
                 MessageBox.Show("Please select Ledger Name", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                cmbInd1LedgerName.Focus();
-                return;
+                this.BeginInvoke(new ChangeFocusDelegate(changeFocus),cmbInd1LedgerName);
+               
             }
-            if (textBox1.Visible == true)
-            {
-                if (textBox1.Text == "")
+            else if (textBox1.Visible && string.IsNullOrWhiteSpace(textBox1.Text))
                 {
                     MessageBox.Show("Please Insert Bill Or Invoice No ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Hand);
-                    textBox1.Focus();
-                    return;
+                    this.BeginInvoke(new ChangeFocusDelegate(changeFocus),textBox1);
+                   
                 }
-            }
-            if (txtInd1Particulars.Text == "")
+            
+            else if (string.IsNullOrWhiteSpace(txtInd1Particulars.Text))
             {
                 MessageBox.Show("Please enter Particulars", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtInd1Particulars.Focus();
-                return;
+                this.BeginInvoke(new ChangeFocusDelegate(changeFocus),txtInd1Particulars);
+
             }
-            groupBox2.Enabled = true;
+            else
+            {
+                groupBox2.Enabled = true;
+            }
         }
 
         private void txtIndDebitBalance_Leave(object sender, EventArgs e)
@@ -1267,6 +1269,13 @@ namespace AccountsManagementSystem.UI
         private void changeFocus(Control ctl)
         {
             ctl.Focus();
+        }
+
+        private void LedgerEntryForIndividualPosting_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            this.Hide();
+            JournalForLedgerEntry frm = new JournalForLedgerEntry();
+            frm.Show();
         }
     }
 }
