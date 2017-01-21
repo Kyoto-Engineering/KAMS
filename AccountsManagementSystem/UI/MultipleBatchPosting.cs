@@ -1387,5 +1387,9 @@ namespace AccountsManagementSystem.UI
         {
 
         }
+        private void changeFocus(Control ctl)
+        {
+            ctl.Focus();
+        }
     }
 }
