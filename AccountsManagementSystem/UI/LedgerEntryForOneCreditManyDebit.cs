@@ -28,6 +28,7 @@ namespace AccountsManagementSystem.UI
         public string OAgrelId, accountOTypeD, accountOType, dLId2;
         public int fiscalLE3Year,cLId,dLId;
         public static DateTime startDateOneCManyD, endDateOneCManyD;
+        private delegate void ChangeFocusDelegate(Control ctl);
         public LedgerEntryForOneCreditManyDebit()
         {
             InitializeComponent();
@@ -1219,7 +1220,7 @@ namespace AccountsManagementSystem.UI
             if (string.IsNullOrWhiteSpace(cmbDebitLedgerName.Text))
             {
                 MessageBox.Show("Please select Ledger Name", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                cmbDebitLedgerName.Focus();
+                this.BeginInvoke(new ChangeFocusDelegate(changeFocus), cmbDebitLedgerName); 
                 
             }
         }
