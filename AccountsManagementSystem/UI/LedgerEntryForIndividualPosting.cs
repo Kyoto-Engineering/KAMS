@@ -1039,20 +1039,18 @@ namespace AccountsManagementSystem.UI
 
         private void txtInd1Particulars_TextChanged(object sender, EventArgs e)
         {
-            if (textBox1.Visible == true)
-            {
-                if (textBox1.Text == "")
+            if (textBox1.Visible && string.IsNullOrWhiteSpace(textBox1.Text))
                 {
                     MessageBox.Show("Please Insert Bill Or Invoice No ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Hand);
                     textBox1.Focus();
-                    return;
+                   
                 }
-            }
-            else if (cmbVoucherNoD.Text == "")
+      
+            else if (string.IsNullOrWhiteSpace(cmbVoucherNoD.Text))
             {
                 MessageBox.Show("Please Type voucher No before Particulars", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 cmbVoucherNoD.Focus();
-                return;
+      
             }
         }
 
@@ -1085,7 +1083,7 @@ namespace AccountsManagementSystem.UI
             if (((e.KeyChar < 48 || e.KeyChar > 57) && e.KeyChar != 8 && e.KeyChar != 46))
             {
                 e.Handled = true;
-                return;
+  
             }
             if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
             {
@@ -1188,7 +1186,7 @@ namespace AccountsManagementSystem.UI
 
         private void cmbVoucherNoC_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (textBox2.Visible == true)
+            if (textBox2.Visible)
             {
                 textBox2.Focus();
             }
@@ -1200,11 +1198,11 @@ namespace AccountsManagementSystem.UI
 
         private void cmbVoucherNoD_Enter(object sender, EventArgs e)
         {
-            if (cmbInd1LedgerName.Text == "")
+            if (string.IsNullOrWhiteSpace(cmbInd1LedgerName.Text))
             {
                 MessageBox.Show("Please select Ledger Name", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                cmbInd1LedgerName.Focus();
-                return;
+                this.BeginInvoke(new ChangeFocusDelegate(changeFocus), cmbInd1LedgerName);
+                
             }
         }
 
