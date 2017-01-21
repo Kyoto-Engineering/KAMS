@@ -226,32 +226,31 @@ namespace AccountsManagementSystem.UI
             {
                 MessageBox.Show("You must select a LedgerName.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 cmb1LedgerName.Focus();
-                return;
+                
             }
 
-            if (txt1Particulars.Text == "")
+            else if (txt1Particulars.Text == "")
             {
                 MessageBox.Show("You must enter Particulars", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txt1Particulars.Focus();
-                return;
+               
             }
 
-            if (txt1DebitAmount.Text == "")
+            else if (txt1DebitAmount.Text == "")
             {
                 MessageBox.Show("Please enter  debit amount.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txt1DebitAmount.Focus();
-                return;
+               
             }
-            decimal debitAmount = Convert.ToDecimal(txt1DebitAmount.Text);
-            if (debitAmount == 0)
+            else if (Convert.ToDecimal(txt1DebitAmount.Text )== 0.00m)
             {
                 MessageBox.Show("Items Can not be Added with zero values.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txt1DebitAmount.Clear();
                 txt1DebitAmount.Focus();
-                return;
+            
             }
 
-            try
+            else try
             {
                
                 takeSum1 = takeSum1 + Convert.ToDecimal(txt1DebitAmount.Text);
@@ -269,7 +268,12 @@ namespace AccountsManagementSystem.UI
                         dLId1 = Convert.ToString(dLId);
                         lst.SubItems.Add(dLId1);
                         aGRelId = Convert.ToString(debitAGRelId1);
+
                         lst.SubItems.Add(aGRelId);
+                        if (textBox1.Visible)
+                        {
+                            lst.SubItems.Add(textBox1.Text);
+                        }
 
                         listView1.Items.Add(lst);
 
@@ -277,12 +281,26 @@ namespace AccountsManagementSystem.UI
                         cmb2LedgerName.Refresh();
                         //cmb1LedgerName.Items.Remove(cmb1LedgerName.Text);
                         //cmb1LedgerName.Refresh();
+                        if (textBox1.Visible)
+                        {
+                            label7.Visible = false;
+                            textBox1.Visible = false;
+                            textBox1.Clear();
+                            label7.Location = new Point(37, 336);
+                            textBox1.Location = new Point(195, 329);
 
+                            label3.Location = new Point(65, 176);
+                            txt1Particulars.Location = new Point(195, 175);
+                            label4.Location = new Point(45, 290);
+                            txt1DebitAmount.Location = new Point(195, 287);
+                        }
+                        cmb1LedgerName.SelectedIndexChanged -= cmb1LedgerName_SelectedIndexChanged;
                         cmb1LedgerName.SelectedIndex = -1;
-                        txt1RequisitionNo.Text = "";
+                        cmb1LedgerName.SelectedIndexChanged += cmb1LedgerName_SelectedIndexChanged;
+                        txt1RequisitionNo.Clear();
                         cmbVoucherNoD.Enabled=false;
-                        txt1Particulars.Text = "";
-                        txt1DebitAmount.Text = "";
+                        txt1Particulars.Clear();
+                        txt1DebitAmount.Clear();
                        
 
                         return;
@@ -300,18 +318,35 @@ namespace AccountsManagementSystem.UI
                     lst1.SubItems.Add(dLId1);
                     aGRelId = Convert.ToString(debitAGRelId1);
                     lst1.SubItems.Add(aGRelId);
-
+                    if (textBox1.Visible)
+                    {
+                        lst1.SubItems.Add(textBox1.Text);
+                    }
                     listView1.Items.Add(lst1);
                     cmb2LedgerName.Items.Remove(cmb1LedgerName.Text);
                     cmb2LedgerName.Refresh();
                     //cmb1LedgerName.Items.Remove(cmb1LedgerName.Text);
                     //cmb1LedgerName.Refresh();
+                    if (textBox1.Visible)
+                    {
+                        label7.Visible = false;
+                        textBox1.Visible = false;
+                        textBox1.Clear();
+                        label7.Location = new Point(37, 336);
+                        textBox1.Location = new Point(195, 329);
 
+                        label3.Location = new Point(65, 176);
+                        txt1Particulars.Location = new Point(195, 175);
+                        label4.Location = new Point(45, 290);
+                        txt1DebitAmount.Location = new Point(195, 287);
+                    }
+                    cmb1LedgerName.SelectedIndexChanged -= cmb1LedgerName_SelectedIndexChanged;
                     cmb1LedgerName.SelectedIndex = -1;
-                    txt1RequisitionNo.Text = "";
+                    cmb1LedgerName.SelectedIndexChanged += cmb1LedgerName_SelectedIndexChanged;
+                    txt1RequisitionNo.Clear();
                     cmbVoucherNoD.Enabled=false;
-                    txt1Particulars.Text = "";
-                    txt1DebitAmount.Text = "";
+                    txt1Particulars.Clear();
+                    txt1DebitAmount.Clear();
                    
                     return;
                
@@ -328,25 +363,25 @@ namespace AccountsManagementSystem.UI
             {
                 MessageBox.Show("You must select a LedgerName.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 cmb2LedgerName.Focus();
-                return;
+                
             }
 
-            if (txt2Particulars.Text == "")
+            else if (txt2Particulars.Text == "")
             {
                 MessageBox.Show("You must enter Particulars", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txt2Particulars.Focus();
-                return;
+               
             }
 
-            if (txt2CreditAmount.Text == "")
+            else  if (txt2CreditAmount.Text == "")
             {
                 MessageBox.Show("Please enter  credit amount.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txt2CreditAmount.Focus();
-                return;
+               
             }
 
-            decimal creditAmount = Convert.ToDecimal(txt2CreditAmount.Text);
-            if (creditAmount == 0)
+           
+            else if (Convert.ToDecimal(txt2CreditAmount.Text) == 0.00m)
             {
                 MessageBox.Show("Items Can not be Added with zero values.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txt2CreditAmount.Clear();
@@ -354,7 +389,7 @@ namespace AccountsManagementSystem.UI
                 return;
             }
 
-            try
+            else try
             {
                 takeSub2 = takeSum2;
                 takeSum2 = takeSum2 + Convert.ToDecimal(txt2CreditAmount.Text);
@@ -364,7 +399,7 @@ namespace AccountsManagementSystem.UI
                     takeSum2 = takeSub2;
                     txt2CreditAmount.Text = "";
                     txt2CreditAmount.Focus();
-                    return;
+                 
                 }
                 else
                 {
@@ -382,14 +417,31 @@ namespace AccountsManagementSystem.UI
                         lst10.SubItems.Add(cLId2);
                         aGRelId = Convert.ToString(creditAGRelId2);
                         lst10.SubItems.Add(aGRelId);
-
+                        if (textBox2.Visible)
+                        {
+                            lst10.SubItems.Add(textBox2.Text);
+                        }
                         listView2.Items.Add(lst10);
                         //cmb1LedgerName.Items.Remove(cmb2LedgerName.Text);
                         //cmb2LedgerName.Refresh();
                         //cmb2LedgerName.Items.Remove(cmb2LedgerName.Text);
                         //cmb2LedgerName.Refresh();
+                        if (textBox2.Visible)
+                        {
+                            label16.Visible = false;
+                            textBox2.Visible = false;
+                            textBox2.Clear();
+                            label16.Location = new Point(57, 369);
+                            textBox2.Location = new Point(213, 362);
 
+                            label12.Location = new Point(88, 189);
+                            txt2Particulars.Location = new Point(213, 187);
+                            label3.Location = new Point(70, 317);
+                            txt2CreditAmount.Location = new Point(213, 313);
+                        }
+                        cmb2LedgerName.SelectedIndexChanged -= cmb2LedgerName_SelectedIndexChanged;
                         cmb2LedgerName.SelectedIndex = -1;
+                        cmb2LedgerName.SelectedIndexChanged += cmb2LedgerName_SelectedIndexChanged;
                         txt2FundRequisition.Text = "";
                         cmbVoucherNoC.Enabled=false;
                         txt2Particulars.Text = "";
@@ -412,12 +464,30 @@ namespace AccountsManagementSystem.UI
                     lst12.SubItems.Add(cLId2);
                     aGRelId = Convert.ToString(creditAGRelId2);
                     lst12.SubItems.Add(aGRelId);
-
+                    if (textBox2.Visible)
+                    {
+                        lst12.SubItems.Add(textBox2.Text);
+                    }
                     listView2.Items.Add(lst12);
                     //cmb2LedgerName.Items.Remove(cmb2LedgerName.Text);
                     //cmb2LedgerName.Refresh();
 
+                    if (textBox2.Visible)
+                    {
+                        label16.Visible = false;
+                        textBox2.Visible = false;
+                        textBox2.Clear();
+                        label16.Location = new Point(57, 369);
+                        textBox2.Location = new Point(213, 362);
+
+                        label12.Location = new Point(88, 189);
+                        txt2Particulars.Location = new Point(213, 187);
+                        label3.Location = new Point(70, 317);
+                        txt2CreditAmount.Location = new Point(213, 313);
+                    }
+                    cmb2LedgerName.SelectedIndexChanged -= cmb2LedgerName_SelectedIndexChanged;
                     cmb2LedgerName.SelectedIndex = -1;
+                    cmb2LedgerName.SelectedIndexChanged += cmb2LedgerName_SelectedIndexChanged;
                     txt2FundRequisition.Text = "";
                     cmbVoucherNoC.Enabled=false;
                     txt2Particulars.Text = "";
@@ -484,7 +554,7 @@ namespace AccountsManagementSystem.UI
         }
         private void cmb1LedgerName_SelectedIndexChanged(object sender, EventArgs e)
         {
-            txt1RequisitionNo.Focus();
+            
             try
             {
 
@@ -556,7 +626,7 @@ namespace AccountsManagementSystem.UI
                 //    cmb2LedgerName.Items.Add(rdr[0]);
                 //}
                 //con.Close();
-
+                txt1RequisitionNo.Focus();
 
             }
 
@@ -610,9 +680,9 @@ namespace AccountsManagementSystem.UI
                 }
                 else
                 {
-                    label7.Visible = false;
-                    textBox1.Visible = false;
-                    textBox1.Clear();
+                    label16.Visible = false;
+                    textBox2.Visible = false;
+                    textBox2.Clear();
                     label16.Location = new Point(57, 369);
                     textBox2.Location = new Point(213, 362);
 
