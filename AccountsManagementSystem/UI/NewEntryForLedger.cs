@@ -29,6 +29,7 @@ namespace AccountsManagementSystem.UI
         public int fiscalLE2Year;
         public int dLId, cLId;
         public DateTime startDateOneDManyC, endDateOneDManyC;
+        private delegate void ChangeFocusDelegate(Control ctl);
         public NewEntryForLedger()
         {
             InitializeComponent();
@@ -178,7 +179,7 @@ namespace AccountsManagementSystem.UI
         }
         private void NewEntryForLedger_Load(object sender, EventArgs e)
         {
-
+            Application.UseWaitCursor = true;
             // Create a new thread from which to start the splash screen form
             Thread splashThread = new Thread(new ThreadStart(StartSplash));
             splashThread.Start();
@@ -226,7 +227,8 @@ namespace AccountsManagementSystem.UI
                 txt1Entrydate.Value = DateTime.Now;
             }
 
-            CloseSplash();  
+            CloseSplash();
+            Application.UseWaitCursor = false;
             
         }
 
@@ -310,7 +312,7 @@ namespace AccountsManagementSystem.UI
             if (((e.KeyChar < 48 || e.KeyChar > 57) && e.KeyChar != 8 && e.KeyChar != 46))
             {
                 e.Handled = true;
-                return;
+            
             }
         }
 
@@ -319,7 +321,7 @@ namespace AccountsManagementSystem.UI
             if (((e.KeyChar < 48 || e.KeyChar > 57) && e.KeyChar != 8 && e.KeyChar != 46))
             {
                 e.Handled = true;
-                return;
+             
             }
         }
 
@@ -781,18 +783,18 @@ namespace AccountsManagementSystem.UI
             if (listView1.Items.Count != Convert.ToInt32(txtCEntryNo.Text))
             {
                 MessageBox.Show("Number Of Credit Entry does not match....Please Check before Submit", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
+              
             }
 
-            try
+            else try
             {
                 if (takeSum > Convert.ToDecimal(txt1Amount.Text) || takeSum < Convert.ToDecimal(txt1Amount.Text))
                 {
                     MessageBox.Show("Your Transaction Parameters(Debit & Credit) are not Equal", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
+                   
                 }
 
-                if (takeSum == Convert.ToDecimal(txt1Amount.Text))
+                else  if (takeSum == Convert.ToDecimal(txt1Amount.Text))
                 {
                     SaveNewTransaction();
                     if (txt1TransactionType.Text == "Debit")
@@ -813,7 +815,7 @@ namespace AccountsManagementSystem.UI
                         cmd.Parameters.AddWithValue("@d7", dLId);
                         lEntryId = (int) cmd.ExecuteScalar();
                         con.Close();
-                        if (textBox1.Visible == true)
+                        if (textBox1.Visible)
                         {
                             con = new SqlConnection(cs.DBConn);
                             con.Open();
@@ -1091,7 +1093,7 @@ namespace AccountsManagementSystem.UI
             if (((e.KeyChar < 48 || e.KeyChar > 57) && e.KeyChar != 8 && e.KeyChar != 46))
             {
                 e.Handled = true;
-                return;
+                
             }
         }
 
@@ -1100,7 +1102,7 @@ namespace AccountsManagementSystem.UI
             if (((e.KeyChar < 48 || e.KeyChar > 57) && e.KeyChar != 8 && e.KeyChar != 46))
             {
                 e.Handled = true;
-                return;
+               
             }
         }
 
@@ -1109,7 +1111,7 @@ namespace AccountsManagementSystem.UI
             if (((e.KeyChar < 48 || e.KeyChar > 57) && e.KeyChar != 8 && e.KeyChar != 46))
             {
                 e.Handled = true;
-                return;
+             
             }
         }
 
@@ -1118,7 +1120,7 @@ namespace AccountsManagementSystem.UI
             if (((e.KeyChar < 48 || e.KeyChar > 57) && e.KeyChar != 8 && e.KeyChar != 46))
             {
                 e.Handled = true;
-                return;
+                
             }
         }
 
@@ -1150,7 +1152,7 @@ namespace AccountsManagementSystem.UI
         {
             if (e.KeyCode == Keys.Enter)
             {
-                if (textBox1.Visible == true)
+                if (textBox1.Visible )
                 {
                     textBox1.Focus();
                 }
@@ -1263,7 +1265,7 @@ namespace AccountsManagementSystem.UI
                 //    cmbVoucherNoC.Items.Add(rdr[0]);
                 //}
                 //con.Close();
-                if (textBox1.Visible == true)
+                if (textBox1.Visible)
                 {
                     textBox1.Focus();
                 }
