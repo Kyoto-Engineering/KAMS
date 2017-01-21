@@ -63,8 +63,6 @@
             this.cmbInd2LedgerName = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.submitButton = new System.Windows.Forms.Button();
-            this.closeButton = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
             this.group1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -465,41 +463,12 @@
             this.submitButton.UseVisualStyleBackColor = true;
             this.submitButton.Click += new System.EventHandler(this.submitButton_Click);
             // 
-            // closeButton
-            // 
-            this.closeButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this.closeButton.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.closeButton.ForeColor = System.Drawing.Color.Blue;
-            this.closeButton.Location = new System.Drawing.Point(969, 3);
-            this.closeButton.Name = "closeButton";
-            this.closeButton.Size = new System.Drawing.Size(65, 44);
-            this.closeButton.TabIndex = 2;
-            this.closeButton.Text = "Close";
-            this.closeButton.UseVisualStyleBackColor = false;
-            this.closeButton.Click += new System.EventHandler(this.closeButton_Click);
-            // 
-            // button3
-            // 
-            this.button3.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.button3.Location = new System.Drawing.Point(910, 1);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(55, 46);
-            this.button3.TabIndex = 1;
-            this.button3.Text = "Min";
-            this.button3.UseVisualStyleBackColor = false;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
-            // 
             // LedgerEntryForIndividualPosting
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.ClientSize = new System.Drawing.Size(1038, 639);
-            this.ControlBox = false;
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.closeButton);
             this.Controls.Add(this.submitButton);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.group1);
@@ -510,6 +479,7 @@
             this.Name = "LedgerEntryForIndividualPosting";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "LedgerEntryForIndividualPosting";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.LedgerEntryForIndividualPosting_FormClosed);
             this.Load += new System.EventHandler(this.LedgerEntryForIndividualPosting_Load);
             this.group1.ResumeLayout(false);
             this.group1.PerformLayout();
@@ -547,9 +517,7 @@
         private System.Windows.Forms.ComboBox cmbInd2LedgerName;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button submitButton;
-        private System.Windows.Forms.Button closeButton;
         private System.Windows.Forms.DateTimePicker txtInd1Entrydate;
-        private System.Windows.Forms.Button button3;
         private System.Windows.Forms.ComboBox cmbVoucherNoD;
         private System.Windows.Forms.ComboBox cmbVoucherNoC;
         public System.Windows.Forms.TextBox textBox1;
