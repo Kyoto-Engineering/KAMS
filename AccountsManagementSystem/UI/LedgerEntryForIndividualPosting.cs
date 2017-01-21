@@ -222,6 +222,7 @@ namespace AccountsManagementSystem.UI
         //}
         private void LedgerEntryForIndividualPosting_Load(object sender, EventArgs e)
         {
+            Application.UseWaitCursor = true;
             // Create a new thread from which to start the splash screen form
             Thread splashThread = new Thread(new ThreadStart(StartSplash));
             splashThread.Start();
@@ -255,7 +256,8 @@ namespace AccountsManagementSystem.UI
             
             groupBox2.Enabled = false;
             Ledger1CmbFill();
-            CloseSplash();  
+            CloseSplash();
+            Application.UseWaitCursor = false;
             cmbInd1LedgerName.Focus();
         }
         private void GetLId2()
