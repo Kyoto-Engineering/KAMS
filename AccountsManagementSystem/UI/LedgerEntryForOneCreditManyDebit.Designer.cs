@@ -206,6 +206,7 @@
             this.txtC1DM2Particulars.Size = new System.Drawing.Size(249, 171);
             this.txtC1DM2Particulars.TabIndex = 76;
             this.txtC1DM2Particulars.Text = "";
+            this.txtC1DM2Particulars.TextChanged += new System.EventHandler(this.txtC1DM2Particulars_TextChanged);
             this.txtC1DM2Particulars.Enter += new System.EventHandler(this.txtC1DM2Particulars_Enter);
             this.txtC1DM2Particulars.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtC1DM2Particulars_KeyDown);
             // 
@@ -338,6 +339,7 @@
             this.txtc1DM2FundRequisition.Name = "txtc1DM2FundRequisition";
             this.txtc1DM2FundRequisition.Size = new System.Drawing.Size(249, 29);
             this.txtc1DM2FundRequisition.TabIndex = 1;
+            this.txtc1DM2FundRequisition.TextChanged += new System.EventHandler(this.txtc1DM2FundRequisition_TextChanged);
             this.txtc1DM2FundRequisition.Enter += new System.EventHandler(this.txtc1DM2FundRequisition_Enter);
             this.txtc1DM2FundRequisition.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtc1DM2FundRequisition_KeyDown);
             this.txtc1DM2FundRequisition.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtc1DM2FundRequisition_KeyPress);

@@ -475,6 +475,7 @@
             this.txt2CreditAmount.Size = new System.Drawing.Size(282, 32);
             this.txt2CreditAmount.TabIndex = 4;
             this.txt2CreditAmount.TextChanged += new System.EventHandler(this.txt2CreditAmount_TextChanged);
+            this.txt2CreditAmount.Enter += new System.EventHandler(this.txt2CreditAmount_Enter);
             this.txt2CreditAmount.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt2CreditAmount_KeyDown);
             this.txt2CreditAmount.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt2CreditAmount_KeyPress);
             this.txt2CreditAmount.Validating += new System.ComponentModel.CancelEventHandler(this.txt2CreditAmount_Validating);

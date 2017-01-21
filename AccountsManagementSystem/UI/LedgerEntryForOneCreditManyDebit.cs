@@ -1230,7 +1230,7 @@ namespace AccountsManagementSystem.UI
             if (string.IsNullOrWhiteSpace(cmbDebitLedgerName.Text))
             {
                 MessageBox.Show("Please select Ledger Name", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                cmbDebitLedgerName.Focus();
+                this.BeginInvoke(new ChangeFocusDelegate(changeFocus),cmbDebitLedgerName);
              
             }
         }
@@ -1240,7 +1240,7 @@ namespace AccountsManagementSystem.UI
             if (textBox1.Visible && string.IsNullOrWhiteSpace(textBox1.Text))
                 {
                     MessageBox.Show("Please Insert Bill Or Invoice No ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Hand);
-                    textBox1.Focus();
+                    this.BeginInvoke(new ChangeFocusDelegate(changeFocus), textBox1);
                   
                 }
             
@@ -1257,7 +1257,7 @@ namespace AccountsManagementSystem.UI
             if (string.IsNullOrWhiteSpace(cmbVoucherNoC.Text))
             {
                 MessageBox.Show("Please Type Voucher No before Particulars", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                cmbVoucherNoC.Focus();
+                this.BeginInvoke(new ChangeFocusDelegate(changeFocus),cmbVoucherNoC);
 
             }
         }
@@ -1268,7 +1268,7 @@ namespace AccountsManagementSystem.UI
             if (string.IsNullOrWhiteSpace(cmbVoucherNoD.Text))
             {
                 MessageBox.Show("Please Type Voucher No first", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                cmbVoucherNoD.Focus();
+                this.BeginInvoke(new ChangeFocusDelegate(changeFocus),cmbVoucherNoD);
                
             }
         }
@@ -1278,17 +1278,17 @@ namespace AccountsManagementSystem.UI
             if (string.IsNullOrWhiteSpace(txtC1DM2Particulars.Text))
             {
                 MessageBox.Show("Please enter Particulars", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtC1DM2Particulars.Focus();
+                this.BeginInvoke(new ChangeFocusDelegate(changeFocus),txtC1DM2Particulars);
                
             }
         }
 
         private void txtC1DM1CreditBalance_Enter(object sender, EventArgs e)
         {
-if (string.IsNullOrWhiteSpace(txtC1DM1Particulars.Text))
+          if (string.IsNullOrWhiteSpace(txtC1DM1Particulars.Text))
             {
                 MessageBox.Show("Please enter Particulars", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtC1DM1Particulars.Focus();
+                this.BeginInvoke(new ChangeFocusDelegate(changeFocus),txtC1DM1Particulars);
             }
         }
 
@@ -1304,7 +1304,7 @@ if (string.IsNullOrWhiteSpace(txtC1DM1Particulars.Text))
             if (textBox1.Visible && string.IsNullOrWhiteSpace(textBox1.Text))
                 {
                     MessageBox.Show("Please Insert Bill Or Invoice No ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Hand);
-                    textBox1.Focus();
+                    this.BeginInvoke(new ChangeFocusDelegate(changeFocus),textBox1);
                 }
             
             else if (string.IsNullOrWhiteSpace(cmbVoucherNoC.Text))
@@ -1319,7 +1319,7 @@ if (string.IsNullOrWhiteSpace(txtC1DM1Particulars.Text))
             if (string.IsNullOrWhiteSpace(cmbCreditLedgerName.Text))
             {
                 MessageBox.Show("Please select Ledger Name", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                cmbCreditLedgerName.Focus();
+                this.BeginInvoke(new ChangeFocusDelegate(changeFocus),cmbCreditLedgerName);
                 
             }
         }
@@ -1340,6 +1340,16 @@ if (string.IsNullOrWhiteSpace(txtC1DM1Particulars.Text))
             // Make sure the splash screen is closed
             CloseSplash();
             base.OnClosing(e);
+        }
+
+        private void txtC1DM2Particulars_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtc1DM2FundRequisition_TextChanged(object sender, EventArgs e)
+        {
+
         }
         }
     }
