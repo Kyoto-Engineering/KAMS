@@ -1286,14 +1286,14 @@ namespace AccountsManagementSystem.UI
             if (textBox1.Visible && string.IsNullOrWhiteSpace(textBox1.Text))
                 {
                     MessageBox.Show("Please Insert Bill Or Invoice No ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Hand);
-                    textBox1.Focus();
-                  
+                    this.BeginInvoke(new ChangeFocusDelegate(changeFocus), textBox1);   
+               
                 }
             
             else if (string.IsNullOrWhiteSpace(cmbVoucherNoD.Text))
             {
                 MessageBox.Show("Please Select Voucher No before Particulars", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                cmbVoucherNoD.Focus();
+                this.BeginInvoke(new ChangeFocusDelegate(changeFocus), cmbVoucherNoD);
             }
         }
 
@@ -1302,20 +1302,20 @@ namespace AccountsManagementSystem.UI
             if (string.IsNullOrWhiteSpace(cmb1LedgerName.Text))
             {
                 MessageBox.Show("Please select Ledger Name", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                cmb1LedgerName.Focus();
+                this.BeginInvoke(new ChangeFocusDelegate(changeFocus), cmb1LedgerName);
                
             }
             else if (textBox1.Visible && string.IsNullOrWhiteSpace(textBox1.Text))
             {
                    MessageBox.Show("Please Insert Bill Or Invoice No ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Hand);
-                    textBox1.Focus();
+                    this.BeginInvoke(new ChangeFocusDelegate(changeFocus), textBox1);
                     
                 
             }
             else if (string.IsNullOrWhiteSpace(txt1Particulars.Text))
             {
                 MessageBox.Show("Please enter Particulars", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txt1Particulars.Focus();
+                this.BeginInvoke(new ChangeFocusDelegate(changeFocus), txt1Particulars);
                 
             }
             else
@@ -1330,7 +1330,7 @@ namespace AccountsManagementSystem.UI
             if (string.IsNullOrWhiteSpace(txt1Amount.Text))
             {
                     MessageBox.Show("Please Enter Debit balance", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    txt1Amount.Focus();
+                    this.BeginInvoke(new ChangeFocusDelegate(changeFocus), txt1Amount);
                 }
             else
             {
@@ -1346,13 +1346,13 @@ namespace AccountsManagementSystem.UI
             if (textBox2.Visible && string.IsNullOrWhiteSpace(textBox2.Text))
                 {
                     MessageBox.Show("Please Insert Bill Or Invoice No ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Hand);
-                    textBox2.Focus();
+                    this.BeginInvoke(new ChangeFocusDelegate(changeFocus), textBox2);
                 
             }
             else if (string.IsNullOrWhiteSpace(cmbVoucherNoC.Text))
             {
                 MessageBox.Show("Please Type Voucher No before Particulars", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                cmbVoucherNoC.Focus();
+                this.BeginInvoke(new ChangeFocusDelegate(changeFocus), cmbVoucherNoC);
             }
         }
 
@@ -1361,19 +1361,19 @@ namespace AccountsManagementSystem.UI
             if (string.IsNullOrWhiteSpace(cmb2LedgerName.Text))
             {
                 MessageBox.Show("Please select Ledger Name", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                cmb2LedgerName.Focus();
+                this.BeginInvoke(new ChangeFocusDelegate(changeFocus), cmb2LedgerName);
                 
             }
             else if (textBox2.Visible && string.IsNullOrWhiteSpace(textBox2.Text))
                 {
                     MessageBox.Show("Please Insert Bill Or Invoice No ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Hand);
-                    textBox2.Focus();
+                    this.BeginInvoke(new ChangeFocusDelegate(changeFocus), textBox2);
                     
             }
             else if (string.IsNullOrWhiteSpace(txt2Particulars.Text))
             {
                 MessageBox.Show("Please enter Particulars", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txt2Particulars.Focus();
+                this.BeginInvoke(new ChangeFocusDelegate(changeFocus), txt2Particulars);
             }
         }
 
@@ -1382,7 +1382,7 @@ namespace AccountsManagementSystem.UI
             if (string.IsNullOrWhiteSpace(cmbVoucherNoD.Text))
             {
                 MessageBox.Show("Please Type Voucher No first", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                cmbVoucherNoD.Focus();
+                this.BeginInvoke(new ChangeFocusDelegate(changeFocus), cmbVoucherNoD);
             }
         }
 
@@ -1391,7 +1391,7 @@ namespace AccountsManagementSystem.UI
             if (string.IsNullOrWhiteSpace(cmbVoucherNoC.Text))
             {
                 MessageBox.Show("Please Type Voucher No before Particulars", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                cmbVoucherNoC.Focus();
+                this.BeginInvoke(new ChangeFocusDelegate(changeFocus), cmbVoucherNoC);
             }
         }
 
@@ -1401,7 +1401,7 @@ namespace AccountsManagementSystem.UI
             if (string.IsNullOrWhiteSpace(cmb2LedgerName.Text))
             {
                 MessageBox.Show("Please select Ledger Name", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                cmb2LedgerName.Focus();
+                this.BeginInvoke(new ChangeFocusDelegate(changeFocus), cmb2LedgerName);
             }
         }
 
@@ -1411,7 +1411,7 @@ namespace AccountsManagementSystem.UI
             if (string.IsNullOrWhiteSpace(cmb1LedgerName.Text))
             {
                 MessageBox.Show("Please select Ledger Name", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                cmb1LedgerName.Focus();
+                this.BeginInvoke(new ChangeFocusDelegate(changeFocus), cmb1LedgerName);
             }
         }
 
@@ -1422,7 +1422,7 @@ namespace AccountsManagementSystem.UI
             {
                 MessageBox.Show("Please Select A Valid Voucher No", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 cmbVoucherNoD.ResetText();
-                cmbVoucherNoD.Focus();
+                this.BeginInvoke(new ChangeFocusDelegate(changeFocus), cmbVoucherNoD);
             }
             
         }
@@ -1433,7 +1433,7 @@ namespace AccountsManagementSystem.UI
             {
                 MessageBox.Show("Please Select A Valid Voucher No", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 cmbVoucherNoC.ResetText();
-                cmbVoucherNoC.Focus();
+                this.BeginInvoke(new ChangeFocusDelegate(changeFocus), cmbVoucherNoC);
             }
             
         
@@ -1456,7 +1456,7 @@ namespace AccountsManagementSystem.UI
             if (string.IsNullOrWhiteSpace(cmb1LedgerName.Text))
             {
                 MessageBox.Show("Please select Ledger Name", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                cmb1LedgerName.Focus();
+                this.BeginInvoke(new ChangeFocusDelegate(changeFocus), cmb1LedgerName);
             }
         }
 
@@ -1465,7 +1465,7 @@ namespace AccountsManagementSystem.UI
             if (string.IsNullOrWhiteSpace(cmb2LedgerName.Text))
             {
                 MessageBox.Show("Please select Ledger Name", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                cmb2LedgerName.Focus();
+                this.BeginInvoke(new ChangeFocusDelegate(changeFocus), cmb2LedgerName);
             }
         }
 
@@ -1475,20 +1475,20 @@ namespace AccountsManagementSystem.UI
             {
                 MessageBox.Show("You must select a LedgerName.", "Input Error", MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-                cmb2LedgerName.Focus();
+                this.BeginInvoke(new ChangeFocusDelegate(changeFocus), cmb2LedgerName);
             }
 
             else if (string.IsNullOrWhiteSpace(txt2Particulars.Text))
             {
                 MessageBox.Show("You must enter Particulars", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txt2Particulars.Focus();
+                this.BeginInvoke(new ChangeFocusDelegate(changeFocus), txt2Particulars);
             }
 
             else if (string.IsNullOrWhiteSpace(txt2Amount.Text))
             {
                 MessageBox.Show("Please enter  credit amount.", "Input Error", MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-                txt2Amount.Focus();
+                this.BeginInvoke(new ChangeFocusDelegate(changeFocus), txt2Amount);
             }
         }
 
@@ -1507,6 +1507,10 @@ namespace AccountsManagementSystem.UI
         private void NewEntryForLedger_FormClosing(object sender, FormClosingEventArgs e)
         {
             CloseSplash();
+        }
+        private void changeFocus(Control ctl)
+        {
+            ctl.Focus();
         }
       }
     }

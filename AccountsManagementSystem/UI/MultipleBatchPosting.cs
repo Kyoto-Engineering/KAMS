@@ -222,21 +222,21 @@ namespace AccountsManagementSystem.UI
 
         private void addButton_Click(object sender, EventArgs e)
         {
-            if (cmb1LedgerName.Text == "")
+            if (string.IsNullOrWhiteSpace(cmb1LedgerName.Text))
             {
                 MessageBox.Show("You must select a LedgerName.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 cmb1LedgerName.Focus();
                 
             }
 
-            else if (txt1Particulars.Text == "")
+            else if (string.IsNullOrWhiteSpace(txt1Particulars.Text))
             {
                 MessageBox.Show("You must enter Particulars", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txt1Particulars.Focus();
                
             }
 
-            else if (txt1DebitAmount.Text == "")
+            else if (string.IsNullOrWhiteSpace(txt1DebitAmount.Text))
             {
                 MessageBox.Show("Please enter  debit amount.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txt1DebitAmount.Focus();
@@ -359,21 +359,21 @@ namespace AccountsManagementSystem.UI
 
         private void creditLedgerAddButton_Click(object sender, EventArgs e)
         {
-            if (cmb2LedgerName.Text == "")
+            if (string.IsNullOrWhiteSpace(cmb2LedgerName.Text))
             {
                 MessageBox.Show("You must select a LedgerName.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 cmb2LedgerName.Focus();
                 
             }
 
-            else if (txt2Particulars.Text == "")
+            else if (string.IsNullOrWhiteSpace(txt2Particulars.Text))
             {
                 MessageBox.Show("You must enter Particulars", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txt2Particulars.Focus();
                
             }
 
-            else  if (txt2CreditAmount.Text == "")
+            else  if (string.IsNullOrWhiteSpace(txt2CreditAmount.Text))
             {
                 MessageBox.Show("Please enter  credit amount.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txt2CreditAmount.Focus();
@@ -386,7 +386,7 @@ namespace AccountsManagementSystem.UI
                 MessageBox.Show("Items Can not be Added with zero values.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txt2CreditAmount.Clear();
                 txt2CreditAmount.Focus();
-                return;
+               
             }
 
             else try
@@ -901,19 +901,19 @@ namespace AccountsManagementSystem.UI
             if (listView2.Items.Count != Convert.ToInt32(txtCEntryNo.Text))
             {
                 MessageBox.Show("Your Number of Credit Entry is not equal to your Propossal Entry...Please Check before Submit", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
+               
             }
 
 
-            try
+            else try
             {
                 if (takeSum1 != takeSum2)
                 {
                     MessageBox.Show("Your Transaction Parameters(Debit & Credit) are not Equal", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
+                    
                 }
 
-                if (takeSum1 == takeSum2)
+                else  if (takeSum1 == takeSum2)
                 {
                     
                     SaveNewTransaction();                   
@@ -993,8 +993,19 @@ namespace AccountsManagementSystem.UI
                             cmd.Parameters.AddWithValue("d6", iTransactionId);
                             cmd.Parameters.AddWithValue("d7", listView1.Items[i].SubItems[7].Text);
                             lEntryId = (int) cmd.ExecuteScalar();
-                            con.Close();                            
-                            
+                            con.Close();
+                            if (listView1.Items[i].SubItems[8].Text == "5")
+                            {
+                                con = new SqlConnection(cs.DBConn);
+                                con.Open();
+                                string Y = "INSERT INTO BillInfo (BillNo,LedgerEntryId)VALUES(@d1,@d2)";
+                                cmd = new SqlCommand(Y);
+                                cmd.Connection = con;
+                                cmd.Parameters.AddWithValue("@d1", listView1.Items[i].SubItems[9].Text);
+                                cmd.Parameters.AddWithValue("@d2", lEntryId);
+                                cmd.ExecuteNonQuery();
+                                con.Close();
+                            }
                             con = new SqlConnection(cs.DBConn);
                             string query = "insert into ContraEntry(ContraLName,ContraLId) values(@d1,@d2)" + "SELECT CONVERT(int, SCOPE_IDENTITY())";
                             cmd = new SqlCommand(query, con);
@@ -1094,8 +1105,19 @@ namespace AccountsManagementSystem.UI
                             cmd.Parameters.AddWithValue("d7", listView2.Items[i].SubItems[7].Text);
                             con.Open();
                             creditLedgerEntryId = (int) cmd.ExecuteScalar();
-                            con.Close();                           
-
+                            con.Close();
+                            if (listView1.Items[i].SubItems[8].Text == "4")
+                            {
+                                con = new SqlConnection(cs.DBConn);
+                                con.Open();
+                                string Y = "INSERT INTO BillInfo (BillNo,LedgerEntryId)VALUES(@d1,@d2)";
+                                cmd = new SqlCommand(Y);
+                                cmd.Connection = con;
+                                cmd.Parameters.AddWithValue("@d1", listView1.Items[i].SubItems[9].Text);
+                                cmd.Parameters.AddWithValue("@d2", creditLedgerEntryId);
+                                cmd.ExecuteNonQuery();
+                                con.Close();
+                            }
                             con = new SqlConnection(cs.DBConn);
                             string query = "insert into ContraEntry(ContraLName,ContraLId) values(@d1,@d2)" + "SELECT CONVERT(int, SCOPE_IDENTITY())";
                             cmd = new SqlCommand(query, con);
@@ -1113,12 +1135,12 @@ namespace AccountsManagementSystem.UI
                    UpdateCreditVoucherStatus();
 
                     MessageBox.Show("Transaction Completed Successfully", "Record", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    Reset();
-                    this.Hide();
-                    PreliStepsOfLedgerEntry frmk = new PreliStepsOfLedgerEntry();
-                    frmk.Show();
+                    //Reset();
+                    //this.Hide();
+                    //PreliStepsOfLedgerEntry frmk = new PreliStepsOfLedgerEntry();
+                    //frmk.Show();
                     
-                
+                this.Close();
             }
             catch (Exception ex)
             {
