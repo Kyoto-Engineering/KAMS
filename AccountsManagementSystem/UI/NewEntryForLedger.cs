@@ -1418,7 +1418,7 @@ namespace AccountsManagementSystem.UI
         private void cmbVoucherNoD_Leave(object sender, EventArgs e)
         {
 
-            if (!cmbVoucherNoD.Items.Contains(cmbVoucherNoD.Text))
+            if (!string.IsNullOrWhiteSpace(cmbVoucherNoD.Text)&&!cmbVoucherNoD.Items.Contains(cmbVoucherNoD.Text))
             {
                 MessageBox.Show("Please Select A Valid Voucher No", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 cmbVoucherNoD.ResetText();
@@ -1429,7 +1429,7 @@ namespace AccountsManagementSystem.UI
 
         private void cmbVoucherNoC_Leave(object sender, EventArgs e)
         {
-            if (!cmbVoucherNoC.Items.Contains(cmbVoucherNoC.Text))
+            if (!string.IsNullOrWhiteSpace(cmbVoucherNoC.Text)&&!cmbVoucherNoC.Items.Contains(cmbVoucherNoC.Text))
             {
                 MessageBox.Show("Please Select A Valid Voucher No", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 cmbVoucherNoC.ResetText();

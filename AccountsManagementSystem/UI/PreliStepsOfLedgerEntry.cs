@@ -60,7 +60,7 @@ namespace AccountsManagementSystem.UI
         private void submitButton_Click(object sender, EventArgs e)
         {
 
-            if (cmbEntryType.Text == "")
+            if (string.IsNullOrWhiteSpace(cmbEntryType.Text))
             {
                 MessageBox.Show("Please Select Entry Type", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 cmbEntryType.Focus();
@@ -78,7 +78,7 @@ namespace AccountsManagementSystem.UI
 
             }
 
-            else if (cmbBatch.Text == "")
+            else if (string.IsNullOrWhiteSpace(cmbBatch.Text))
             {
                 MessageBox.Show("Please Select Batch", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 cmbBatch.Focus();

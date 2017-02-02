@@ -195,7 +195,7 @@
             this.groupBox2.Location = new System.Drawing.Point(14, 21);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(585, 496);
-            this.groupBox2.TabIndex = 59;
+            this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Ledger Details";
             // 
@@ -204,9 +204,8 @@
             this.txtC1DM2Particulars.Location = new System.Drawing.Point(199, 217);
             this.txtC1DM2Particulars.Name = "txtC1DM2Particulars";
             this.txtC1DM2Particulars.Size = new System.Drawing.Size(249, 171);
-            this.txtC1DM2Particulars.TabIndex = 76;
+            this.txtC1DM2Particulars.TabIndex = 5;
             this.txtC1DM2Particulars.Text = "";
-            this.txtC1DM2Particulars.TextChanged += new System.EventHandler(this.txtC1DM2Particulars_TextChanged);
             this.txtC1DM2Particulars.Enter += new System.EventHandler(this.txtC1DM2Particulars_Enter);
             this.txtC1DM2Particulars.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtC1DM2Particulars_KeyDown);
             // 
@@ -216,20 +215,22 @@
             this.textBox1.Location = new System.Drawing.Point(199, 437);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(247, 29);
-            this.textBox1.TabIndex = 74;
+            this.textBox1.TabIndex = 4;
             this.textBox1.Visible = false;
             this.textBox1.Enter += new System.EventHandler(this.textBox1_Enter);
             // 
             // completeButton
             // 
+            this.completeButton.Enabled = false;
             this.completeButton.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.completeButton.ForeColor = System.Drawing.Color.Blue;
             this.completeButton.Location = new System.Drawing.Point(474, 223);
             this.completeButton.Name = "completeButton";
             this.completeButton.Size = new System.Drawing.Size(91, 48);
-            this.completeButton.TabIndex = 66;
+            this.completeButton.TabIndex = 8;
             this.completeButton.Text = "Debit Complete";
             this.completeButton.UseVisualStyleBackColor = true;
+            this.completeButton.Visible = false;
             this.completeButton.Click += new System.EventHandler(this.completeButton_Click);
             // 
             // label7
@@ -252,21 +253,23 @@
             this.cmbVoucherNoD.Location = new System.Drawing.Point(200, 179);
             this.cmbVoucherNoD.Name = "cmbVoucherNoD";
             this.cmbVoucherNoD.Size = new System.Drawing.Size(248, 34);
-            this.cmbVoucherNoD.TabIndex = 73;
+            this.cmbVoucherNoD.TabIndex = 3;
             this.cmbVoucherNoD.SelectedIndexChanged += new System.EventHandler(this.cmbVoucherNoD_SelectedIndexChanged);
             this.cmbVoucherNoD.Enter += new System.EventHandler(this.cmbVoucherNoD_Enter);
             this.cmbVoucherNoD.Leave += new System.EventHandler(this.cmbVoucherNoD_Leave);
             // 
             // button1
             // 
+            this.button1.Enabled = false;
             this.button1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.Color.Blue;
             this.button1.Location = new System.Drawing.Point(474, 159);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(91, 41);
-            this.button1.TabIndex = 64;
+            this.button1.TabIndex = 9;
             this.button1.Text = "Remove";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Visible = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // txtC1DM1Entrydate
@@ -276,7 +279,7 @@
             this.txtC1DM1Entrydate.Location = new System.Drawing.Point(198, 58);
             this.txtC1DM1Entrydate.Name = "txtC1DM1Entrydate";
             this.txtC1DM1Entrydate.Size = new System.Drawing.Size(250, 32);
-            this.txtC1DM1Entrydate.TabIndex = 1;
+            this.txtC1DM1Entrydate.TabIndex = 0;
             // 
             // txtManyD
             // 
@@ -305,7 +308,7 @@
             this.addButton.Location = new System.Drawing.Point(474, 86);
             this.addButton.Name = "addButton";
             this.addButton.Size = new System.Drawing.Size(91, 49);
-            this.addButton.TabIndex = 63;
+            this.addButton.TabIndex = 7;
             this.addButton.Text = "Add";
             this.addButton.UseVisualStyleBackColor = false;
             this.addButton.Click += new System.EventHandler(this.addButton_Click);
@@ -327,7 +330,7 @@
             this.txtC1DM2DebitBalance.Location = new System.Drawing.Point(200, 394);
             this.txtC1DM2DebitBalance.Name = "txtC1DM2DebitBalance";
             this.txtC1DM2DebitBalance.Size = new System.Drawing.Size(248, 29);
-            this.txtC1DM2DebitBalance.TabIndex = 4;
+            this.txtC1DM2DebitBalance.TabIndex = 6;
             this.txtC1DM2DebitBalance.Enter += new System.EventHandler(this.txtC1DM2DebitBalance_Enter);
             this.txtC1DM2DebitBalance.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtC1DM2DebitBalance_KeyDown);
             this.txtC1DM2DebitBalance.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtC1DM2DebitBalance_KeyPress);
@@ -338,8 +341,7 @@
             this.txtc1DM2FundRequisition.Location = new System.Drawing.Point(199, 136);
             this.txtc1DM2FundRequisition.Name = "txtc1DM2FundRequisition";
             this.txtc1DM2FundRequisition.Size = new System.Drawing.Size(249, 29);
-            this.txtc1DM2FundRequisition.TabIndex = 1;
-            this.txtc1DM2FundRequisition.TextChanged += new System.EventHandler(this.txtc1DM2FundRequisition_TextChanged);
+            this.txtc1DM2FundRequisition.TabIndex = 2;
             this.txtc1DM2FundRequisition.Enter += new System.EventHandler(this.txtc1DM2FundRequisition_Enter);
             this.txtc1DM2FundRequisition.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtc1DM2FundRequisition_KeyDown);
             this.txtc1DM2FundRequisition.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtc1DM2FundRequisition_KeyPress);
@@ -392,7 +394,7 @@
             this.cmbDebitLedgerName.Location = new System.Drawing.Point(199, 94);
             this.cmbDebitLedgerName.Name = "cmbDebitLedgerName";
             this.cmbDebitLedgerName.Size = new System.Drawing.Size(249, 30);
-            this.cmbDebitLedgerName.TabIndex = 0;
+            this.cmbDebitLedgerName.TabIndex = 1;
             this.cmbDebitLedgerName.SelectedIndexChanged += new System.EventHandler(this.cmbC1DM2LedgerName_SelectedIndexChanged);
             // 
             // label1
@@ -441,9 +443,10 @@
             this.group1.Location = new System.Drawing.Point(605, 19);
             this.group1.Name = "group1";
             this.group1.Size = new System.Drawing.Size(605, 498);
-            this.group1.TabIndex = 57;
+            this.group1.TabIndex = 1;
             this.group1.TabStop = false;
             this.group1.Text = "Contra Ledger Details";
+            this.group1.Visible = false;
             // 
             // submitButton
             // 
@@ -453,7 +456,7 @@
             this.submitButton.Location = new System.Drawing.Point(497, 142);
             this.submitButton.Name = "submitButton";
             this.submitButton.Size = new System.Drawing.Size(103, 49);
-            this.submitButton.TabIndex = 0;
+            this.submitButton.TabIndex = 6;
             this.submitButton.Text = "Submit";
             this.submitButton.UseVisualStyleBackColor = false;
             this.submitButton.Click += new System.EventHandler(this.submitButton_Click);
@@ -463,7 +466,7 @@
             this.txtC1DM1Particulars.Location = new System.Drawing.Point(202, 226);
             this.txtC1DM1Particulars.Name = "txtC1DM1Particulars";
             this.txtC1DM1Particulars.Size = new System.Drawing.Size(235, 163);
-            this.txtC1DM1Particulars.TabIndex = 77;
+            this.txtC1DM1Particulars.TabIndex = 4;
             this.txtC1DM1Particulars.Text = "";
             this.txtC1DM1Particulars.TextChanged += new System.EventHandler(this.txtC1DM1Particulars_TextChanged);
             this.txtC1DM1Particulars.Enter += new System.EventHandler(this.txtC1DM1Particulars_Enter);
@@ -475,7 +478,7 @@
             this.textBox2.Location = new System.Drawing.Point(202, 435);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(234, 29);
-            this.textBox2.TabIndex = 75;
+            this.textBox2.TabIndex = 3;
             this.textBox2.Visible = false;
             this.textBox2.Enter += new System.EventHandler(this.textBox2_Enter);
             // 
@@ -487,7 +490,7 @@
             this.refreshButton.Location = new System.Drawing.Point(497, 62);
             this.refreshButton.Name = "refreshButton";
             this.refreshButton.Size = new System.Drawing.Size(102, 56);
-            this.refreshButton.TabIndex = 61;
+            this.refreshButton.TabIndex = 7;
             this.refreshButton.Text = " Refresh";
             this.refreshButton.UseVisualStyleBackColor = false;
             this.refreshButton.Click += new System.EventHandler(this.refreshButton_Click);
@@ -512,7 +515,7 @@
             this.cmbVoucherNoC.Location = new System.Drawing.Point(204, 175);
             this.cmbVoucherNoC.Name = "cmbVoucherNoC";
             this.cmbVoucherNoC.Size = new System.Drawing.Size(233, 34);
-            this.cmbVoucherNoC.TabIndex = 74;
+            this.cmbVoucherNoC.TabIndex = 2;
             this.cmbVoucherNoC.SelectedIndexChanged += new System.EventHandler(this.cmbVoucherNoC_SelectedIndexChanged);
             this.cmbVoucherNoC.Enter += new System.EventHandler(this.cmbVoucherNoC_Enter);
             this.cmbVoucherNoC.Leave += new System.EventHandler(this.cmbVoucherNoC_Leave);
@@ -583,7 +586,7 @@
             this.txtC1DM1RequisitionNo.Location = new System.Drawing.Point(202, 135);
             this.txtC1DM1RequisitionNo.Name = "txtC1DM1RequisitionNo";
             this.txtC1DM1RequisitionNo.Size = new System.Drawing.Size(234, 29);
-            this.txtC1DM1RequisitionNo.TabIndex = 2;
+            this.txtC1DM1RequisitionNo.TabIndex = 1;
             this.txtC1DM1RequisitionNo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtC1DM1RequisitionNo_KeyDown);
             this.txtC1DM1RequisitionNo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtC1DM1RequisitionNo_KeyPress);
             // 

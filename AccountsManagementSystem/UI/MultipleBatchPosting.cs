@@ -438,7 +438,7 @@ namespace AccountsManagementSystem.UI
 
                             label12.Location = new Point(88, 189);
                             txt2Particulars.Location = new Point(213, 187);
-                            label3.Location = new Point(70, 317);
+                            label13.Location = new Point(70, 317);
                             txt2CreditAmount.Location = new Point(213, 313);
                         }
                         cmb2LedgerName.SelectedIndexChanged -= cmb2LedgerName_SelectedIndexChanged;
@@ -486,7 +486,7 @@ namespace AccountsManagementSystem.UI
 
                             label12.Location = new Point(88, 189);
                             txt2Particulars.Location = new Point(213, 187);
-                            label3.Location = new Point(70, 317);
+                            label13.Location = new Point(70, 317);
                             txt2CreditAmount.Location = new Point(213, 313);
                         }
                         cmb2LedgerName.SelectedIndexChanged -= cmb2LedgerName_SelectedIndexChanged;
@@ -653,7 +653,7 @@ namespace AccountsManagementSystem.UI
         }
         private void cmb2LedgerName_SelectedIndexChanged(object sender, EventArgs e)
         {
-            txt2FundRequisition.Focus();
+            
             try
             {
                 group1.Enabled = false;
@@ -678,7 +678,7 @@ namespace AccountsManagementSystem.UI
                     textBox2.Location = new Point(213, 187);
                     label12.Location = new Point(88, 245);
                     txt2Particulars.Location = new Point(213, 238);
-                    label3.Location = new Point(70, 369);
+                    label13.Location = new Point(70, 369);
                     txt2CreditAmount.Location = new Point(213, 362);
 
                 }
@@ -692,10 +692,11 @@ namespace AccountsManagementSystem.UI
 
                     label12.Location = new Point(88, 189);
                     txt2Particulars.Location = new Point(213, 187);
-                    label3.Location = new Point(70, 317);
+                    label13.Location = new Point(70, 317);
                     txt2CreditAmount.Location = new Point(213, 313);
 
                 }
+                txt2FundRequisition.Focus();
             }
             catch (Exception ex)
             {
@@ -708,7 +709,7 @@ namespace AccountsManagementSystem.UI
             if (((e.KeyChar < 48 || e.KeyChar > 57) && e.KeyChar != 8 && e.KeyChar != 46))
             {
                 e.Handled = true;
-                return;
+                
             }
         }
 
@@ -717,7 +718,7 @@ namespace AccountsManagementSystem.UI
             if (((e.KeyChar < 48 || e.KeyChar > 57) && e.KeyChar != 8 && e.KeyChar != 46))
             {
                 e.Handled = true;
-                return;
+                
             }
         }
 
@@ -732,7 +733,7 @@ namespace AccountsManagementSystem.UI
             if (((e.KeyChar < 48 || e.KeyChar > 57) && e.KeyChar != 8 && e.KeyChar != 46))
             {
                 e.Handled = true;
-                return;
+                
             }
             if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
             {
@@ -745,7 +746,7 @@ namespace AccountsManagementSystem.UI
             if (((e.KeyChar < 48 || e.KeyChar > 57) && e.KeyChar != 8 && e.KeyChar != 46))
             {
                 e.Handled = true;
-                return;
+               
             }
         }
 
@@ -754,7 +755,7 @@ namespace AccountsManagementSystem.UI
             if (((e.KeyChar < 48 || e.KeyChar > 57) && e.KeyChar != 8 && e.KeyChar != 46))
             {
                 e.Handled = true;
-                return;
+               
             }
         }
 
@@ -763,7 +764,7 @@ namespace AccountsManagementSystem.UI
             if (((e.KeyChar < 48 || e.KeyChar > 57) && e.KeyChar != 8 && e.KeyChar != 46))
             {
                 e.Handled = true;
-                return;
+               
             }
             if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
             {
@@ -1110,14 +1111,14 @@ namespace AccountsManagementSystem.UI
                             con.Open();
                             creditLedgerEntryId = (int) cmd.ExecuteScalar();
                             con.Close();
-                            if (listView1.Items[i].SubItems[8].Text == "4")
+                            if (listView2.Items[i].SubItems[8].Text == "4")
                             {
                                 con = new SqlConnection(cs.DBConn);
                                 con.Open();
-                                string Y = "INSERT INTO BillInfo (BillNo,LedgerEntryId)VALUES(@d1,@d2)";
-                                cmd = new SqlCommand(Y);
+                                string Z = "INSERT INTO BillInfo (BillNo,LedgerEntryId)VALUES(@d1,@d2)";
+                                cmd = new SqlCommand(Z);
                                 cmd.Connection = con;
-                                cmd.Parameters.AddWithValue("@d1", listView1.Items[i].SubItems[9].Text);
+                                cmd.Parameters.AddWithValue("@d1", listView2.Items[i].SubItems[9].Text);
                                 cmd.Parameters.AddWithValue("@d2", creditLedgerEntryId);
                                 cmd.ExecuteNonQuery();
                                 con.Close();
@@ -1374,7 +1375,7 @@ namespace AccountsManagementSystem.UI
             else  if (string.IsNullOrWhiteSpace(cmbVoucherNoC.Text))
             {
                 MessageBox.Show("Please Type Voucher No before Particulars", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                cmbVoucherNoC.Focus();
+                this.BeginInvoke(new ChangeFocusDelegate(changeFocus),cmbVoucherNoC);
                
             }
         }
@@ -1388,10 +1389,10 @@ namespace AccountsManagementSystem.UI
                     //return;
                 }
             
-            if (string.IsNullOrWhiteSpace(cmbVoucherNoD.Text))
+            else if (string.IsNullOrWhiteSpace(cmbVoucherNoD.Text))
             {
                 MessageBox.Show("Please Type Voucher No before Particulars", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                cmbVoucherNoD.Focus();
+                this.BeginInvoke(new ChangeFocusDelegate(changeFocus),cmbVoucherNoD);
                 //return;
             }
         }
@@ -1421,21 +1422,21 @@ namespace AccountsManagementSystem.UI
 
         private void cmbVoucherNoD_Leave(object sender, EventArgs e)
         {
-            if (!cmbVoucherNoD.Items.Contains(cmbVoucherNoD.Text))
+            if ( !string.IsNullOrWhiteSpace(cmbVoucherNoD.Text)&&!cmbVoucherNoD.Items.Contains(cmbVoucherNoD.Text))
             {
                 MessageBox.Show("Please Select A Valid Voucher No", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 cmbVoucherNoD.ResetText();
-                cmbVoucherNoD.Focus();
+                this.BeginInvoke(new ChangeFocusDelegate(changeFocus),cmbVoucherNoD);
             }
         }
 
         private void cmbVoucherNoC_Leave(object sender, EventArgs e)
         {
-            if (!cmbVoucherNoC.Items.Contains(cmbVoucherNoD.Text))
+            if (!string.IsNullOrWhiteSpace(cmbVoucherNoC.Text) && !cmbVoucherNoC.Items.Contains(cmbVoucherNoC.Text))
             {
                 MessageBox.Show("Please Select A Valid Voucher No", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 cmbVoucherNoC.ResetText();
-                cmbVoucherNoC.Focus();
+                this.BeginInvoke(new ChangeFocusDelegate(changeFocus),cmbVoucherNoC);
             }
         }
 
@@ -1481,7 +1482,12 @@ namespace AccountsManagementSystem.UI
 
         private void txt2CreditAmount_Enter(object sender, EventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(txt2Particulars.Text))
+            {
+                MessageBox.Show("Please enter Particulars", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.BeginInvoke(new ChangeFocusDelegate(changeFocus), txt2Particulars);
 
+            }
         }
         private void changeFocus(Control ctl)
         {

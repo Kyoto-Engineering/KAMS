@@ -462,23 +462,24 @@ namespace AccountsManagementSystem.UI
                
             }
 
-            else  try
-            {
-                //decimal val1 = 0;
-                //decimal.TryParse(txtC1DM1CreditBalance.Text, out val1);
+            else
+                try
+                {
+                    //decimal val1 = 0;
+                    //decimal.TryParse(txtC1DM1CreditBalance.Text, out val1);
 
-                //takeSub = takeSum;
-                takeSum = takeSum + Convert.ToDecimal(txtC1DM2DebitBalance.Text);
-                //if (val1 < takeSum)
-                //{
-                //    MessageBox.Show("Your input amount exceed the limit", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                //    takeSum = takeSub;
-                //    txtC1DM2DebitBalance.Clear();
-                //    txtC1DM2DebitBalance.Focus();
-                //    return;
-                //}
-                //else
-                //{
+                    //takeSub = takeSum;
+                    takeSum = takeSum + Convert.ToDecimal(txtC1DM2DebitBalance.Text);
+                    //if (val1 < takeSum)
+                    //{
+                    //    MessageBox.Show("Your input amount exceed the limit", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    //    takeSum = takeSub;
+                    //    txtC1DM2DebitBalance.Clear();
+                    //    txtC1DM2DebitBalance.Focus();
+                    //    return;
+                    //}
+                    //else
+                    //{
                     if (listView1.Items.Count == 0)
                     {
                         ListViewItem lst = new ListViewItem();
@@ -506,7 +507,7 @@ namespace AccountsManagementSystem.UI
                         cmbDebitLedgerName.SelectedIndex = -1;
                         cmbDebitLedgerName.SelectedIndexChanged += cmbC1DM2LedgerName_SelectedIndexChanged;
                         txtc1DM2FundRequisition.Clear();
-                        cmbVoucherNoD.Enabled=false;
+                        cmbVoucherNoD.Enabled = false;
                         txtC1DM2Particulars.Clear();
                         txtC1DM2DebitBalance.Clear();
                         if (textBox1.Visible)
@@ -522,58 +523,73 @@ namespace AccountsManagementSystem.UI
                             label13.Location = new Point(56, 397);
                             txtC1DM2DebitBalance.Location = new Point(200, 394);
                         }
-
-                        return;
+                        button1.Enabled = true;
+                        button1.Visible = true;
+                        cmbDebitLedgerName.Focus();
                     }
 
-                    ListViewItem lst1 = new ListViewItem();
-                    lst1.SubItems.Add(cmbDebitLedgerName.Text);
-                    secondLedgerId = Convert.ToString(ledgerId2);
-                    lst1.SubItems.Add(secondLedgerId);
-                    lst1.SubItems.Add(txtc1DM2FundRequisition.Text);
-                    lst1.SubItems.Add(cmbVoucherNoD.Text);
-                    lst1.SubItems.Add(txtC1DM2Particulars.Text);
-                    lst1.SubItems.Add(txtC1DM2DebitBalance.Text);
-                    dLId2 = Convert.ToString(dLId);
-                    lst1.SubItems.Add(dLId2);
-                    aGRelId = Convert.ToString(debitAGRelId2);
-                    lst1.SubItems.Add(aGRelId);
-                    if (textBox1.Visible)
+                    else
                     {
-                        lst1.SubItems.Add(textBox1.Text);
+                        ListViewItem lst1 = new ListViewItem();
+                        lst1.SubItems.Add(cmbDebitLedgerName.Text);
+                        secondLedgerId = Convert.ToString(ledgerId2);
+                        lst1.SubItems.Add(secondLedgerId);
+                        lst1.SubItems.Add(txtc1DM2FundRequisition.Text);
+                        lst1.SubItems.Add(cmbVoucherNoD.Text);
+                        lst1.SubItems.Add(txtC1DM2Particulars.Text);
+                        lst1.SubItems.Add(txtC1DM2DebitBalance.Text);
+                        dLId2 = Convert.ToString(dLId);
+                        lst1.SubItems.Add(dLId2);
+                        aGRelId = Convert.ToString(debitAGRelId2);
+                        lst1.SubItems.Add(aGRelId);
+                        if (textBox1.Visible)
+                        {
+                            lst1.SubItems.Add(textBox1.Text);
+                        }
+                        listView1.Items.Add(lst1);
+
+                        cmbCreditLedgerName.Items.Remove(cmbDebitLedgerName.Text);
+                        cmbCreditLedgerName.Refresh();
+                        if (textBox1.Visible)
+                        {
+                            label7.Visible = false;
+                            textBox1.Visible = false;
+                            textBox1.Clear();
+                            label7.Location = new Point(46, 444);
+                            textBox1.Location = new Point(200, 437);
+
+                            label12.Location = new Point(81, 217);
+                            txtC1DM2Particulars.Location = new Point(200, 217);
+                            label13.Location = new Point(56, 397);
+                            txtC1DM2DebitBalance.Location = new Point(200, 394);
+                        }
+                        cmbDebitLedgerName.SelectedIndexChanged -= cmbC1DM2LedgerName_SelectedIndexChanged;
+                        cmbDebitLedgerName.SelectedIndex = -1;
+                        cmbDebitLedgerName.SelectedIndexChanged += cmbC1DM2LedgerName_SelectedIndexChanged;
+                        txtc1DM2FundRequisition.Clear();
+                        cmbVoucherNoD.Enabled = false;
+                        txtC1DM2Particulars.Clear();
+                        txtC1DM2DebitBalance.Clear();
+                        if ((listView1.Items.Count) < Convert.ToInt32(txtManyD.Text))
+                        {
+                            cmbDebitLedgerName.Focus();
+
+                        }
+                        else
+                        {
+                            addButton.Enabled = false;
+                            addButton.Visible = false;
+                            completeButton.Visible = true;
+                            completeButton.Enabled = true;
+
+                        }
+
                     }
-                    listView1.Items.Add(lst1);
-
-                    cmbCreditLedgerName.Items.Remove(cmbDebitLedgerName.Text);
-                    cmbCreditLedgerName.Refresh();
-                    if (textBox1.Visible)
-                    {
-                        label7.Visible = false;
-                        textBox1.Visible = false;
-                        textBox1.Clear();
-                        label7.Location = new Point(46, 444);
-                        textBox1.Location = new Point(200, 437);
-
-                        label12.Location = new Point(81, 217);
-                        txtC1DM2Particulars.Location = new Point(200, 217);
-                        label13.Location = new Point(56, 397);
-                        txtC1DM2DebitBalance.Location = new Point(200, 394);
-                    }
-                    cmbDebitLedgerName.SelectedIndexChanged -= cmbC1DM2LedgerName_SelectedIndexChanged;
-                    cmbDebitLedgerName.SelectedIndex = -1;
-                    cmbDebitLedgerName.SelectedIndexChanged += cmbC1DM2LedgerName_SelectedIndexChanged;
-                    txtc1DM2FundRequisition.Clear();
-                    cmbVoucherNoD.Enabled=false;
-                    txtC1DM2Particulars.Clear();
-                    txtC1DM2DebitBalance.Clear();
-                    return;
-               // }
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -600,6 +616,16 @@ namespace AccountsManagementSystem.UI
                         listView1.Items[i].Remove();
                     }
                 }
+                addButton.Enabled = true;
+                addButton.Visible = true;
+                completeButton.Enabled = false;
+                completeButton.Visible = false;
+                if (listView1.Items.Count < 1)
+                {
+                    button1.Enabled = false;
+                    button1.Visible = false;
+                }
+                cmbDebitLedgerName.Focus();
             }
         }
 
@@ -810,36 +836,35 @@ namespace AccountsManagementSystem.UI
         }
         private void submitButton_Click(object sender, EventArgs e)
         {
-            if (cmbCreditLedgerName.Text == "")
+            if (string.IsNullOrWhiteSpace(cmbCreditLedgerName.Text))
             {
                 MessageBox.Show("Please select Ledger Name", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 cmbCreditLedgerName.Focus();
-                return;
+               
             }
-            if (txtC1DM1Particulars.Text == "")
+            else if (string.IsNullOrWhiteSpace(txtC1DM1Particulars.Text))
             {
                 MessageBox.Show("Please enter Particulars", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtC1DM1Particulars.Focus();
-                return;
+              
             }
 
 
-            if ((listView1.Items.Count) != Convert.ToInt32(txtManyD.Text))
+            else if ((listView1.Items.Count) != Convert.ToInt32(txtManyD.Text))
             {
                MessageBox.Show("Number Of Debit Entry does not match....Please Check before Submit","error",MessageBoxButtons.OK,MessageBoxIcon.Error);
-                return;
+                
             }
 
-            
-
-            try
-            {
-                if (takeSum > Convert.ToDecimal(txtC1DM1CreditBalance.Text) || takeSum < Convert.ToDecimal(txtC1DM1CreditBalance.Text))
+            else if (takeSum > Convert.ToDecimal(txtC1DM1CreditBalance.Text) || takeSum < Convert.ToDecimal(txtC1DM1CreditBalance.Text))
                 {
                     MessageBox.Show("Your Transaction Parameters are invalid", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     txtC1DM1CreditBalance.Clear();
-                    return;
+                    txtC1DM1CreditBalance.Focus();
+
                 }
+            else try
+            {
 
                 if (takeSum == Convert.ToDecimal(txtC1DM1CreditBalance.Text))
                 {
@@ -992,11 +1017,9 @@ namespace AccountsManagementSystem.UI
                     UpdateDebitVoucherStatus();
                     UpdateCreditVoucherStatus();
                     MessageBox.Show("Transaction Completed Successfully", "Record", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    Reset();
-                  
-                                            this.Hide();
-                    PreliStepsOfLedgerEntry frmk=new PreliStepsOfLedgerEntry();
-                                           frmk.Show();
+                    //Reset();
+                  this.Close();
+                                            
                 }
             }
             catch (Exception ex)
@@ -1033,7 +1056,7 @@ namespace AccountsManagementSystem.UI
             if (((e.KeyChar < 48 || e.KeyChar > 57) && e.KeyChar != 8 && e.KeyChar != 46))
             {
                 e.Handled = true;
-                return;
+                
             }
         }
 
@@ -1042,7 +1065,7 @@ namespace AccountsManagementSystem.UI
             if (((e.KeyChar < 48 || e.KeyChar > 57) && e.KeyChar != 8 && e.KeyChar != 46))
             {
                 e.Handled = true;
-                return;
+               
             }
         }
 
@@ -1051,7 +1074,7 @@ namespace AccountsManagementSystem.UI
             if (((e.KeyChar < 48 || e.KeyChar > 57) && e.KeyChar != 8 && e.KeyChar != 46))
             {
                 e.Handled = true;
-                return;
+               
             }
         }
 
@@ -1060,22 +1083,27 @@ namespace AccountsManagementSystem.UI
             if (((e.KeyChar < 48 || e.KeyChar > 57) && e.KeyChar != 8 && e.KeyChar != 46))
             {
                 e.Handled = true;
-                return;
+                
             }
         }
 
         private void completeButton_Click(object sender, EventArgs e)
         {
-             
-            if ((listView1.Items.Count )!=Convert.ToInt32(txtManyD.Text))
+
+            if ((listView1.Items.Count) != Convert.ToInt32(txtManyD.Text))
             {
-                MessageBox.Show("Debit Entry is not equal to Propossal. Complete Debit Entry ", "Could Not Proceed", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
+                MessageBox.Show("Debit Entry is not equal to Propossal. Complete Debit Entry ", "Could Not Proceed",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+
             }
-            group1.Enabled = true;
-            groupBox2.Enabled = false;
-            cmbVoucherNoC.Items.Remove(cmbVoucherNoD.Text);
-            cmbVoucherNoC.Refresh();
+            else
+            {
+                group1.Enabled = true;
+                group1.Visible = true;
+                groupBox2.Enabled = false;
+                cmbVoucherNoC.Items.Remove(cmbVoucherNoD.Text);
+                cmbVoucherNoC.Refresh();
+            }
         }
 
         private void closeButton_Click_1(object sender, EventArgs e)
@@ -1164,7 +1192,7 @@ namespace AccountsManagementSystem.UI
             if (((e.KeyChar < 48 || e.KeyChar > 57) && e.KeyChar != 8 && e.KeyChar != 46))
             {
                 e.Handled = true;
-                return;
+                
             }
             if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
             {
@@ -1196,23 +1224,23 @@ namespace AccountsManagementSystem.UI
 
         private void cmbVoucherNoD_Leave(object sender, EventArgs e)
         {
-            if (!cmbVoucherNoD.Items.Contains(cmbVoucherNoD.Text))
+            if (!string.IsNullOrWhiteSpace(cmbVoucherNoD.Text)&&!cmbVoucherNoD.Items.Contains(cmbVoucherNoD.Text))
             {
                 MessageBox.Show("Please Select A Valid Voucher No","Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
                 cmbVoucherNoD.ResetText();
-                cmbVoucherNoD.Focus();
+                this.BeginInvoke(new ChangeFocusDelegate(changeFocus), cmbVoucherNoD);
             }
             
         }
 
         private void cmbVoucherNoC_Leave(object sender, EventArgs e)
         {
-            if (!cmbVoucherNoC.Items.Contains(cmbVoucherNoC.Text))
+            if (!string.IsNullOrWhiteSpace(cmbVoucherNoC.Text)&&!cmbVoucherNoC.Items.Contains(cmbVoucherNoC.Text))
             {
                 MessageBox.Show("Please Select A Valid Voucher No", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             cmbVoucherNoC.ResetText();
-            cmbVoucherNoC.Focus();
+            this.BeginInvoke(new ChangeFocusDelegate(changeFocus),cmbVoucherNoC);
         }
 
         private void txtc1DM2FundRequisition_Enter(object sender, EventArgs e)
@@ -1247,7 +1275,7 @@ namespace AccountsManagementSystem.UI
             else   if (string.IsNullOrWhiteSpace(cmbVoucherNoD.Text))
             {
                 MessageBox.Show("Please Type Voucher No before Particulars", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                cmbVoucherNoD.Focus();
+                this.BeginInvoke(new ChangeFocusDelegate(changeFocus),cmbVoucherNoD);
                
             }
         }
@@ -1310,7 +1338,7 @@ namespace AccountsManagementSystem.UI
             else if (string.IsNullOrWhiteSpace(cmbVoucherNoC.Text))
             {
                 MessageBox.Show("Please Type Voucher No before Particulars", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                cmbVoucherNoC.Focus();
+                this.BeginInvoke(new ChangeFocusDelegate(changeFocus),cmbVoucherNoC);
             }
         }
 
