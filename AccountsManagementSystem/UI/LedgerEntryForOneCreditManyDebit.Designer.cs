@@ -446,7 +446,6 @@
             this.group1.TabIndex = 1;
             this.group1.TabStop = false;
             this.group1.Text = "Contra Ledger Details";
-            this.group1.Visible = false;
             // 
             // submitButton
             // 

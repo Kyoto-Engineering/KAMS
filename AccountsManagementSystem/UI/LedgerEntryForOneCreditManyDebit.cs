@@ -273,7 +273,7 @@ namespace AccountsManagementSystem.UI
         }
         private void cmbC1DM1LedgerName_SelectedIndexChanged(object sender, EventArgs e)
         {
-            txtC1DM1Entrydate.Focus();
+            
             try
             {
                 con = new SqlConnection(cs.DBConn);
@@ -581,6 +581,7 @@ namespace AccountsManagementSystem.UI
                             addButton.Visible = false;
                             completeButton.Visible = true;
                             completeButton.Enabled = true;
+                            completeButton.Focus();
 
                         }
 
@@ -1238,9 +1239,10 @@ namespace AccountsManagementSystem.UI
             if (!string.IsNullOrWhiteSpace(cmbVoucherNoC.Text)&&!cmbVoucherNoC.Items.Contains(cmbVoucherNoC.Text))
             {
                 MessageBox.Show("Please Select A Valid Voucher No", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                cmbVoucherNoC.ResetText();
+                this.BeginInvoke(new ChangeFocusDelegate(changeFocus), cmbVoucherNoC);
             }
-            cmbVoucherNoC.ResetText();
-            this.BeginInvoke(new ChangeFocusDelegate(changeFocus),cmbVoucherNoC);
+           
         }
 
         private void txtc1DM2FundRequisition_Enter(object sender, EventArgs e)
