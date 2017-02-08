@@ -326,6 +326,7 @@
             // 
             // cmb2LedgerName
             // 
+            this.cmb2LedgerName.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.cmb2LedgerName.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmb2LedgerName.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmb2LedgerName.FormattingEnabled = true;
@@ -333,8 +334,10 @@
             this.cmb2LedgerName.Name = "cmb2LedgerName";
             this.cmb2LedgerName.Size = new System.Drawing.Size(214, 30);
             this.cmb2LedgerName.TabIndex = 0;
+            this.cmb2LedgerName.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.cmb2LedgerName_DrawItem);
             this.cmb2LedgerName.SelectedIndexChanged += new System.EventHandler(this.cmb2LedgerName_SelectedIndexChanged);
             this.cmb2LedgerName.Enter += new System.EventHandler(this.cmb2LedgerName_Enter);
+            this.cmb2LedgerName.Leave += new System.EventHandler(this.cmb2LedgerName_Leave);
             // 
             // label1
             // 
@@ -460,6 +463,7 @@
             // 
             // cmb1LedgerName
             // 
+            this.cmb1LedgerName.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.cmb1LedgerName.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmb1LedgerName.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmb1LedgerName.FormattingEnabled = true;
@@ -467,7 +471,9 @@
             this.cmb1LedgerName.Name = "cmb1LedgerName";
             this.cmb1LedgerName.Size = new System.Drawing.Size(202, 30);
             this.cmb1LedgerName.TabIndex = 0;
+            this.cmb1LedgerName.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.cmb1LedgerName_DrawItem);
             this.cmb1LedgerName.SelectedIndexChanged += new System.EventHandler(this.cmb1LedgerName_SelectedIndexChanged_1);
+            this.cmb1LedgerName.Leave += new System.EventHandler(this.cmb1LedgerName_Leave);
             // 
             // label14
             // 
@@ -645,6 +651,15 @@
             this.adToChartButton.Text = "Add To Chart";
             this.adToChartButton.UseVisualStyleBackColor = false;
             this.adToChartButton.Click += new System.EventHandler(this.adToChartButton_Click);
+            // 
+            // toolTip1
+            // 
+            this.toolTip1.AutoPopDelay = 500;
+            this.toolTip1.InitialDelay = 500;
+            this.toolTip1.OwnerDraw = true;
+            this.toolTip1.ReshowDelay = 100;
+            this.toolTip1.Draw += new System.Windows.Forms.DrawToolTipEventHandler(this.toolTip1_Draw);
+            this.toolTip1.Popup += new System.Windows.Forms.PopupEventHandler(this.toolTip1_Popup);
             // 
             // NewEntryForLedger
             // 

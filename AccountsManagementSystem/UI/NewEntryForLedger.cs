@@ -226,7 +226,7 @@ namespace AccountsManagementSystem.UI
             {
                 txt1Entrydate.Value = DateTime.Now;
             }
-
+           
             CloseSplash();
             Application.UseWaitCursor = false;
             
@@ -1574,6 +1574,65 @@ namespace AccountsManagementSystem.UI
         private void changeFocus(Control ctl)
         {
             ctl.Focus();
+        }
+
+        private void cmb1LedgerName_MouseEnter(object sender, EventArgs e)
+        {
+            toolTip1.SetToolTip(cmb1LedgerName, (string)cmb1LedgerName.SelectedItem);
+        }
+
+        private void cmb1LedgerName_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            if (e.Index == -1) { return; }
+            Point p = new Point(cmb1LedgerName.Location.X + 120, cmb1LedgerName.Location.Y + cmb1LedgerName.Height + (30 + e.Index * 10));
+            Font drawFont = new Font("Arial", 16);
+            SolidBrush drawBrush = new SolidBrush(Color.Black);
+            if ((e.State & DrawItemState.Selected) == DrawItemState.Selected)
+            {
+                toolTip1.Show(cmb1LedgerName.Items[e.Index].ToString(), this, p);
+            }
+           
+                e.DrawBackground();
+                e.Graphics.DrawString(cmb1LedgerName.Items[e.Index].ToString(), drawFont, Brushes.Black,
+                    new Point(e.Bounds.X, e.Bounds.Y));
+        }
+
+        private void cmb2LedgerName_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            if (e.Index == -1) { return; }
+            Point p = new Point(cmb2LedgerName.Location.X + 120, cmb2LedgerName.Location.Y + cmb2LedgerName.Height + (30 + e.Index * 10));
+
+            if ((e.State & DrawItemState.Selected) == DrawItemState.Selected)
+            {
+                toolTip1.Show(cmb2LedgerName.Items[e.Index].ToString(), this, p,500);
+              
+            }
+
+            e.DrawBackground();
+            e.Graphics.DrawString(cmb2LedgerName.Items[e.Index].ToString(), e.Font, Brushes.Black, new Point(e.Bounds.X, e.Bounds.Y));
+        }
+
+        private void toolTip1_Popup(object sender, PopupEventArgs e)
+        {
+            e.ToolTipSize = TextRenderer.MeasureText(toolTip1.GetToolTip(e.AssociatedControl),new Font("Arial", 16.0f));
+        }
+
+        private void toolTip1_Draw(object sender, DrawToolTipEventArgs e)
+        {
+            Font f = new Font("Arial", 16.0f);
+            e.DrawBackground();
+            e.DrawBorder();
+            e.Graphics.DrawString(e.ToolTipText, f, Brushes.Black, new PointF(2, 2)); 
+        }
+
+        private void cmb1LedgerName_Leave(object sender, EventArgs e)
+        {
+            toolTip1.Dispose();
+        }
+
+        private void cmb2LedgerName_Leave(object sender, EventArgs e)
+        {
+            toolTip1.Dispose();
         }
       }
     }
