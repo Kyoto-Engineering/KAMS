@@ -132,6 +132,7 @@ namespace AccountsManagementSystem.UI
             }
             else if (cmbEntryType.Text == "Batch Posting" && cmbBatch.Text == "Multiple Debit Multiple Credit")
             {
+                //Multiple Debit Multiple Credit
                 if (string.IsNullOrWhiteSpace(txtNumOfDebitEntry.Text) || int.Parse(txtNumOfDebitEntry.Text)<2)
                 {
                     MessageBox.Show("Please enter your debit entry Number", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);

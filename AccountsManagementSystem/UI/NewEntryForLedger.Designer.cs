@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NewEntryForLedger));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -81,6 +82,7 @@
             this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.adToChartButton = new System.Windows.Forms.Button();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.group1.SuspendLayout();
@@ -131,13 +133,15 @@
             // 
             // button1
             // 
+            this.button1.Enabled = false;
             this.button1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.Location = new System.Drawing.Point(488, 165);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(91, 60);
-            this.button1.TabIndex = 3;
+            this.button1.TabIndex = 7;
             this.button1.Text = "Remove";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Visible = false;
             this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // txt2Particulars
@@ -179,7 +183,7 @@
             this.addButton.Location = new System.Drawing.Point(488, 94);
             this.addButton.Name = "addButton";
             this.addButton.Size = new System.Drawing.Size(91, 61);
-            this.addButton.TabIndex = 2;
+            this.addButton.TabIndex = 6;
             this.addButton.Text = "Add";
             this.addButton.UseVisualStyleBackColor = false;
             this.addButton.Click += new System.EventHandler(this.addButton_Click);
@@ -211,14 +215,16 @@
             // submitButton
             // 
             this.submitButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.submitButton.Enabled = false;
             this.submitButton.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.submitButton.ForeColor = System.Drawing.Color.Magenta;
             this.submitButton.Location = new System.Drawing.Point(487, 305);
             this.submitButton.Name = "submitButton";
             this.submitButton.Size = new System.Drawing.Size(92, 53);
-            this.submitButton.TabIndex = 5;
+            this.submitButton.TabIndex = 9;
             this.submitButton.Text = "Submit";
             this.submitButton.UseVisualStyleBackColor = false;
+            this.submitButton.Visible = false;
             this.submitButton.Click += new System.EventHandler(this.submitButton_Click);
             // 
             // button2
@@ -229,7 +235,7 @@
             this.button2.Location = new System.Drawing.Point(488, 234);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(91, 56);
-            this.button2.TabIndex = 4;
+            this.button2.TabIndex = 8;
             this.button2.Text = " Refresh";
             this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
@@ -718,5 +724,6 @@
         private System.Windows.Forms.RichTextBox txt1Particulars;
         public System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }

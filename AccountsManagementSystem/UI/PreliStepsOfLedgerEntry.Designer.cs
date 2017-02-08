@@ -96,8 +96,7 @@
             this.cmbBatch.FormattingEnabled = true;
             this.cmbBatch.Items.AddRange(new object[] {
             "One Debit Many Credit",
-            "One Credit Many Debit",
-            "Multiple Debit Multiple Credit"});
+            "One Credit Many Debit"});
             this.cmbBatch.Location = new System.Drawing.Point(282, 94);
             this.cmbBatch.Name = "cmbBatch";
             this.cmbBatch.Size = new System.Drawing.Size(251, 30);

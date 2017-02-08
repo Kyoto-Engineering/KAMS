@@ -277,26 +277,46 @@ namespace AccountsManagementSystem.UI
 
         private void Reset()
         { 
-            cmb1LedgerName.SelectedIndex= -1;
-            txt1Entrydate.Value = this.txt1Entrydate.MaxDate;
+            
+            if (DateTime.UtcNow.ToLocalTime() > endDateOneDManyC)
+            {
+                txt1Entrydate.Value = txt1Entrydate.MaxDate;
+
+            }
+            else
+            {
+                txt1Entrydate.Value = DateTime.Now;
+            }
+            cmb1LedgerName.SelectedIndex = -1;
             txt1RequisitionNo.Clear();
             cmbVoucherNoD.SelectedIndex=-1;
             txt1Particulars.Clear();
+            textBox1.Clear();
             //txt1Amount.TextChanged -= txt1Amount_TextChanged;
             txt1Amount.Clear();
            // txt1Amount.TextChanged += txt1Amount_TextChanged;
             cmb2LedgerName.SelectedIndex = -1;
             txt2FundRequisition.Clear();
+            cmbVoucherNoC.SelectedIndexChanged -= cmbVoucherNoC_SelectedIndexChanged;
             cmbVoucherNoC.SelectedIndex =-1;
+            cmbVoucherNoC.SelectedIndexChanged += cmbVoucherNoC_SelectedIndexChanged;
+            textBox2.Clear();
             txt2Particulars.Clear();
             txt2Amount.Clear();
-            textBox1.Clear();
-            textBox2.Clear();
+            
+            
             label7.Visible = false;
             textBox2.Visible = false;
             label16.Visible = false;
             textBox1.Visible = false;
             group1.Enabled = true;
+            groupBox2.Enabled = false;
+            addButton.Enabled = true;
+            addButton.Visible = true;
+            submitButton.Enabled = false;
+            submitButton.Visible = false;
+            button1.Enabled = false;
+            button1.Visible = true;
             listView1.Items.Clear();
             takeSum = 0; 
             takeSub=0;
@@ -351,7 +371,7 @@ namespace AccountsManagementSystem.UI
         {
 
             Reset();
-            groupBox2.Enabled = false;
+            //groupBox2.Enabled = false;
 
 
         }
@@ -386,7 +406,7 @@ namespace AccountsManagementSystem.UI
         }
         private void cmb1LedgerName_SelectedIndexChanged_1(object sender, EventArgs e)
         {
-            txt1Entrydate.Focus();
+            
             try
             {
                 con = new SqlConnection(cs.DBConn);
@@ -441,6 +461,7 @@ namespace AccountsManagementSystem.UI
                     txt1Particulars.Location = new Point(195, 245);
                     label4.Location = new Point(45, 372);
                     txt1Amount.Location = new Point(195, 368);
+                    txt1Entrydate.Focus();
 
                 }
                 else
@@ -454,6 +475,7 @@ namespace AccountsManagementSystem.UI
                     txt1Particulars.Location = new Point(195, 203);
                     label4.Location = new Point(45, 329);
                     txt1Amount.Location = new Point(195, 329);
+                    txt1Entrydate.Focus();
                 }
             }
 
@@ -555,7 +577,8 @@ namespace AccountsManagementSystem.UI
                         cmbVoucherNoC.Enabled = false;
                         txt2Particulars.Clear();
                         txt2Amount.Clear();
-
+                        button1.Visible = true;
+                        button1.Enabled = true;
 
                     }
                     else
@@ -596,6 +619,13 @@ namespace AccountsManagementSystem.UI
                         cmbVoucherNoC.Enabled = false;
                         txt2Particulars.Clear();
                         txt2Amount.Clear();
+                        if (listView1.Items.Count == int.Parse(txtCEntryNo.Text))
+                        {
+                            addButton.Enabled = false;
+                            addButton.Visible = false;
+                            submitButton.Enabled = true;
+                            submitButton.Visible = true;
+                        }
 
                     }
 
@@ -1045,16 +1075,40 @@ namespace AccountsManagementSystem.UI
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-            takeRemove = Convert.ToDecimal(listView1.SelectedItems[0].SubItems[6].Text);
-            takeSum = takeSum - takeRemove;
-           
-            for (int i = listView1.Items.Count - 1; i >= 0; i--)
+            if (listView1.SelectedItems.Count < 1)
             {
-                if (listView1.Items[i].Selected)
+                MessageBox.Show("Select Something to Remove", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                takeRemove = Convert.ToDecimal(listView1.SelectedItems[0].SubItems[6].Text);
+                takeSum = takeSum - takeRemove;
+
+                for (int i = listView1.Items.Count - 1; i >= 0; i--)
                 {
-                    listView1.Items[i].Remove();
+                    if (listView1.Items[i].Selected)
+                    {
+                        listView1.Items[i].Remove();
+                    }
+                }
+                if (listView1.Items.Count < 1)
+                {
+                    button1.Enabled = false;
+                    button1.Visible = false;
+                    submitButton.Enabled = false;
+                    submitButton.Visible = false;
+                    addButton.Enabled = true;
+                    addButton.Visible = true;
+                }
+                if (listView1.Items.Count > 0 && listView1.Items.Count < int.Parse(txtCEntryNo.Text))
+                {
+                    submitButton.Enabled = false;
+                    submitButton.Visible = false;
+                    addButton.Enabled = true;
+                    addButton.Visible = true;
                 }
             }
+            
         }
 
         private void txt1Amount_KeyPress(object sender, KeyPressEventArgs e)
@@ -1196,8 +1250,17 @@ namespace AccountsManagementSystem.UI
         {
             if (e.KeyCode == Keys.Enter)
             {
-                txt2Particulars.Focus();
-                e.Handled = true;
+                if (textBox2.Visible)
+                {
+                    textBox2.Focus();
+                    e.Handled = true;
+                }
+                else
+                {
+                    txt2Particulars.Focus();
+                    e.Handled = true;   
+                }
+                
             }
         }
 
