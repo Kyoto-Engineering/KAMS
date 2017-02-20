@@ -371,9 +371,9 @@
             // 
             // txt2Particulars
             // 
-            this.txt2Particulars.Location = new System.Drawing.Point(215, 189);
+            this.txt2Particulars.Location = new System.Drawing.Point(214, 189);
             this.txt2Particulars.Name = "txt2Particulars";
-            this.txt2Particulars.Size = new System.Drawing.Size(281, 118);
+            this.txt2Particulars.Size = new System.Drawing.Size(282, 118);
             this.txt2Particulars.TabIndex = 4;
             this.txt2Particulars.Text = "";
             this.txt2Particulars.Enter += new System.EventHandler(this.txt2Particulars_Enter);
@@ -382,9 +382,9 @@
             // textBox2
             // 
             this.textBox2.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(213, 362);
+            this.textBox2.Location = new System.Drawing.Point(217, 362);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(281, 29);
+            this.textBox2.Size = new System.Drawing.Size(282, 29);
             this.textBox2.TabIndex = 3;
             this.textBox2.Visible = false;
             this.textBox2.Enter += new System.EventHandler(this.textBox2_Enter);
@@ -470,7 +470,7 @@
             // txt2CreditAmount
             // 
             this.txt2CreditAmount.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt2CreditAmount.Location = new System.Drawing.Point(213, 313);
+            this.txt2CreditAmount.Location = new System.Drawing.Point(217, 313);
             this.txt2CreditAmount.Name = "txt2CreditAmount";
             this.txt2CreditAmount.Size = new System.Drawing.Size(282, 32);
             this.txt2CreditAmount.TabIndex = 5;

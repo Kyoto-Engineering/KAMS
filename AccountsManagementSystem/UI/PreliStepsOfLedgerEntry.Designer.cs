@@ -96,7 +96,8 @@
             this.cmbBatch.FormattingEnabled = true;
             this.cmbBatch.Items.AddRange(new object[] {
             "One Debit Many Credit",
-            "One Credit Many Debit"});
+            "One Credit Many Debit",
+            "Multiple Debit Multiple Credit"});
             this.cmbBatch.Location = new System.Drawing.Point(282, 94);
             this.cmbBatch.Name = "cmbBatch";
             this.cmbBatch.Size = new System.Drawing.Size(251, 30);
@@ -163,7 +164,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Teal;
-            this.ClientSize = new System.Drawing.Size(721, 391);
+            this.ClientSize = new System.Drawing.Size(688, 391);
             this.Controls.Add(this.txtNumOfCreditEntry);
             this.Controls.Add(this.txtNumOfDebitEntry);
             this.Controls.Add(this.NoOfCreditEntityLabel);
