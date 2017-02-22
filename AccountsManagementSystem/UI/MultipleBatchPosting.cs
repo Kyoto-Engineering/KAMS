@@ -30,6 +30,9 @@ namespace AccountsManagementSystem.UI
         public int  dLId,cLId, debitAGRelId2;
         public DateTime startDateManyDManyC, endDateManyDManyC;
         private delegate void ChangeFocusDelegate(Control ctl);
+
+        
+        
         public MultipleBatchPosting()
         {
             InitializeComponent();
@@ -250,10 +253,12 @@ namespace AccountsManagementSystem.UI
             
             }
 
-            else try
-            {
+            else 
                
-                takeSum1 = takeSum1 + Convert.ToDecimal(txt1DebitAmount.Text);
+            {
+                try
+                {
+                    takeSum1 = takeSum1 + Convert.ToDecimal(txt1DebitAmount.Text);
 
                 if (listView1.Items.Count == 0)
                 {
@@ -270,24 +275,24 @@ namespace AccountsManagementSystem.UI
                     aGRelId = Convert.ToString(debitAGRelId1);
 
                     lst.SubItems.Add(aGRelId);
-                    if (textBox1.Visible)
+                    if (billOrInvoiceNoD.Visible)
                     {
-                        lst.SubItems.Add(textBox1.Text);
+                        lst.SubItems.Add(billOrInvoiceNoD.Text);
                     }
 
                     listView1.Items.Add(lst);
 
                     cmb2LedgerName.Items.Remove(cmb1LedgerName.Text);
                     cmb2LedgerName.Refresh();
-                    //cmb1LedgerName.Items.Remove(cmb1LedgerName.Text);
-                    //cmb1LedgerName.Refresh();
-                    if (textBox1.Visible)
+                    cmbVoucherNoD.Items.Remove(cmbVoucherNoD.Text);
+                    cmbVoucherNoD.Refresh();
+                    if (billOrInvoiceNoD.Visible)
                     {
                         label7.Visible = false;
-                        textBox1.Visible = false;
-                        textBox1.Clear();
+                        billOrInvoiceNoD.Visible = false;
+                        billOrInvoiceNoD.Clear();
                         label7.Location = new Point(37, 336);
-                        textBox1.Location = new Point(195, 329);
+                        billOrInvoiceNoD.Location = new Point(195, 329);
 
                         label3.Location = new Point(65, 176);
                         txt1Particulars.Location = new Point(195, 175);
@@ -298,7 +303,8 @@ namespace AccountsManagementSystem.UI
                     cmb1LedgerName.SelectedIndex = -1;
                     cmb1LedgerName.SelectedIndexChanged += cmb1LedgerName_SelectedIndexChanged;
                     txt1RequisitionNo.Clear();
-                    cmbVoucherNoD.Enabled = false;
+                    //cmbVoucherNoD.Enabled = false;
+                    cmbVoucherNoD.SelectedIndex = -1;
                     txt1Particulars.Clear();
                     txt1DebitAmount.Clear();
 
@@ -320,22 +326,22 @@ namespace AccountsManagementSystem.UI
                     lst1.SubItems.Add(dLId1);
                     aGRelId = Convert.ToString(debitAGRelId1);
                     lst1.SubItems.Add(aGRelId);
-                    if (textBox1.Visible)
+                    if (billOrInvoiceNoD.Visible)
                     {
-                        lst1.SubItems.Add(textBox1.Text);
+                        lst1.SubItems.Add(billOrInvoiceNoD.Text);
                     }
                     listView1.Items.Add(lst1);
                     cmb2LedgerName.Items.Remove(cmb1LedgerName.Text);
                     cmb2LedgerName.Refresh();
-                    //cmb1LedgerName.Items.Remove(cmb1LedgerName.Text);
-                    //cmb1LedgerName.Refresh();
-                    if (textBox1.Visible)
+                    cmbVoucherNoD.Items.Remove(cmbVoucherNoD.Text);
+                    cmbVoucherNoD.Refresh();
+                    if (billOrInvoiceNoD.Visible)
                     {
                         label7.Visible = false;
-                        textBox1.Visible = false;
-                        textBox1.Clear();
+                        billOrInvoiceNoD.Visible = false;
+                        billOrInvoiceNoD.Clear();
                         label7.Location = new Point(37, 336);
-                        textBox1.Location = new Point(195, 329);
+                        billOrInvoiceNoD.Location = new Point(195, 329);
 
                         label3.Location = new Point(65, 176);
                         txt1Particulars.Location = new Point(195, 175);
@@ -346,17 +352,21 @@ namespace AccountsManagementSystem.UI
                     cmb1LedgerName.SelectedIndex = -1;
                     cmb1LedgerName.SelectedIndexChanged += cmb1LedgerName_SelectedIndexChanged;
                     txt1RequisitionNo.Clear();
-                    cmbVoucherNoD.Enabled = false;
+                    //cmbVoucherNoD.Enabled = false;
+                    cmbVoucherNoD.SelectedIndex = -1;
                     txt1Particulars.Clear();
                     txt1DebitAmount.Clear();
 
                 }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+               
 
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            
         }
 
         private void creditLedgerAddButton_Click(object sender, EventArgs e)
@@ -419,22 +429,22 @@ namespace AccountsManagementSystem.UI
                         lst10.SubItems.Add(cLId2);
                         aGRelId = Convert.ToString(creditAGRelId2);
                         lst10.SubItems.Add(aGRelId);
-                        if (textBox2.Visible)
+                        if (billOrInvoiceNoForC.Visible)
                         {
-                            lst10.SubItems.Add(textBox2.Text);
+                            lst10.SubItems.Add(billOrInvoiceNoForC.Text);
                         }
                         listView2.Items.Add(lst10);
-                        //cmb1LedgerName.Items.Remove(cmb2LedgerName.Text);
-                        //cmb2LedgerName.Refresh();
+                        cmbVoucherNoC.Items.Remove(cmbVoucherNoC.Text);
+                        cmbVoucherNoC.Refresh();
                         //cmb2LedgerName.Items.Remove(cmb2LedgerName.Text);
                         //cmb2LedgerName.Refresh();
-                        if (textBox2.Visible)
+                        if (billOrInvoiceNoForC.Visible)
                         {
                             label16.Visible = false;
-                            textBox2.Visible = false;
-                            textBox2.Clear();
+                            billOrInvoiceNoForC.Visible = false;
+                            billOrInvoiceNoForC.Clear();
                             label16.Location = new Point(57, 369);
-                            textBox2.Location = new Point(213, 362);
+                            billOrInvoiceNoForC.Location = new Point(213, 362);
 
                             label12.Location = new Point(88, 189);
                             txt2Particulars.Location = new Point(213, 187);
@@ -445,7 +455,8 @@ namespace AccountsManagementSystem.UI
                         cmb2LedgerName.SelectedIndex = -1;
                         cmb2LedgerName.SelectedIndexChanged += cmb2LedgerName_SelectedIndexChanged;
                         txt2FundRequisition.Clear();
-                        cmbVoucherNoC.Enabled = false;
+                        //cmbVoucherNoC.Enabled = false;
+                        cmbVoucherNoC.SelectedIndex = -1;
                         txt2Particulars.Clear();
                         txt2CreditAmount.Clear();
 
@@ -468,21 +479,21 @@ namespace AccountsManagementSystem.UI
                         lst12.SubItems.Add(cLId2);
                         aGRelId = Convert.ToString(creditAGRelId2);
                         lst12.SubItems.Add(aGRelId);
-                        if (textBox2.Visible)
+                        if (billOrInvoiceNoForC.Visible)
                         {
-                            lst12.SubItems.Add(textBox2.Text);
+                            lst12.SubItems.Add(billOrInvoiceNoForC.Text);
                         }
                         listView2.Items.Add(lst12);
-                        //cmb2LedgerName.Items.Remove(cmb2LedgerName.Text);
-                        //cmb2LedgerName.Refresh();
+                        cmbVoucherNoC.Items.Remove(cmbVoucherNoC.Text);
+                        cmbVoucherNoC.Refresh();
 
-                        if (textBox2.Visible)
+                        if (billOrInvoiceNoForC.Visible)
                         {
                             label16.Visible = false;
-                            textBox2.Visible = false;
-                            textBox2.Clear();
+                            billOrInvoiceNoForC.Visible = false;
+                            billOrInvoiceNoForC.Clear();
                             label16.Location = new Point(57, 369);
-                            textBox2.Location = new Point(213, 362);
+                            billOrInvoiceNoForC.Location = new Point(213, 362);
 
                             label12.Location = new Point(88, 189);
                             txt2Particulars.Location = new Point(213, 187);
@@ -493,7 +504,8 @@ namespace AccountsManagementSystem.UI
                         cmb2LedgerName.SelectedIndex = -1;
                         cmb2LedgerName.SelectedIndexChanged += cmb2LedgerName_SelectedIndexChanged;
                         txt2FundRequisition.Clear();
-                        cmbVoucherNoC.Enabled = false;
+                        //cmbVoucherNoC.Enabled = false;
+                        cmbVoucherNoC.SelectedIndex = -1;
                         txt2Particulars.Clear();
                         txt2CreditAmount.Clear();
 
@@ -589,9 +601,9 @@ namespace AccountsManagementSystem.UI
                 if (debitAGRelId1 == "5")
                 {
                     label7.Visible = true;
-                    textBox1.Visible = true;
+                    billOrInvoiceNoD.Visible = true;
                     label7.Location = new Point(37, 176);
-                    textBox1.Location = new Point(195, 175);
+                    billOrInvoiceNoD.Location = new Point(195, 175);
                     label3.Location = new Point(65, 227);
                     txt1Particulars.Location = new Point(195, 220);
                     label4.Location = new Point(45, 336);
@@ -601,10 +613,10 @@ namespace AccountsManagementSystem.UI
                 else
                 {
                     label7.Visible = false;
-                    textBox1.Visible = false;
-                    textBox1.Clear();
+                    billOrInvoiceNoD.Visible = false;
+                    billOrInvoiceNoD.Clear();
                     label7.Location = new Point(37, 336);
-                    textBox1.Location = new Point(195, 329);
+                    billOrInvoiceNoD.Location = new Point(195, 329);
 
                     label3.Location = new Point(65, 176);
                     txt1Particulars.Location = new Point(195, 175);
@@ -673,9 +685,9 @@ namespace AccountsManagementSystem.UI
                 if (creditAGRelId2 == "4")
                 {
                     label16.Visible = true;
-                    textBox2.Visible = true;
+                    billOrInvoiceNoForC.Visible = true;
                     label16.Location = new Point(57, 189);
-                    textBox2.Location = new Point(213, 187);
+                    billOrInvoiceNoForC.Location = new Point(213, 187);
                     label12.Location = new Point(88, 245);
                     txt2Particulars.Location = new Point(213, 238);
                     label13.Location = new Point(70, 369);
@@ -685,10 +697,10 @@ namespace AccountsManagementSystem.UI
                 else
                 {
                     label16.Visible = false;
-                    textBox2.Visible = false;
-                    textBox2.Clear();
+                    billOrInvoiceNoForC.Visible = false;
+                    billOrInvoiceNoForC.Clear();
                     label16.Location = new Point(57, 369);
-                    textBox2.Location = new Point(213, 362);
+                    billOrInvoiceNoForC.Location = new Point(213, 362);
 
                     label12.Location = new Point(88, 189);
                     txt2Particulars.Location = new Point(213, 187);
@@ -844,6 +856,7 @@ namespace AccountsManagementSystem.UI
                 MessageBox.Show(ex.Message, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
         private void SaveLCLRelation()
         {
             try
@@ -925,7 +938,7 @@ namespace AccountsManagementSystem.UI
                    //Debit Entry Start Here
                     if (txt1TransactionType.Text == "Debit")
                     {
-                        for (int i = 0; i <= listView1.Items.Count - 1; i++)
+                        for (int i = 0; i<= listView1.Items.Count - 1;i++)
                         {
                            
                                 con = new SqlConnection(cs.DBConn);
@@ -940,7 +953,6 @@ namespace AccountsManagementSystem.UI
 
                                 }
                                 con.Close();
-
                                 con = new SqlConnection(cs.DBConn);
                                 con.Open();
                                 string q1 = "Select RTRIM(AGRel.AccountType) from AGRel where AGRel.AGRelId='" + listView1.Items[i].SubItems[8].Text + "'";
@@ -949,7 +961,6 @@ namespace AccountsManagementSystem.UI
                                 if (rdr.Read())
                                 {
                                     accountOType = (rdr.GetString(0));
-
                                 }
 
                                 con.Close();
@@ -1018,7 +1029,12 @@ namespace AccountsManagementSystem.UI
                             cmd.Parameters.AddWithValue("d2", listView1.Items[i].SubItems[2].Text);
                             con.Open();
                             debitContraEntryId = (int) cmd.ExecuteScalar();
-                            con.Close();                           
+                            con.Close();
+                            //int[] ArrayOfInts = new int[10];
+                            //ArrayOfInts[i] = debitContraEntryId;
+                            //List<int[]> arrayList = new List<int[]>();
+                            //arrayList[i] = debitContraEntryId;
+
                         }
                     }
 
@@ -1131,10 +1147,11 @@ namespace AccountsManagementSystem.UI
                             con.Open();
                             cEntryId = (int) cmd.ExecuteScalar();
                             con.Close();                             
-                             SaveLCLRelation();
+                            
 
                         }
                     }
+                    SaveLCLRelation();
                 }
              UpdateDebitVoucherStatus();
              UpdateCreditVoucherStatus();
@@ -1164,12 +1181,12 @@ namespace AccountsManagementSystem.UI
             txt2CreditAmount.Text = "";
             group1.Enabled = true;
             listView1.Items.Clear();
-            textBox1.Clear();
-            textBox2.Clear();
+            billOrInvoiceNoD.Clear();
+            billOrInvoiceNoForC.Clear();
             label7.Visible = false;
-            textBox2.Visible = false;
+            billOrInvoiceNoForC.Visible = false;
             label16.Visible = false;
-            textBox1.Visible = false;
+            billOrInvoiceNoD.Visible = false;
             takeSum1 =takeSum2= 0;
             takeSub1 =takeSub2= 0;
             takeRemove1 =takeRemove2= 0;
@@ -1360,10 +1377,10 @@ namespace AccountsManagementSystem.UI
 
         private void txt2Particulars_Enter(object sender, EventArgs e)
         {
-            if (textBox2.Visible && string.IsNullOrWhiteSpace(textBox2.Text))
+            if (billOrInvoiceNoForC.Visible && string.IsNullOrWhiteSpace(billOrInvoiceNoForC.Text))
                 {
                     MessageBox.Show("Please Insert Bill Or Invoice No ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Hand);
-                    this.BeginInvoke(new ChangeFocusDelegate(changeFocus),textBox2);
+                    this.BeginInvoke(new ChangeFocusDelegate(changeFocus),billOrInvoiceNoForC);
                     
                 }
             
@@ -1377,10 +1394,10 @@ namespace AccountsManagementSystem.UI
 
         private void txt1Particulars_Enter(object sender, EventArgs e)
         {
-            if (textBox1.Visible && string.IsNullOrWhiteSpace(textBox1.Text))
+            if (billOrInvoiceNoD.Visible && string.IsNullOrWhiteSpace(billOrInvoiceNoD.Text))
                 {
                     MessageBox.Show("Please Insert Bill Or Invoice No ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Hand);
-                    this.BeginInvoke(new ChangeFocusDelegate(changeFocus),textBox1);
+                    this.BeginInvoke(new ChangeFocusDelegate(changeFocus),billOrInvoiceNoD);
                     //return;
                 }
             

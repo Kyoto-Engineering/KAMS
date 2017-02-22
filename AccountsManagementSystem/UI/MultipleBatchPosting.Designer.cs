@@ -32,7 +32,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.group1 = new System.Windows.Forms.GroupBox();
             this.txt1Particulars = new System.Windows.Forms.RichTextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.billOrInvoiceNoD = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.debitCompleteButton = new System.Windows.Forms.Button();
             this.cmbVoucherNoD = new System.Windows.Forms.ComboBox();
@@ -52,7 +52,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.txt2Particulars = new System.Windows.Forms.RichTextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.billOrInvoiceNoForC = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
             this.cmbVoucherNoC = new System.Windows.Forms.ComboBox();
             this.txtCEntryNo = new System.Windows.Forms.TextBox();
@@ -111,7 +111,7 @@
             // 
             this.group1.BackColor = System.Drawing.Color.Olive;
             this.group1.Controls.Add(this.txt1Particulars);
-            this.group1.Controls.Add(this.textBox1);
+            this.group1.Controls.Add(this.billOrInvoiceNoD);
             this.group1.Controls.Add(this.label7);
             this.group1.Controls.Add(this.debitCompleteButton);
             this.group1.Controls.Add(this.cmbVoucherNoD);
@@ -147,15 +147,15 @@
             this.txt1Particulars.Enter += new System.EventHandler(this.txt1Particulars_Enter);
             this.txt1Particulars.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt1Particulars_KeyDown);
             // 
-            // textBox1
+            // billOrInvoiceNoD
             // 
-            this.textBox1.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(195, 329);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(244, 29);
-            this.textBox1.TabIndex = 3;
-            this.textBox1.Visible = false;
-            this.textBox1.Enter += new System.EventHandler(this.textBox1_Enter);
+            this.billOrInvoiceNoD.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.billOrInvoiceNoD.Location = new System.Drawing.Point(195, 329);
+            this.billOrInvoiceNoD.Name = "billOrInvoiceNoD";
+            this.billOrInvoiceNoD.Size = new System.Drawing.Size(244, 29);
+            this.billOrInvoiceNoD.TabIndex = 3;
+            this.billOrInvoiceNoD.Visible = false;
+            this.billOrInvoiceNoD.Enter += new System.EventHandler(this.textBox1_Enter);
             // 
             // label7
             // 
@@ -343,7 +343,7 @@
             // 
             this.groupBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
             this.groupBox2.Controls.Add(this.txt2Particulars);
-            this.groupBox2.Controls.Add(this.textBox2);
+            this.groupBox2.Controls.Add(this.billOrInvoiceNoForC);
             this.groupBox2.Controls.Add(this.label16);
             this.groupBox2.Controls.Add(this.cmbVoucherNoC);
             this.groupBox2.Controls.Add(this.txtCEntryNo);
@@ -379,15 +379,15 @@
             this.txt2Particulars.Enter += new System.EventHandler(this.txt2Particulars_Enter);
             this.txt2Particulars.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt2Particulars_KeyDown);
             // 
-            // textBox2
+            // billOrInvoiceNoForC
             // 
-            this.textBox2.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(217, 362);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(282, 29);
-            this.textBox2.TabIndex = 3;
-            this.textBox2.Visible = false;
-            this.textBox2.Enter += new System.EventHandler(this.textBox2_Enter);
+            this.billOrInvoiceNoForC.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.billOrInvoiceNoForC.Location = new System.Drawing.Point(217, 362);
+            this.billOrInvoiceNoForC.Name = "billOrInvoiceNoForC";
+            this.billOrInvoiceNoForC.Size = new System.Drawing.Size(282, 29);
+            this.billOrInvoiceNoForC.TabIndex = 3;
+            this.billOrInvoiceNoForC.Visible = false;
+            this.billOrInvoiceNoForC.Enter += new System.EventHandler(this.textBox2_Enter);
             // 
             // label16
             // 
@@ -806,10 +806,10 @@
         private System.Windows.Forms.ComboBox cmbVoucherNoD;
         private System.Windows.Forms.ComboBox cmbVoucherNoC;
         private System.Windows.Forms.RichTextBox txt1Particulars;
-        public System.Windows.Forms.TextBox textBox1;
+        public System.Windows.Forms.TextBox billOrInvoiceNoD;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.RichTextBox txt2Particulars;
-        public System.Windows.Forms.TextBox textBox2;
+        public System.Windows.Forms.TextBox billOrInvoiceNoForC;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.ColumnHeader columnHeader20;
         private System.Windows.Forms.ColumnHeader columnHeader19;

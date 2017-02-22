@@ -44,7 +44,7 @@
             this.btnChangePassword.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnChangePassword.Font = new System.Drawing.Font("Palatino Linotype", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnChangePassword.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnChangePassword.Location = new System.Drawing.Point(217, 208);
+            this.btnChangePassword.Location = new System.Drawing.Point(236, 235);
             this.btnChangePassword.Name = "btnChangePassword";
             this.btnChangePassword.Size = new System.Drawing.Size(115, 38);
             this.btnChangePassword.TabIndex = 24;
@@ -126,7 +126,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(401, 322);
+            this.ClientSize = new System.Drawing.Size(420, 322);
             this.Controls.Add(this.ProgressBar1);
             this.Controls.Add(this.btnChangePassword);
             this.Controls.Add(this.Label3);

@@ -55,7 +55,16 @@ namespace AccountsManagementSystem.LogInUI
                 
                con = new SqlConnection(cs.DBConn);
                con.Open();
-               string qry = "SELECT Username,passwords FROM Registration WHERE Username = '"+txtUserName.Text+"' AND passwords = '"+readyPassword+"'";
+               //string q = "SELECT Username,passwords FROM Registration WHERE Username=@userName and  Passwords = @UserPassword COLLATE SQL_Latin1_General_CP1_CS_AS ";
+               //cmd = new SqlCommand(q, con);
+               //SqlParameter uName = new SqlParameter("@userName", SqlDbType.VarChar);
+               //SqlParameter uPassword = new SqlParameter("@UserPassword", SqlDbType.VarChar);
+               //uName.Value = txtUserName.Text;
+               //uPassword.Value = readyPassword;
+               //cmd.Parameters.Add(uName);
+               //cmd.Parameters.Add(uPassword);
+
+               string qry = "SELECT Username,passwords FROM Registration WHERE Username = '" + txtUserName.Text + "' AND passwords = '" + readyPassword + "'";
                cmd = new SqlCommand(qry, con);
                rdr1= cmd.ExecuteReader();
                 if (rdr1.Read() == true)

@@ -19,7 +19,7 @@ namespace AccountsManagementSystem.LogInUI
         SqlConnection con = null;
         SqlCommand cmd = null;
         ConnectionString cs = new ConnectionString();
-        public string testcUserType, readyPassword;
+        public string testcUserType, readyPassword,oldPassword1;
         public ChangePassword()
         {
             InitializeComponent();
@@ -79,8 +79,12 @@ namespace AccountsManagementSystem.LogInUI
                     txtNewPassword.Focus();
                     return;
                 }
-                string clearText = txtNewPassword.Text.Trim();
-                string password = clearText;
+                string clearText = txtOldPassword.Text.Trim();
+                byte[] bytes1 = Encoding.Unicode.GetBytes(clearText);
+                byte[] inArray1 = HashAlgorithm.Create("SHA1").ComputeHash(bytes1);
+                string oldPassword = Convert.ToBase64String(inArray1);
+                oldPassword1 = oldPassword;
+                string password = txtNewPassword.Text.Trim();
                 byte[] bytes = Encoding.Unicode.GetBytes(password);
                 byte[] inArray = HashAlgorithm.Create("SHA1").ComputeHash(bytes);
                 string readyPassword1 = Convert.ToBase64String(inArray);
@@ -89,7 +93,7 @@ namespace AccountsManagementSystem.LogInUI
 
                 con = new SqlConnection(cs.DBConn);
                 con.Open();
-                string qry = "Update Registration set Passwords =@d1  where  Passwords = '" + txtOldPassword.Text + "'";
+                string qry = "Update Registration set Passwords =@d1  where  Passwords = '" + oldPassword1 + "'";
                 cmd = new SqlCommand(qry,con);
                 cmd.Parameters.AddWithValue("@d1", readyPassword);
                 RowsAffected = cmd.ExecuteNonQuery();
@@ -109,7 +113,7 @@ namespace AccountsManagementSystem.LogInUI
                 }
                 else
                 {
-                    MessageBox.Show("invalid user name or password", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Old password does not matched", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     
                     txtNewPassword.Text = "";
                     txtOldPassword.Text = "";
