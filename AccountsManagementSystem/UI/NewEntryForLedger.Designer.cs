@@ -83,6 +83,7 @@
             this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.adToChartButton = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.toolTip2 = new System.Windows.Forms.ToolTip(this.components);
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.group1.SuspendLayout();
@@ -661,6 +662,12 @@
             this.toolTip1.Draw += new System.Windows.Forms.DrawToolTipEventHandler(this.toolTip1_Draw);
             this.toolTip1.Popup += new System.Windows.Forms.PopupEventHandler(this.toolTip1_Popup);
             // 
+            // toolTip2
+            // 
+            this.toolTip2.OwnerDraw = true;
+            this.toolTip2.Draw += new System.Windows.Forms.DrawToolTipEventHandler(this.toolTip2_Draw);
+            this.toolTip2.Popup += new System.Windows.Forms.PopupEventHandler(this.toolTip2_Popup);
+            // 
             // NewEntryForLedger
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -740,5 +747,6 @@
         public System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.ToolTip toolTip2;
     }
 }

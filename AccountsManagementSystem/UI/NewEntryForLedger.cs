@@ -1600,11 +1600,11 @@ namespace AccountsManagementSystem.UI
         private void cmb2LedgerName_DrawItem(object sender, DrawItemEventArgs e)
         {
             if (e.Index == -1) { return; }
-            Point p = new Point(cmb2LedgerName.Location.X + 120, cmb2LedgerName.Location.Y + cmb2LedgerName.Height + (30 + e.Index * 10));
-
+            Point p = new Point(cmb2LedgerName.Location.X + 200, cmb2LedgerName.Location.Y + cmb2LedgerName.Height + (30 + e.Index * 10));
             if ((e.State & DrawItemState.Selected) == DrawItemState.Selected)
             {
-                toolTip1.Show(cmb2LedgerName.Items[e.Index].ToString(), this, p,500);
+                
+                toolTip2.Show(cmb2LedgerName.Items[e.Index].ToString(), this, p);
               
             }
 
@@ -1627,12 +1627,25 @@ namespace AccountsManagementSystem.UI
 
         private void cmb1LedgerName_Leave(object sender, EventArgs e)
         {
-            toolTip1.Dispose();
+            toolTip1.Hide(this);
         }
 
         private void cmb2LedgerName_Leave(object sender, EventArgs e)
         {
-            toolTip1.Dispose();
+            toolTip2.Hide(this);
+        }
+
+        private void toolTip2_Draw(object sender, DrawToolTipEventArgs e)
+        {
+            Font f = new Font("Arial", 16.0f);
+            e.DrawBackground();
+            e.DrawBorder();
+            e.Graphics.DrawString(e.ToolTipText, f, Brushes.Black, new PointF(2, 2)); 
+        }
+
+        private void toolTip2_Popup(object sender, PopupEventArgs e)
+        {
+            e.ToolTipSize = TextRenderer.MeasureText(toolTip2.GetToolTip(e.AssociatedControl), new Font("Arial", 16.0f));
         }
       }
     }
