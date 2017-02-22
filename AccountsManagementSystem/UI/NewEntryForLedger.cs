@@ -1627,12 +1627,12 @@ namespace AccountsManagementSystem.UI
 
         private void cmb1LedgerName_Leave(object sender, EventArgs e)
         {
-            toolTip1.Hide(this);
+            toolTip1.Dispose();
         }
 
         private void cmb2LedgerName_Leave(object sender, EventArgs e)
         {
-            toolTip2.Hide(this);
+            toolTip2.Dispose();
         }
 
         private void toolTip2_Draw(object sender, DrawToolTipEventArgs e)
