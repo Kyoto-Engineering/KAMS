@@ -63,7 +63,7 @@
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(529, 12);
+            this.button1.Location = new System.Drawing.Point(564, 3);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(69, 41);
             this.button1.TabIndex = 2;
@@ -76,7 +76,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.ClientSize = new System.Drawing.Size(610, 480);
+            this.ClientSize = new System.Drawing.Size(641, 480);
             this.ControlBox = false;
             this.Controls.Add(this.btnApproveTrialBalance);
             this.Controls.Add(this.btnNewYearOpeningTransaction);
