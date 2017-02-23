@@ -22,7 +22,7 @@ namespace AccountsManagementSystem.UI
         private SqlConnection con;
         private SqlDataReader rdr;
         ConnectionString cs = new ConnectionString();
-        public int iTransactionId = 0, lEntryId, cEntryId, k, genericOTypeId, creditLedgerEntryId, debitContraEntryId;
+        public int iTransactionId = 0, lEntryId, creditContraEntryId, k, genericOTypeId, creditLedgerEntryId, debitContraEntryId, ledgerEntryRecordId, debitContraLedgerEntryRecordId, creditContraLedgerEntryRecordId, debitLedgerEntryIdFromDb, creditLedgerEntryIdFromDb, debitContraLedgerEntryIdFromDb, creditContraLedgerEntryIdFromDb, contraLedgerEntryIdFromDb;
         public string contraLedgerName, conTraLedgerId, cmb11LedgerName, ledgerId1, ledgerId2, userId, secondLedgerId, fullName, lGenericType, debitAGRelId1, creditAGRelId2, creditAGRelId, cLID2, voucherNoD;
         public decimal takeSum1 = 0,takeSum2=0, takeSub1 = 0,takeSub2=0, takeRemove1 = 0,takeRemove2, debitBalance = 0, lDBalance = 0, lCBalance = 0, creditBalance = 0;
         public string OAgrelId, accountOTypeD, accountOType,dLId1, cLId2, aGRelId;
@@ -286,6 +286,8 @@ namespace AccountsManagementSystem.UI
                     cmb2LedgerName.Refresh();
                     cmbVoucherNoD.Items.Remove(cmbVoucherNoD.Text);
                     cmbVoucherNoD.Refresh();
+                    cmbVoucherNoC.Items.Remove(cmbVoucherNoD.Text);
+                    cmbVoucherNoC.Refresh();
                     if (billOrInvoiceNoD.Visible)
                     {
                         label7.Visible = false;
@@ -335,6 +337,8 @@ namespace AccountsManagementSystem.UI
                     cmb2LedgerName.Refresh();
                     cmbVoucherNoD.Items.Remove(cmbVoucherNoD.Text);
                     cmbVoucherNoD.Refresh();
+                    cmbVoucherNoC.Items.Remove(cmbVoucherNoD.Text);
+                    cmbVoucherNoC.Refresh();
                     if (billOrInvoiceNoD.Visible)
                     {
                         label7.Visible = false;
@@ -837,6 +841,63 @@ namespace AccountsManagementSystem.UI
 
         }
         
+      
+        private void GetDebitContraLedgerEntryId()
+        {
+            con = new SqlConnection(cs.DBConn);
+            con.Open();
+            string ct = "select CEntryId from DebitContraLedgerEntryRecord where  DebitContraLedgerEntryRecord.TransactionId='" + iTransactionId + "' ";
+            cmd = new SqlCommand(ct);
+            cmd.Connection = con;
+            rdr = cmd.ExecuteReader();
+            if (rdr.Read())
+            {
+                debitContraLedgerEntryIdFromDb = (rdr.GetInt32(0));
+
+            }
+        }
+        private void GetDebitLedgerEntryId()
+        {
+            con = new SqlConnection(cs.DBConn);
+            con.Open();
+            string ct = "select LedgerEntryId from DebitLedgerEntryRecord where  DebitLedgerEntryRecord.TransactionId='" + iTransactionId + "' ";
+            cmd = new SqlCommand(ct);
+            cmd.Connection = con;
+            rdr = cmd.ExecuteReader();
+            if (rdr.Read())
+            {
+                debitLedgerEntryIdFromDb = (rdr.GetInt32(0));
+
+            }
+        }
+        private void GetCreditContraLedgerEntryId()
+        {
+            con = new SqlConnection(cs.DBConn);
+            con.Open();
+            string ct = "select CEntryId from CreditContraLedgerEntryRecord where  CreditContraLedgerEntryRecord.TransactionId='" + iTransactionId + "' ";
+            cmd = new SqlCommand(ct);
+            cmd.Connection = con;
+            rdr = cmd.ExecuteReader();
+            if (rdr.Read())
+            {
+                creditContraLedgerEntryIdFromDb = (rdr.GetInt32(0));
+
+            }
+        }
+        private void GetCreditLedgerEntryId()
+        {
+            con = new SqlConnection(cs.DBConn);
+            con.Open();
+            string ct = "select LedgerEntryId from CreditLedgerEntryRecord where  CreditLedgerEntryRecord.TransactionId='" + iTransactionId + "' ";
+            cmd = new SqlCommand(ct);
+            cmd.Connection = con;
+            rdr = cmd.ExecuteReader();
+            if (rdr.Read())
+            {
+                creditLedgerEntryIdFromDb = (rdr.GetInt32(0));
+
+            }
+        }
         private void SaveCreditContraLCLRelation()
         {
             try
@@ -845,8 +906,8 @@ namespace AccountsManagementSystem.UI
                 string q1 = "insert into LECLERelation(TransactionId,LedgerEntryId,CEntryId) values(@d1,@d2,@d3)";
                 cmd = new SqlCommand(q1, con);
                 cmd.Parameters.AddWithValue("d1", iTransactionId);
-                cmd.Parameters.AddWithValue("d2", creditLedgerEntryId);
-                cmd.Parameters.AddWithValue("d3", debitContraEntryId);
+                cmd.Parameters.AddWithValue("d2", creditLedgerEntryIdFromDb);
+                cmd.Parameters.AddWithValue("d3", debitContraLedgerEntryIdFromDb);
                 con.Open();
                 cmd.ExecuteReader();
                 con.Close();
@@ -856,7 +917,6 @@ namespace AccountsManagementSystem.UI
                 MessageBox.Show(ex.Message, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
         private void SaveLCLRelation()
         {
             try
@@ -865,13 +925,13 @@ namespace AccountsManagementSystem.UI
                 string query = "insert into LECLERelation(TransactionId,LedgerEntryId,CEntryId) values(@d1,@d2,@d3)";
                 cmd = new SqlCommand(query, con);
                 cmd.Parameters.AddWithValue("d1", iTransactionId);
-                cmd.Parameters.AddWithValue("d2", lEntryId);
-                cmd.Parameters.AddWithValue("d3", cEntryId);
+                cmd.Parameters.AddWithValue("d2", debitLedgerEntryIdFromDb);
+                cmd.Parameters.AddWithValue("d3", creditContraLedgerEntryIdFromDb);
                 con.Open();
                 cmd.ExecuteReader();
                 con.Close();
-                SaveCreditContraLCLRelation();
 
+                
 
             }
             catch (Exception ex)
@@ -913,7 +973,51 @@ namespace AccountsManagementSystem.UI
                 MessageBox.Show(ex.Message, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        
+        private void SaveDebitLedgerEntryRecord()
+        {
+            con = new SqlConnection(cs.DBConn);
+            con.Open();
+            string query = "insert into DebitLedgerEntryRecord(TransactionId,LedgerEntryId) values(@d1,@d2)" + "SELECT CONVERT(int, SCOPE_IDENTITY())";
+            cmd = new SqlCommand(query, con);
+            cmd.Parameters.AddWithValue("d1", iTransactionId);
+            cmd.Parameters.AddWithValue("d2", lEntryId);
+            debitContraLedgerEntryRecordId = (int)cmd.ExecuteScalar();
+            con.Close();
+        }
+        private void SaveCreditLedgerEntryRecord()
+        {
+            con = new SqlConnection(cs.DBConn);
+            string query = "insert into CreditLedgerEntryRecord(TransactionId,LedgerEntryId) values(@d1,@d2)" + "SELECT CONVERT(int, SCOPE_IDENTITY())";
+            cmd = new SqlCommand(query, con);
+            cmd.Parameters.AddWithValue("d1", iTransactionId);
+            cmd.Parameters.AddWithValue("d2", creditLedgerEntryId);
+            con.Open();
+            ledgerEntryRecordId = (int)cmd.ExecuteScalar();
+            con.Close();
+        }
+        private void SaveDebitContraLedgerEntryRecord()
+        {
+            con = new SqlConnection(cs.DBConn);
+            con.Open();
+            string query = "insert into DebitContraLedgerEntryRecord(TransactionId,CEntryId) values(@d1,@d2)" + "SELECT CONVERT(int, SCOPE_IDENTITY())";
+            cmd = new SqlCommand(query, con);
+            cmd.Parameters.AddWithValue("d1", iTransactionId);
+            cmd.Parameters.AddWithValue("d2", debitContraEntryId);           
+            debitContraLedgerEntryRecordId = (int)cmd.ExecuteScalar();
+            con.Close();
+        }
+        private void SaveCreditContraLedgerEntryRecord()
+        {
+            con = new SqlConnection(cs.DBConn);
+            con.Open();
+            string query = "insert into CreditContraLedgerEntryRecord(TransactionId,CEntryId) values(@d1,@d2)" + "SELECT CONVERT(int, SCOPE_IDENTITY())";
+            cmd = new SqlCommand(query, con);
+            cmd.Parameters.AddWithValue("d1", iTransactionId);
+            cmd.Parameters.AddWithValue("d2", creditContraEntryId);           
+            creditContraLedgerEntryRecordId = (int)cmd.ExecuteScalar();
+            con.Close();
+        }
+      
         private void btnSubmit_Click(object sender, EventArgs e)
         {
             if (listView2.Items.Count != Convert.ToInt32(txtCEntryNo.Text))
@@ -1010,6 +1114,7 @@ namespace AccountsManagementSystem.UI
                             cmd.Parameters.AddWithValue("d7", listView1.Items[i].SubItems[7].Text);
                             lEntryId = (int) cmd.ExecuteScalar();
                             con.Close();
+                            SaveDebitLedgerEntryRecord();
                             if (listView1.Items[i].SubItems[8].Text == "5")
                             {
                                 con = new SqlConnection(cs.DBConn);
@@ -1030,6 +1135,7 @@ namespace AccountsManagementSystem.UI
                             con.Open();
                             debitContraEntryId = (int) cmd.ExecuteScalar();
                             con.Close();
+                            SaveDebitContraLedgerEntryRecord();
                             //int[] ArrayOfInts = new int[10];
                             //ArrayOfInts[i] = debitContraEntryId;
                             //List<int[]> arrayList = new List<int[]>();
@@ -1127,6 +1233,7 @@ namespace AccountsManagementSystem.UI
                             con.Open();
                             creditLedgerEntryId = (int) cmd.ExecuteScalar();
                             con.Close();
+                            SaveCreditLedgerEntryRecord();
                             if (listView2.Items[i].SubItems[8].Text == "4")
                             {
                                 con = new SqlConnection(cs.DBConn);
@@ -1145,13 +1252,31 @@ namespace AccountsManagementSystem.UI
                             cmd.Parameters.AddWithValue("d1", listView2.Items[i].SubItems[1].Text);
                             cmd.Parameters.AddWithValue("d2", listView2.Items[i].SubItems[2].Text);
                             con.Open();
-                            cEntryId = (int) cmd.ExecuteScalar();
-                            con.Close();                             
-                            
-
+                            creditContraEntryId = (int) cmd.ExecuteScalar();
+                            con.Close();
+                            SaveCreditContraLedgerEntryRecord();
                         }
                     }
-                    SaveLCLRelation();
+                    int a = Convert.ToInt32(txtDEntryNo.Text);
+                    int b = Convert.ToInt32(txtCEntryNo.Text);
+
+                    for (int i = 0; i <= a; i++)
+                    {
+                        GetDebitLedgerEntryId();
+                        GetCreditContraLedgerEntryId();
+                        SaveLCLRelation();
+
+                        for (int j = 0; j <= b; j++)
+                        {
+                            GetCreditLedgerEntryId();
+                            GetDebitContraLedgerEntryId();
+                            SaveCreditContraLCLRelation();
+
+                        }
+                        
+                    }
+                   
+
                 }
              UpdateDebitVoucherStatus();
              UpdateCreditVoucherStatus();
