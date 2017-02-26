@@ -54,16 +54,7 @@ namespace AccountsManagementSystem.LogInUI
 
                 
                con = new SqlConnection(cs.DBConn);
-               con.Open();
-               //string q = "SELECT Username,passwords FROM Registration WHERE Username=@userName and  Passwords = @UserPassword COLLATE SQL_Latin1_General_CP1_CS_AS ";
-               //cmd = new SqlCommand(q, con);
-               //SqlParameter uName = new SqlParameter("@userName", SqlDbType.VarChar);
-               //SqlParameter uPassword = new SqlParameter("@UserPassword", SqlDbType.VarChar);
-               //uName.Value = txtUserName.Text;
-               //uPassword.Value = readyPassword;
-               //cmd.Parameters.Add(uName);
-               //cmd.Parameters.Add(uPassword);
-
+               con.Open();              
                string qry = "SELECT Username,passwords FROM Registration WHERE Username = '" + txtUserName.Text + "' AND passwords = '" + readyPassword + "'";
                cmd = new SqlCommand(qry, con);
                rdr1= cmd.ExecuteReader();
@@ -88,27 +79,45 @@ namespace AccountsManagementSystem.LogInUI
                 {
                     rdr.Close();
                 }
-                if (dbUserName==txtUserName.Text && dbPassword==readyPassword && userType.Trim() == "SuperAdmin")
+                if (dbUserName==txtUserName.Text)
                 {
-                    this.Hide();
-                    FiscalYear frm = new FiscalYear();
-                    frm.Show();
+                    if (dbPassword == readyPassword && userType.Trim() == "SuperAdmin")
+                    {
+                        this.Hide();
+                        FiscalYear frm = new FiscalYear();
+                        frm.Show();
+                    }
+                   
 
                 }
-                if (dbUserName == txtUserName.Text && dbPassword == readyPassword && userType.Trim() == "Admin")
+                if (dbUserName == txtUserName.Text )
                 {
-                    this.Hide();
-                    FiscalYear frm = new FiscalYear();
-                    frm.Show();
+                    if (dbPassword == readyPassword && userType.Trim() == "Admin")
+                    {
+                        this.Hide();
+                        FiscalYear frm = new FiscalYear();
+                        frm.Show();
+                    }
+                   
 
                 }
-                if (dbUserName == txtUserName.Text && dbPassword == readyPassword && userType.Trim() == "User")
+                if (dbUserName == txtUserName.Text)
                 {
-                    this.Hide();
-                    FiscalYear frm = new FiscalYear();
-                    frm.Show();
+                    if (dbPassword == readyPassword && userType.Trim() == "User")
+                    {
+                        this.Hide();
+                        FiscalYear frm = new FiscalYear();
+                        frm.Show();
 
+                    }
+                   
                 }
+               if (dbUserName != txtUserName.Text)
+               {
+                   MessageBox.Show("Please Type your User Name in Proper Case", "error", MessageBoxButtons.OK,MessageBoxIcon.Error);
+                   txtUserName.Clear();
+                   txtUserName.Focus();
+               }
 
                 }
                 else

@@ -97,7 +97,7 @@
             this.groupBox1.Controls.Add(this.listView1);
             this.groupBox1.Location = new System.Drawing.Point(12, 0);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1043, 670);
+            this.groupBox1.Size = new System.Drawing.Size(1109, 670);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             // 
@@ -127,7 +127,7 @@
             this.groupBox2.ForeColor = System.Drawing.Color.Blue;
             this.groupBox2.Location = new System.Drawing.Point(458, 11);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(615, 416);
+            this.groupBox2.Size = new System.Drawing.Size(645, 416);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Contra Ledger Details";
@@ -383,7 +383,7 @@
             this.group1.ForeColor = System.Drawing.Color.Blue;
             this.group1.Location = new System.Drawing.Point(12, 11);
             this.group1.Name = "group1";
-            this.group1.Size = new System.Drawing.Size(423, 416);
+            this.group1.Size = new System.Drawing.Size(440, 416);
             this.group1.TabIndex = 0;
             this.group1.TabStop = false;
             this.group1.Text = "Ledger Details";
@@ -584,9 +584,9 @@
             this.listView1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listView1.FullRowSelect = true;
             this.listView1.GridLines = true;
-            this.listView1.Location = new System.Drawing.Point(17, 433);
+            this.listView1.Location = new System.Drawing.Point(42, 433);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(1041, 227);
+            this.listView1.Size = new System.Drawing.Size(1029, 227);
             this.listView1.TabIndex = 47;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -673,7 +673,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Peru;
-            this.ClientSize = new System.Drawing.Size(1067, 672);
+            this.ClientSize = new System.Drawing.Size(1133, 672);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.adToChartButton);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));

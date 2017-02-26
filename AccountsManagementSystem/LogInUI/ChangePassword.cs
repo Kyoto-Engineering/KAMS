@@ -107,8 +107,7 @@ namespace AccountsManagementSystem.LogInUI
                     frmLogin LoginForm1 = new frmLogin();
                     LoginForm1.Show();
                     LoginForm1.txtUserName.Text = "";
-                    LoginForm1.txtPassword.Text = "";
-                   // LoginForm1.ProgressBar1.Visible = false;
+                    LoginForm1.txtPassword.Text = "";                 
                     LoginForm1.txtUserName.Focus();
                 }
                 else

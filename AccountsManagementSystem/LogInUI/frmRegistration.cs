@@ -98,8 +98,7 @@ namespace AccountsManagementSystem.LogInUI
             {
 
                 
-               string clearText = txtPassword.Text.Trim();
-                //string cipherText = Encrypt(clearText, true);
+               string clearText = txtPassword.Text.Trim();               
                string password = clearText;
                 EncodePasswordToBase64(password);
 

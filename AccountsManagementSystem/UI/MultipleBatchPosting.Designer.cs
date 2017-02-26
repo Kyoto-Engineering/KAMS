@@ -752,7 +752,7 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.GroupBox group1;
-        public System.Windows.Forms.TextBox txtDEntryNo;
+        public  System.Windows.Forms.TextBox txtDEntryNo;
         private System.Windows.Forms.TextBox txt1TransactionType;
         private System.Windows.Forms.ComboBox cmb1LedgerName;
         private System.Windows.Forms.Label label14;
@@ -765,7 +765,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.GroupBox groupBox2;
-        public System.Windows.Forms.TextBox txtCEntryNo;
+        public  System.Windows.Forms.TextBox txtCEntryNo;
         private System.Windows.Forms.TextBox txt2TransactionType;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.TextBox txt2CreditAmount;

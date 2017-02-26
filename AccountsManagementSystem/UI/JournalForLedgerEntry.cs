@@ -34,7 +34,7 @@ namespace AccountsManagementSystem.UI
                 con = new SqlConnection(cs.DBConn);
                 con.Open();
                 cmd = new SqlCommand("SELECT RTRIM(LedgerEntry.LedgerEntryId),RTRIM(TransactionRecord.TransactionDate),RTRIM(Ledger.LedgerName),RTRIM(LedgerEntry.FundRequisitionNo),RTRIM(LedgerEntry.VoucherNo),RTRIM(LedgerEntry.Particulars),RTRIM(LedgerEntry.Debit),RTRIM(LedgerEntry.Credit) FROM   ((BalanceFiscal INNER JOIN LedgerEntry ON BalanceFiscal.LId=LedgerEntry.LId) INNER JOIN Ledger ON BalanceFiscal.LedgerId=Ledger.LedgerId) INNER JOIN TransactionRecord ON LedgerEntry.TransactionId=TransactionRecord.TransactionId where  BalanceFiscal.FiscalId='"+fiscalLE6Year+"'  order by LedgerEntry.LedgerEntryId desc",con);
-               // cmd = new SqlCommand("SELECT RTRIM(LedgerEntry.LedgerEntryId),RTRIM(TransactionRecord.TransactionDate),RTRIM(Ledger.LedgerName),RTRIM(LedgerEntry.FundRequisitionNo),RTRIM(LedgerEntry.VoucherNo),RTRIM(LedgerEntry.Particulars),RTRIM(LedgerEntry.Debit),RTRIM(LedgerEntry.Credit) from Ledger,LedgerEntry,TransactionRecord,BalanceFiscal where  BalanceFiscal.LId=LedgerEntry.LId and TransactionRecord.TransactionId=LedgerEntry.TransactionId and BalanceFiscal.FiscalId='" + fiscalLE6Year + "'  order by LedgerEntry.LedgerEntryId desc", con);
+               
                 rdr = cmd.ExecuteReader(CommandBehavior.CloseConnection);
                 dataGridView1.Rows.Clear();
                 while (rdr.Read() == true)
@@ -166,35 +166,14 @@ namespace AccountsManagementSystem.UI
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            //try
-            //{
-            //    DataGridViewRow dr = dataGridView1.SelectedRows[0];
-            //    this.Hide();
-            //    LedgerEntryUpdate frm = new LedgerEntryUpdate();
-            //    frm.Show();
-            //    frm.txtEntryId.Text = dr.Cells[0].Value.ToString();
-            //    frm.txtTransactiondate.Text = dr.Cells[1].Value.ToString();
-            //    frm.txtLedgerName.Text = dr.Cells[2].Value.ToString();
-            //    frm.txtRequisitionNo.Text = dr.Cells[3].Value.ToString();
-            //    frm.txtVoucherNo.Text = dr.Cells[4].Value.ToString();
-            //    frm.txtParticulars.Text = dr.Cells[5].Value.ToString();
-            //    frm.txtReceive.Text = dr.Cells[6].Value.ToString();
-            //    frm.txtExpence.Text = dr.Cells[7].Value.ToString();
-            //    frm.labelk.Text = frm.labelkl.Text;
-
-            //}
-
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //}
+           
         }
 
         private void dataGridView1_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             try
             {
-               // DataGridViewCell dr = dataGridView1.SelectedRows[0];
+              
                 DataGridViewRow dr = dataGridView1.CurrentRow;
                 this.Hide();
                 LedgerEntryUpdate frm = new LedgerEntryUpdate();
