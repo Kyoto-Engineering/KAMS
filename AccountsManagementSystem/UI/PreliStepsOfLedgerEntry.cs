@@ -69,11 +69,11 @@ namespace AccountsManagementSystem.UI
 
             else if (cmbEntryType.Text == "Individual Posting")
             {
-                
-                                 
+
+                this.Dispose();     
                 LedgerEntryForIndividualPosting frm=new LedgerEntryForIndividualPosting();
-                this.Dispose();
-                                   frm.Show();
+                frm.Show();
+                                   
                 //return;
 
             }
@@ -91,7 +91,7 @@ namespace AccountsManagementSystem.UI
                 {
                     MessageBox.Show("Please enter Valid credit entry Number", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     txtNumOfCreditEntry.Clear();
-                        txtNumOfCreditEntry.Focus();
+                    txtNumOfCreditEntry.Focus();
                 }
                 else
                 {
@@ -135,13 +135,13 @@ namespace AccountsManagementSystem.UI
                 //Multiple Debit Multiple Credit
                 if (string.IsNullOrWhiteSpace(txtNumOfDebitEntry.Text) || int.Parse(txtNumOfDebitEntry.Text)<2)
                 {
-                    MessageBox.Show("Please enter your debit entry Number", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Please enter your correct debit entry Number", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     txtNumOfDebitEntry.Clear();
                     txtNumOfDebitEntry.Focus();
                 }
                 else if (string.IsNullOrWhiteSpace(txtNumOfCreditEntry.Text) || int.Parse(txtNumOfCreditEntry.Text) < 2)
                 {
-                    MessageBox.Show("Please enter your credit entry Number", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Please enter your correct  credit entry Number", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     txtNumOfCreditEntry.Clear();
                     txtNumOfCreditEntry.Focus();
                 }

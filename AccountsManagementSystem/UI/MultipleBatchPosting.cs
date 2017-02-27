@@ -370,7 +370,7 @@ namespace AccountsManagementSystem.UI
           }
                
 
-     }
+          }
             
         }
 
@@ -405,10 +405,13 @@ namespace AccountsManagementSystem.UI
                 txt2CreditAmount.Focus();
                
             }
-
-            else try
+            
+            
+            else 
             {
-                takeSub2 = takeSum2;
+                try
+                {
+                  takeSub2 = takeSum2;
                 takeSum2 = takeSum2 + Convert.ToDecimal(txt2CreditAmount.Text);
                 if (takeSum1 < takeSum2)
                 {
@@ -514,11 +517,14 @@ namespace AccountsManagementSystem.UI
                     }
                 }
 
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }  
+
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+           
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -828,13 +834,13 @@ namespace AccountsManagementSystem.UI
                     int ledgerEntryId = lEntryId - max1 + k;
                     for (int m = 1; m <= max2; m++)
                     {
-                        int cContraEntryId = creditContraEntryId - max2 + m;
+                        int cContraEntryId1 = creditContraEntryId - max2 + m;
                         con = new SqlConnection(cs.DBConn);
                         string query = "insert into LECLERelation(TransactionId,LedgerEntryId,CEntryId) values(@d1,@d2,@d3)";
                         cmd = new SqlCommand(query, con);
                         cmd.Parameters.AddWithValue("d1", iTransactionId);
                         cmd.Parameters.AddWithValue("d2", ledgerEntryId);
-                        cmd.Parameters.AddWithValue("d3", cContraEntryId);
+                        cmd.Parameters.AddWithValue("d3", cContraEntryId1);
                         con.Open();
                         cmd.ExecuteReader();
                         con.Close();
@@ -1494,6 +1500,15 @@ namespace AccountsManagementSystem.UI
         private void changeFocus(Control ctl)
         {
             ctl.Focus();
+        }
+
+        private void listView2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+
+
+
+
         }
     }
 }

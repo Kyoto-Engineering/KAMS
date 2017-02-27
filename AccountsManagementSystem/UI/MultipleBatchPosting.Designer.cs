@@ -100,7 +100,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Times New Roman", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(415, -4);
+            this.label1.Location = new System.Drawing.Point(519, 3);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(322, 32);
             this.label1.TabIndex = 0;
@@ -362,9 +362,9 @@
             this.groupBox2.Controls.Add(this.label5);
             this.groupBox2.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.ForeColor = System.Drawing.Color.Lime;
-            this.groupBox2.Location = new System.Drawing.Point(662, 39);
+            this.groupBox2.Location = new System.Drawing.Point(662, 65);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(669, 428);
+            this.groupBox2.Size = new System.Drawing.Size(669, 402);
             this.groupBox2.TabIndex = 2;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Contra Ledger Details";
@@ -581,12 +581,13 @@
             this.listView2.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listView2.FullRowSelect = true;
             this.listView2.GridLines = true;
-            this.listView2.Location = new System.Drawing.Point(662, 473);
+            this.listView2.Location = new System.Drawing.Point(662, 484);
             this.listView2.Name = "listView2";
-            this.listView2.Size = new System.Drawing.Size(649, 234);
+            this.listView2.Size = new System.Drawing.Size(669, 234);
             this.listView2.TabIndex = 61;
             this.listView2.UseCompatibleStateImageBehavior = false;
             this.listView2.View = System.Windows.Forms.View.Details;
+            this.listView2.SelectedIndexChanged += new System.EventHandler(this.listView2_SelectedIndexChanged);
             // 
             // columnHeader1
             // 
@@ -654,7 +655,7 @@
             this.listView1.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listView1.FullRowSelect = true;
             this.listView1.GridLines = true;
-            this.listView1.Location = new System.Drawing.Point(10, 473);
+            this.listView1.Location = new System.Drawing.Point(7, 484);
             this.listView1.Name = "listView1";
             this.listView1.Size = new System.Drawing.Size(631, 234);
             this.listView1.TabIndex = 62;
