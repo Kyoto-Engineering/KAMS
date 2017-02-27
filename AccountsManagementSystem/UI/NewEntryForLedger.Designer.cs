@@ -584,9 +584,9 @@
             this.listView1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listView1.FullRowSelect = true;
             this.listView1.GridLines = true;
-            this.listView1.Location = new System.Drawing.Point(42, 433);
+            this.listView1.Location = new System.Drawing.Point(21, 433);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(1029, 227);
+            this.listView1.Size = new System.Drawing.Size(1082, 227);
             this.listView1.TabIndex = 47;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
