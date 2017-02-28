@@ -27,7 +27,7 @@ namespace AccountsManagementSystem.UI
         public decimal takeSum=0, takeSub=0,takeRemove=0,debitBalance=0,lDBalance=0,lCBalance=0,creditBalance=0;
         public string OAgrelId, accountOTypeD, accountOType;
         public int fiscalLE2Year;
-        public int dLId, cLId;
+        public int dLId, cLId,max2;
         public DateTime startDateOneDManyC, endDateOneDManyC;
         private delegate void ChangeFocusDelegate(Control ctl);
         public NewEntryForLedger()
@@ -681,15 +681,19 @@ namespace AccountsManagementSystem.UI
         {
             try
             {
-                    con = new SqlConnection(cs.DBConn);
-                    string query = "insert into LECLERelation(TransactionId,LedgerEntryId,CEntryId) values(@d1,@d2,@d3)";
-                    cmd = new SqlCommand(query, con);
-                    cmd.Parameters.AddWithValue("d1", iTransactionId);
-                    cmd.Parameters.AddWithValue("d2", lEntryId);
-                    cmd.Parameters.AddWithValue("d3", cEntryId);
-                    con.Open();
-                    cmd.ExecuteReader();
-                    con.Close();
+                //for (int p = 1; p<= max2; p++)
+                //{
+                   
+                //}
+                con = new SqlConnection(cs.DBConn);
+                string query = "insert into LECLERelation(TransactionId,LedgerEntryId,CEntryId) values(@d1,@d2,@d3)";
+                cmd = new SqlCommand(query, con);
+                cmd.Parameters.AddWithValue("d1", iTransactionId);
+                cmd.Parameters.AddWithValue("d2", lEntryId);
+                cmd.Parameters.AddWithValue("d3", cEntryId);
+                con.Open();
+                cmd.ExecuteReader();
+                con.Close(); 
                     SaveCreditContraLCLRelation();
 
 
@@ -826,16 +830,14 @@ namespace AccountsManagementSystem.UI
 
                 else  if (takeSum == Convert.ToDecimal(txt1Amount.Text))
                 {
-                    SaveNewTransaction();
-                    if (txt1TransactionType.Text == "Debit")
-                    {
+                        SaveNewTransaction();
+                        max2 = Convert.ToInt32(txtCEntryNo.Text);
                         SaveDebitLedgerBalance();
                         con = new SqlConnection(cs.DBConn);
                         con.Open();
-                        string cb = "insert into LedgerEntry(FundRequisitionNo,VoucherNo,Particulars,Debit,Balances,TransactionId,LId) VALUES (@d1,@d2,@d3,@d4,@d5,@d6,@d7)" + "SELECT CONVERT(int, SCOPE_IDENTITY())";
-                        cmd = new SqlCommand(cb);
-                        cmd.Connection = con;
-                        //cmd.Parameters.AddWithValue("@d1", firstLedgerId);
+                        string qry = "insert into LedgerEntry(FundRequisitionNo,VoucherNo,Particulars,Debit,Balances,TransactionId,LId) VALUES (@d1,@d2,@d3,@d4,@d5,@d6,@d7)" + "SELECT CONVERT(int, SCOPE_IDENTITY())";
+                        cmd = new SqlCommand(qry);
+                        cmd.Connection = con;                       
                         cmd.Parameters.AddWithValue("@d1", txt1RequisitionNo.Text);
                         cmd.Parameters.AddWithValue("@d2", cmbVoucherNoD.Text);
                         cmd.Parameters.AddWithValue("@d3", txt1Particulars.Text);
@@ -859,14 +861,11 @@ namespace AccountsManagementSystem.UI
                         }
                         SaveDebitContraEntry();
 
-                       
-                    }
+                   //Credit Entry Start here
 
-                   
                     for (int i = 0; i <= listView1.Items.Count - 1; i++)
                     {
-                        if (txt2TransactionType.Text == "Credit")
-                        {
+                       
                             try
                             {
                                 con = new SqlConnection(cs.DBConn);
@@ -969,10 +968,8 @@ namespace AccountsManagementSystem.UI
                             cEntryId = (int) cmd.ExecuteScalar();
                             con.Close();
                             SaveLCLRelation();
-                           
-                        }
-                    
                     }
+                    
                     UpdateDebitVoucherStatus();
                     UpdateCreditVoucherStatus();
                     MessageBox.Show("Transaction Completed Successfully", "Record", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -1585,11 +1582,11 @@ namespace AccountsManagementSystem.UI
         {
             if (e.Index == -1) { return; }
             Point p = new Point(cmb1LedgerName.Location.X + 120, cmb1LedgerName.Location.Y + cmb1LedgerName.Height + (30 + e.Index * 10));
-            Font drawFont = new Font("Arial", 16);
+            Font drawFont = new Font("Times New Roman", 16);
             SolidBrush drawBrush = new SolidBrush(Color.Black);
             if ((e.State & DrawItemState.Selected) == DrawItemState.Selected)
             {
-                toolTip1.Show(cmb1LedgerName.Items[e.Index].ToString(), this, p);
+              //  toolTip1.Show(cmb1LedgerName.Items[e.Index].ToString(), this, p);
             }
            
                 e.DrawBackground();
@@ -1603,9 +1600,9 @@ namespace AccountsManagementSystem.UI
             Point p = new Point(cmb2LedgerName.Location.X + 200, cmb2LedgerName.Location.Y + cmb2LedgerName.Height + (30 + e.Index * 10));
             if ((e.State & DrawItemState.Selected) == DrawItemState.Selected)
             {
-                
-                toolTip2.Show(cmb2LedgerName.Items[e.Index].ToString(), this, p);
-              
+
+               // toolTip2.Show(cmb2LedgerName.Items[e.Index].ToString(), this, p);
+
             }
 
             e.DrawBackground();
