@@ -507,7 +507,7 @@ namespace AccountsManagementSystem.UI
                         cmbDebitLedgerName.SelectedIndex = -1;
                         cmbDebitLedgerName.SelectedIndexChanged += cmbC1DM2LedgerName_SelectedIndexChanged;
                         txtc1DM2FundRequisition.Clear();
-                        cmbVoucherNoD.Enabled = false;
+                        cmbVoucherNoD.SelectedIndex = -1;
                         txtC1DM2Particulars.Clear();
                         txtC1DM2DebitBalance.Clear();
                         if (textBox1.Visible)
@@ -567,7 +567,7 @@ namespace AccountsManagementSystem.UI
                         cmbDebitLedgerName.SelectedIndex = -1;
                         cmbDebitLedgerName.SelectedIndexChanged += cmbC1DM2LedgerName_SelectedIndexChanged;
                         txtc1DM2FundRequisition.Clear();
-                        cmbVoucherNoD.Enabled = false;
+                        cmbVoucherNoD.SelectedIndex = -1;
                         txtC1DM2Particulars.Clear();
                         txtC1DM2DebitBalance.Clear();
                         if ((listView1.Items.Count) < Convert.ToInt32(txtManyD.Text))

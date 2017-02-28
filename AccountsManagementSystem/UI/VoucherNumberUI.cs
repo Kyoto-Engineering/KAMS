@@ -20,7 +20,7 @@ namespace AccountsManagementSystem.UI
         private SqlDataReader rdr;
         ConnectionString cs=new ConnectionString();
         private string userId;
-        private int batchId;
+        private int batchId,voucherNo;
 
         public VoucherNumberUI()
         {
@@ -63,11 +63,22 @@ namespace AccountsManagementSystem.UI
                 return;
             }
             try
-            {
-               
+            {           
+                con=new SqlConnection(cs.DBConn);
+                con.Open();
+                string query1 = "Select VoucherNumber.VoucherNo,VoucherNumber.VoucherNo from VoucherNumber  where  VoucherNumber.VoucherNo='" + voucherNoStartPoint.Text + "' OR  VoucherNumber.VoucherNo='" + voucherNoEndPoint.Text + "' ";
+                cmd=new SqlCommand(query1,con);
+                rdr = cmd.ExecuteReader();
+                if (rdr.Read())
+                {
+                   // voucherNo = (rdr.GetInt32(0));
+                    MessageBox.Show("This Voucher Number Range is already exist.Please select correct voucher Number range.", "error", MessageBoxButtons.OK,MessageBoxIcon.Error);
+                    voucherNoStartPoint.Clear();
+                    voucherNoEndPoint.Clear();
+                    voucherNoStartPoint.Focus();
+                }
+                con.Close();
                 SaveUserRecord();
-               
-
                 for (UInt64 k = Convert.ToUInt64(voucherNoStartPoint.Text); k <= Convert.ToUInt64(voucherNoEndPoint.Text); k++)
                 {
                     con = new SqlConnection(cs.DBConn);
@@ -80,10 +91,8 @@ namespace AccountsManagementSystem.UI
                     cmd.ExecuteNonQuery();
                     con.Close();
 
-                }
-
-               
-                MessageBox.Show("Successfully  Saved", "Record", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }               
+                MessageBox.Show("These Voucher Number Successfully  Created.", "Record", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 Reset();
             }
             catch (Exception ex)
@@ -91,7 +100,6 @@ namespace AccountsManagementSystem.UI
                 MessageBox.Show("Input String was not in a Correct Format", "error", MessageBoxButtons.OK,MessageBoxIcon.Error);
             }
         }
-
         private void VoucherNumberUI_Load(object sender, EventArgs e)
         {
             userId = frmLogin.uId.ToString();

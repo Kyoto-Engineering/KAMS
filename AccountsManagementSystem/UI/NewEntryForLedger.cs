@@ -502,6 +502,17 @@ namespace AccountsManagementSystem.UI
                     MessageBoxIcon.Error);
                 cmb2LedgerName.Focus();
             }
+            else if (textBox2.Visible && string.IsNullOrWhiteSpace(textBox2.Text))
+            {
+                MessageBox.Show("Please Insert Bill Or Invoice No ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                this.BeginInvoke(new ChangeFocusDelegate(changeFocus), textBox2);
+
+            }
+            else if (string.IsNullOrWhiteSpace(cmbVoucherNoC.Text))
+            {
+                MessageBox.Show("Please Type Voucher No before Particulars", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.BeginInvoke(new ChangeFocusDelegate(changeFocus), cmbVoucherNoC);
+            }
 
             else if (string.IsNullOrWhiteSpace(txt2Particulars.Text))
             {
@@ -523,7 +534,10 @@ namespace AccountsManagementSystem.UI
                     CreditOptionClear();
                     listView1.Focus();
                 }
-            else{
+           
+            else
+            {
+               
                 try
                 {
                     decimal val1 = 0;
@@ -533,8 +547,7 @@ namespace AccountsManagementSystem.UI
                     takeSum = takeSum + Convert.ToDecimal(txt2Amount.Text);
                     if (val1 < takeSum)
                     {
-                        MessageBox.Show("Your input amount exceed the limit", "Input Error", MessageBoxButtons.OK,
-                            MessageBoxIcon.Error);
+                        MessageBox.Show("Your input amount exceed the limit", "Input Error", MessageBoxButtons.OK,MessageBoxIcon.Error);
                         takeSum = takeSub;
                         txt2Amount.Clear();
                         txt2Amount.Focus();
@@ -570,13 +583,13 @@ namespace AccountsManagementSystem.UI
                             label13.Location = new Point(70, 320);
                             txt2Amount.Location = new Point(213, 319);
                         }
+                        txt2Amount.Clear();
+                        txt2FundRequisition.Clear();                                               
+                        txt2Particulars.Clear();                       
+                        cmbVoucherNoC.SelectedIndex = -1;
                         cmb2LedgerName.SelectedIndexChanged -= cmb2LedgerName_SelectedIndexChanged;
                         cmb2LedgerName.SelectedIndex = -1;
                         cmb2LedgerName.SelectedIndexChanged += cmb2LedgerName_SelectedIndexChanged;
-                        txt2FundRequisition.Clear();
-                        cmbVoucherNoC.Enabled = false;
-                        txt2Particulars.Clear();
-                        txt2Amount.Clear();
                         button1.Visible = true;
                         button1.Enabled = true;
 
@@ -612,13 +625,15 @@ namespace AccountsManagementSystem.UI
                             label13.Location = new Point(70, 320);
                             txt2Amount.Location = new Point(213, 319);
                         }
+
+                        txt2Amount.Clear();
+                        txt2FundRequisition.Clear();
+                        txt2Particulars.Clear();
+                        cmbVoucherNoC.SelectedIndex = -1;
                         cmb2LedgerName.SelectedIndexChanged -= cmb2LedgerName_SelectedIndexChanged;
                         cmb2LedgerName.SelectedIndex = -1;
                         cmb2LedgerName.SelectedIndexChanged += cmb2LedgerName_SelectedIndexChanged;
-                        txt2FundRequisition.Clear();
-                        cmbVoucherNoC.Enabled = false;
-                        txt2Particulars.Clear();
-                        txt2Amount.Clear();
+
                         if (listView1.Items.Count == int.Parse(txtCEntryNo.Text))
                         {
                             addButton.Enabled = false;
@@ -694,7 +709,7 @@ namespace AccountsManagementSystem.UI
                 con.Open();
                 cmd.ExecuteReader();
                 con.Close(); 
-                    SaveCreditContraLCLRelation();
+                SaveCreditContraLCLRelation();
 
 
             }
@@ -824,7 +839,7 @@ namespace AccountsManagementSystem.UI
             {
                 if (takeSum > Convert.ToDecimal(txt1Amount.Text) || takeSum < Convert.ToDecimal(txt1Amount.Text))
                 {
-                    MessageBox.Show("Your Transaction Parameters(Debit & Credit) are not Equal", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Your Transaction Parameters(Debit & Credit amount ) are not Equal", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                    
                 }
 
@@ -1022,30 +1037,30 @@ namespace AccountsManagementSystem.UI
                     creditAGRelId2 = (rdr.GetString(1));
                 }
                 con.Close();
-                if (creditAGRelId2 == "4")
-                {
-                    label7.Visible = true;
-                    textBox2.Visible = true;
-                    label7.Location = new Point(61, 189);
-                    textBox2.Location = new Point(213, 189);
-                    label12.Location = new Point(88, 237);
-                    txt2Particulars.Location = new Point(213,234);
-                    label13.Location = new Point(70, 368);
-                    txt2Amount.Location = new Point(213, 365);
+                //if (creditAGRelId2 == "4")
+                //{
+                //    label7.Visible = true;
+                //    textBox2.Visible = true;
+                //    label7.Location = new Point(61, 189);
+                //    textBox2.Location = new Point(213, 189);
+                //    label12.Location = new Point(88, 237);
+                //    txt2Particulars.Location = new Point(213,234);
+                //    label13.Location = new Point(70, 368);
+                //    txt2Amount.Location = new Point(213, 365);
 
-                }
-                else
-                {
-                    label7.Visible = false;
-                    textBox2.Visible = false;
-                    textBox2.Clear();
-                    label7.Location = new Point(61, 368);
-                    textBox2.Location = new Point(213, 365);
-                    label12.Location = new Point(88, 189);
-                    txt2Particulars.Location = new Point(213, 189);
-                    label13.Location = new Point(70, 320);
-                    txt2Amount.Location = new Point(213, 319);
-                }
+                //}
+                //else
+                //{
+                //    label7.Visible = false;
+                //    textBox2.Visible = false;
+                //    textBox2.Clear();
+                //    label7.Location = new Point(61, 368);
+                //    textBox2.Location = new Point(213, 365);
+                //    label12.Location = new Point(88, 189);
+                //    txt2Particulars.Location = new Point(213, 189);
+                //    label13.Location = new Point(70, 320);
+                //    txt2Amount.Location = new Point(213, 319);
+                //}
                 GetLId2();
                 txt2FundRequisition.Focus();
             }
@@ -1403,17 +1418,7 @@ namespace AccountsManagementSystem.UI
 
         private void txt2Particulars_Enter(object sender, EventArgs e)
         {
-            if (textBox2.Visible && string.IsNullOrWhiteSpace(textBox2.Text))
-                {
-                    MessageBox.Show("Please Insert Bill Or Invoice No ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Hand);
-                    this.BeginInvoke(new ChangeFocusDelegate(changeFocus), textBox2);
-                
-            }
-            else if (string.IsNullOrWhiteSpace(cmbVoucherNoC.Text))
-            {
-                MessageBox.Show("Please Type Voucher No before Particulars", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                this.BeginInvoke(new ChangeFocusDelegate(changeFocus), cmbVoucherNoC);
-            }
+           
         }
 
         private void txt2Amount_Enter(object sender, EventArgs e)
@@ -1458,11 +1463,11 @@ namespace AccountsManagementSystem.UI
         private void cmbVoucherNoC_Enter(object sender, EventArgs e)
         {
 
-            if (string.IsNullOrWhiteSpace(cmb2LedgerName.Text))
-            {
-                MessageBox.Show("Please select Ledger Name", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                this.BeginInvoke(new ChangeFocusDelegate(changeFocus), cmb2LedgerName);
-            }
+            //if (string.IsNullOrWhiteSpace(cmb2LedgerName.Text))
+            //{
+            //    MessageBox.Show("Please select Ledger Name", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //    this.BeginInvoke(new ChangeFocusDelegate(changeFocus), cmb2LedgerName);
+            //}
         }
 
         private void cmbVoucherNoD_Enter(object sender, EventArgs e)

@@ -95,9 +95,9 @@
             this.groupBox1.Controls.Add(this.txtLedgerId);
             this.groupBox1.Controls.Add(this.group1);
             this.groupBox1.Controls.Add(this.listView1);
-            this.groupBox1.Location = new System.Drawing.Point(12, 0);
+            this.groupBox1.Location = new System.Drawing.Point(3, 0);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1147, 670);
+            this.groupBox1.Size = new System.Drawing.Size(1156, 670);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             // 
@@ -149,7 +149,7 @@
             // 
             this.txt2Particulars.Location = new System.Drawing.Point(183, 189);
             this.txt2Particulars.Name = "txt2Particulars";
-            this.txt2Particulars.Size = new System.Drawing.Size(314, 116);
+            this.txt2Particulars.Size = new System.Drawing.Size(275, 116);
             this.txt2Particulars.TabIndex = 4;
             this.txt2Particulars.Text = "";
             this.txt2Particulars.Enter += new System.EventHandler(this.txt2Particulars_Enter);
@@ -160,7 +160,7 @@
             this.textBox2.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox2.Location = new System.Drawing.Point(183, 365);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(314, 29);
+            this.textBox2.Size = new System.Drawing.Size(275, 29);
             this.textBox2.TabIndex = 3;
             this.textBox2.Visible = false;
             this.textBox2.Enter += new System.EventHandler(this.textBox2_Enter);
@@ -198,7 +198,7 @@
             this.cmbVoucherNoC.FormattingEnabled = true;
             this.cmbVoucherNoC.Location = new System.Drawing.Point(183, 144);
             this.cmbVoucherNoC.Name = "cmbVoucherNoC";
-            this.cmbVoucherNoC.Size = new System.Drawing.Size(314, 34);
+            this.cmbVoucherNoC.Size = new System.Drawing.Size(275, 34);
             this.cmbVoucherNoC.TabIndex = 2;
             this.cmbVoucherNoC.SelectedIndexChanged += new System.EventHandler(this.cmbVoucherNoC_SelectedIndexChanged);
             this.cmbVoucherNoC.Enter += new System.EventHandler(this.cmbVoucherNoC_Enter);
@@ -267,7 +267,7 @@
             this.txt2Amount.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt2Amount.Location = new System.Drawing.Point(183, 319);
             this.txt2Amount.Name = "txt2Amount";
-            this.txt2Amount.Size = new System.Drawing.Size(314, 32);
+            this.txt2Amount.Size = new System.Drawing.Size(275, 32);
             this.txt2Amount.TabIndex = 5;
             this.txt2Amount.TextChanged += new System.EventHandler(this.txt2Amount_TextChanged_1);
             this.txt2Amount.Enter += new System.EventHandler(this.txt2Amount_Enter);
@@ -279,7 +279,7 @@
             this.txt2FundRequisition.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt2FundRequisition.Location = new System.Drawing.Point(183, 99);
             this.txt2FundRequisition.Name = "txt2FundRequisition";
-            this.txt2FundRequisition.Size = new System.Drawing.Size(314, 32);
+            this.txt2FundRequisition.Size = new System.Drawing.Size(275, 32);
             this.txt2FundRequisition.TabIndex = 1;
             this.txt2FundRequisition.Enter += new System.EventHandler(this.txt2FundRequisition_Enter);
             this.txt2FundRequisition.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt2FundRequisition_KeyDown);
@@ -584,9 +584,9 @@
             this.listView1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listView1.FullRowSelect = true;
             this.listView1.GridLines = true;
-            this.listView1.Location = new System.Drawing.Point(11, 433);
+            this.listView1.Location = new System.Drawing.Point(12, 435);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(1027, 227);
+            this.listView1.Size = new System.Drawing.Size(1026, 227);
             this.listView1.TabIndex = 47;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
