@@ -696,20 +696,21 @@ namespace AccountsManagementSystem.UI
         {
             try
             {
-                //for (int p = 1; p<= max2; p++)
-                //{
-                   
-                //}
+                for (int p = 1; p<= max2; p++)
+                {
+                int creditContraId1 = cEntryId - max2 + p;
                 con = new SqlConnection(cs.DBConn);
                 string query = "insert into LECLERelation(TransactionId,LedgerEntryId,CEntryId) values(@d1,@d2,@d3)";
                 cmd = new SqlCommand(query, con);
                 cmd.Parameters.AddWithValue("d1", iTransactionId);
                 cmd.Parameters.AddWithValue("d2", lEntryId);
-                cmd.Parameters.AddWithValue("d3", cEntryId);
+                cmd.Parameters.AddWithValue("d3", creditContraId1);
                 con.Open();
                 cmd.ExecuteReader();
                 con.Close(); 
-                SaveCreditContraLCLRelation();
+                }
+               
+                //SaveCreditContraLCLRelation();
 
 
             }

@@ -1003,9 +1003,13 @@ namespace AccountsManagementSystem.UI
                     }
                     UpdateDebitVoucherStatus();
                     UpdateCreditVoucherStatus();
-                    MessageBox.Show("Transaction Completed Successfully", "Record", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    //Reset();
-                  this.Close();
+                    MessageBox.Show("Transaction Completed Successfully", "Record", MessageBoxButtons.OK, MessageBoxIcon.Information);                   
+                    this.Close();
+                    Reset();
+                    this.Hide();
+                    PreliStepsOfLedgerEntry frmk = new PreliStepsOfLedgerEntry();
+                    frmk.Show();
+
                                             
                 }
             }
