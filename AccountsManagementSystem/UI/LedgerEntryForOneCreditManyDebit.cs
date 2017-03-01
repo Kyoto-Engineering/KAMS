@@ -433,21 +433,23 @@ namespace AccountsManagementSystem.UI
             if (string.IsNullOrWhiteSpace(cmbDebitLedgerName.Text))
             {
                 MessageBox.Show("You must select a LedgerName.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                cmbDebitLedgerName.Focus();
-               
+                cmbDebitLedgerName.Focus();               
             }
             else if (textBox1.Visible &&string.IsNullOrWhiteSpace(textBox1.Text))
-                {
+            {
                     MessageBox.Show("Please Insert Bill Or Invoice No ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Hand);
-                    textBox1.Focus();
-                    
-                }
-            
+                    textBox1.Focus();                    
+            }
+            else if (string.IsNullOrWhiteSpace(cmbVoucherNoD.Text))
+            {
+                MessageBox.Show("Please Select Voucher No", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.BeginInvoke(new ChangeFocusDelegate(changeFocus), cmbVoucherNoD);
+            }
+
             else if (string.IsNullOrWhiteSpace(txtC1DM2Particulars.Text))
             {
                 MessageBox.Show("You must enter Particulars", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtC1DM2Particulars.Focus();
-              
+                txtC1DM2Particulars.Focus();              
             }
 
             else if (string.IsNullOrWhiteSpace(txtC1DM2DebitBalance.Text))
@@ -458,28 +460,12 @@ namespace AccountsManagementSystem.UI
             else  if ((listView1.Items.Count + 1) > Convert.ToInt32(txtManyD.Text))
             {
                 MessageBox.Show("You can not  add more item than Your Propossal item,if you want  to modify existing item,please remove the Specific item and add correct item.", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                DebitOptionClear();
-               
+                DebitOptionClear();               
             }
-
             else
                 try
-                {
-                    //decimal val1 = 0;
-                    //decimal.TryParse(txtC1DM1CreditBalance.Text, out val1);
-
-                    //takeSub = takeSum;
-                    takeSum = takeSum + Convert.ToDecimal(txtC1DM2DebitBalance.Text);
-                    //if (val1 < takeSum)
-                    //{
-                    //    MessageBox.Show("Your input amount exceed the limit", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    //    takeSum = takeSub;
-                    //    txtC1DM2DebitBalance.Clear();
-                    //    txtC1DM2DebitBalance.Focus();
-                    //    return;
-                    //}
-                    //else
-                    //{
+                {                   
+                    takeSum = takeSum + Convert.ToDecimal(txtC1DM2DebitBalance.Text);                   
                     if (listView1.Items.Count == 0)
                     {
                         ListViewItem lst = new ListViewItem();
@@ -1267,19 +1253,19 @@ namespace AccountsManagementSystem.UI
 
         private void txtC1DM2Particulars_Enter(object sender, EventArgs e)
         {
-            if (textBox1.Visible && string.IsNullOrWhiteSpace(textBox1.Text))
-                {
-                    MessageBox.Show("Please Insert Bill Or Invoice No ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Hand);
-                    this.BeginInvoke(new ChangeFocusDelegate(changeFocus), textBox1);
+            //if (textBox1.Visible && string.IsNullOrWhiteSpace(textBox1.Text))
+            //    {
+            //        MessageBox.Show("Please Insert Bill Or Invoice No ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+            //        this.BeginInvoke(new ChangeFocusDelegate(changeFocus), textBox1);
                   
-                }
+            //    }
             
-            else   if (string.IsNullOrWhiteSpace(cmbVoucherNoD.Text))
-            {
-                MessageBox.Show("Please Type Voucher No before Particulars", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                this.BeginInvoke(new ChangeFocusDelegate(changeFocus),cmbVoucherNoD);
+            //else   if (string.IsNullOrWhiteSpace(cmbVoucherNoD.Text))
+            //{
+            //    MessageBox.Show("Please Type Voucher No before Particulars", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //    this.BeginInvoke(new ChangeFocusDelegate(changeFocus),cmbVoucherNoD);
                
-            }
+            //}
         }
 
         private void textBox2_Enter(object sender, EventArgs e)

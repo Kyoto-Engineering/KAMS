@@ -502,21 +502,21 @@ namespace AccountsManagementSystem.UI
                     MessageBoxIcon.Error);
                 cmb2LedgerName.Focus();
             }
+           
+            else if (string.IsNullOrWhiteSpace(cmbVoucherNoC.Text))
+            {
+                MessageBox.Show("Please Type or Select Voucher No.", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.BeginInvoke(new ChangeFocusDelegate(changeFocus), cmbVoucherNoC);
+            }
             else if (textBox2.Visible && string.IsNullOrWhiteSpace(textBox2.Text))
             {
                 MessageBox.Show("Please Insert Bill Or Invoice No ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Hand);
                 this.BeginInvoke(new ChangeFocusDelegate(changeFocus), textBox2);
 
             }
-            else if (string.IsNullOrWhiteSpace(cmbVoucherNoC.Text))
-            {
-                MessageBox.Show("Please Type Voucher No before Particulars", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                this.BeginInvoke(new ChangeFocusDelegate(changeFocus), cmbVoucherNoC);
-            }
-
             else if (string.IsNullOrWhiteSpace(txt2Particulars.Text))
             {
-                MessageBox.Show("You must enter Particulars", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Please type Particulars", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txt2Particulars.Focus();
             }
 
@@ -876,13 +876,10 @@ namespace AccountsManagementSystem.UI
                         }
                         SaveDebitContraEntry();
 
-                   //Credit Entry Start here
 
+                   //Credit Entry Start here
                     for (int i = 0; i <= listView1.Items.Count - 1; i++)
-                    {
-                       
-                            try
-                            {
+                    {                       
                                 con = new SqlConnection(cs.DBConn);
                                 con.Open();
                                 string ct = "select Balance from BalanceFiscal where  BalanceFiscal.LedgerId='" + listView1.Items[i].SubItems[2].Text + "' and BalanceFiscal.LId='" + listView1.Items[i].SubItems[7].Text + "' ";
@@ -891,12 +888,9 @@ namespace AccountsManagementSystem.UI
                                 rdr = cmd.ExecuteReader();
                                 if (rdr.Read())
                                 {
-                                    creditBalance = (rdr.GetDecimal(0));
-                                    
-
+                                    creditBalance = (rdr.GetDecimal(0));                                    
                                 }
                                 con.Close();
-
                                 con = new SqlConnection(cs.DBConn);
                                 con.Open();
                                 string q1 = "Select RTRIM(AGRel.AccountType) from AGRel where AGRel.AGRelId='" +listView1.Items[i].SubItems[8].Text + "'";
@@ -904,14 +898,11 @@ namespace AccountsManagementSystem.UI
                                 rdr = cmd.ExecuteReader();
                                 if (rdr.Read())
                                 {
-                                    accountOType = (rdr.GetString(0));
-                                    
+                                    accountOType = (rdr.GetString(0));                                    
                                 }
-
                                 con.Close();
                                 //if (genericOTypeId == 1)
-                                if (accountOType == "Asset" || accountOType == "Expense" || accountOType == "Pre Opening Expense")
-                                
+                                if (accountOType == "Asset" || accountOType == "Expense" || accountOType == "Pre Opening Expense")                                
                                 {
                                     decimal x = decimal.Parse(listView1.Items[i].SubItems[6].Text);
                                     lCBalance = creditBalance - x;
@@ -922,11 +913,9 @@ namespace AccountsManagementSystem.UI
                                     cmd.Connection = con;
                                     cmd.ExecuteReader();
                                     con.Close();
-
                                 }
                                 // if (genericOTypeId == 2)
-                                 if (accountOType == "Liability" || accountOType == "Equity" || accountOType == "Revenue")
-                              
+                                 if (accountOType == "Liability" || accountOType == "Equity" || accountOType == "Revenue")                              
                                 {
                                     decimal y = decimal.Parse(listView1.Items[i].SubItems[6].Text);
                                     lCBalance = creditBalance + y;
@@ -937,18 +926,8 @@ namespace AccountsManagementSystem.UI
                                     cmd.Connection = con;
                                     cmd.ExecuteReader();
                                     con.Close();
-
                                 }
-
-                            }
-                            catch (Exception ex)
-                            {
-                                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            }
-
-                            //Con.Close
                             con = new SqlConnection(cs.DBConn);
-
                             string cb = "insert into LedgerEntry(FundRequisitionNo,VoucherNo,Particulars,Credit,Balances,TransactionId,LId) VALUES (@d1,@d2,@d3,@d4,@d5,@d6,@d7)" + "SELECT CONVERT(int, SCOPE_IDENTITY())";
                             cmd = new SqlCommand(cb);
                             cmd.Connection = con;
@@ -983,16 +962,15 @@ namespace AccountsManagementSystem.UI
                             cEntryId = (int) cmd.ExecuteScalar();
                             con.Close();
                             SaveLCLRelation();
-                    }
-                    
+                    }                    
                     UpdateDebitVoucherStatus();
                     UpdateCreditVoucherStatus();
                     MessageBox.Show("Transaction Completed Successfully", "Record", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.Close();
-                    //Reset();
-                    //this.Hide();
-                    //PreliStepsOfLedgerEntry frmk = new PreliStepsOfLedgerEntry();
-                    //frmk.Show();
+                    Reset();
+                    this.Hide();
+                    PreliStepsOfLedgerEntry frmk = new PreliStepsOfLedgerEntry();
+                    frmk.Show();
                     
                 }
               }
@@ -1358,18 +1336,7 @@ namespace AccountsManagementSystem.UI
 
         private void txt1Particulars_Enter(object sender, EventArgs e)
         {
-            if (textBox1.Visible && string.IsNullOrWhiteSpace(textBox1.Text))
-                {
-                    MessageBox.Show("Please Insert Bill Or Invoice No ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Hand);
-                    this.BeginInvoke(new ChangeFocusDelegate(changeFocus), textBox1);   
-               
-                }
-            
-            else if (string.IsNullOrWhiteSpace(cmbVoucherNoD.Text))
-            {
-                MessageBox.Show("Please Select Voucher No before Particulars", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                this.BeginInvoke(new ChangeFocusDelegate(changeFocus), cmbVoucherNoD);
-            }
+           
         }
 
         private void txt1Amount_Enter(object sender, EventArgs e)
@@ -1536,25 +1503,25 @@ namespace AccountsManagementSystem.UI
 
         private void addButton_Enter(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(cmb2LedgerName.Text))
-            {
-                MessageBox.Show("You must select a LedgerName.", "Input Error", MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
-                this.BeginInvoke(new ChangeFocusDelegate(changeFocus), cmb2LedgerName);
-            }
+            //if (string.IsNullOrWhiteSpace(cmb2LedgerName.Text))
+            //{
+            //    MessageBox.Show("You must select a LedgerName.", "Input Error", MessageBoxButtons.OK,
+            //        MessageBoxIcon.Error);
+            //    this.BeginInvoke(new ChangeFocusDelegate(changeFocus), cmb2LedgerName);
+            //}
 
-            else if (string.IsNullOrWhiteSpace(txt2Particulars.Text))
-            {
-                MessageBox.Show("You must enter Particulars", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                this.BeginInvoke(new ChangeFocusDelegate(changeFocus), txt2Particulars);
-            }
+            //else if (string.IsNullOrWhiteSpace(txt2Particulars.Text))
+            //{
+            //    MessageBox.Show("You must enter Particulars", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //    this.BeginInvoke(new ChangeFocusDelegate(changeFocus), txt2Particulars);
+            //}
 
-            else if (string.IsNullOrWhiteSpace(txt2Amount.Text))
-            {
-                MessageBox.Show("Please enter  credit amount.", "Input Error", MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
-                this.BeginInvoke(new ChangeFocusDelegate(changeFocus), txt2Amount);
-            }
+            //else if (string.IsNullOrWhiteSpace(txt2Amount.Text))
+            //{
+            //    MessageBox.Show("Please enter  credit amount.", "Input Error", MessageBoxButtons.OK,
+            //        MessageBoxIcon.Error);
+            //    this.BeginInvoke(new ChangeFocusDelegate(changeFocus), txt2Amount);
+            //}
         }
 
         private void NewEntryForLedger_FormClosed(object sender, FormClosedEventArgs e)
