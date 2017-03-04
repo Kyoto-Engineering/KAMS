@@ -696,21 +696,21 @@ namespace AccountsManagementSystem.UI
         {
             try
             {
-                for (int p = 1; p<= max2; p++)
-                {
-                int creditContraId1 = cEntryId - max2 + p;
+                //for (int p = 1; p<= max2; p++)
+                //{
+               // int creditContraId1 = cEntryId - max2 + p;
                 con = new SqlConnection(cs.DBConn);
                 string query = "insert into LECLERelation(TransactionId,LedgerEntryId,CEntryId) values(@d1,@d2,@d3)";
                 cmd = new SqlCommand(query, con);
                 cmd.Parameters.AddWithValue("d1", iTransactionId);
                 cmd.Parameters.AddWithValue("d2", lEntryId);
-                cmd.Parameters.AddWithValue("d3", creditContraId1);
+                cmd.Parameters.AddWithValue("d3", cEntryId);
                 con.Open();
                 cmd.ExecuteReader();
                 con.Close(); 
-                }
+               // }
                
-                //SaveCreditContraLCLRelation();
+                SaveCreditContraLCLRelation();
 
 
             }
@@ -846,6 +846,8 @@ namespace AccountsManagementSystem.UI
 
                 else  if (takeSum == Convert.ToDecimal(txt1Amount.Text))
                 {
+                    //  Debit Entry Start here
+
                         SaveNewTransaction();
                         max2 = Convert.ToInt32(txtCEntryNo.Text);
                         SaveDebitLedgerBalance();
@@ -879,6 +881,7 @@ namespace AccountsManagementSystem.UI
 
 
                    //Credit Entry Start here
+
                     for (int i = 0; i <= listView1.Items.Count - 1; i++)
                     {                       
                                 con = new SqlConnection(cs.DBConn);
@@ -963,7 +966,8 @@ namespace AccountsManagementSystem.UI
                             cEntryId = (int) cmd.ExecuteScalar();
                             con.Close();
                             SaveLCLRelation();
-                    }                    
+                    } 
+                   
                     UpdateDebitVoucherStatus();
                     UpdateCreditVoucherStatus();
                     MessageBox.Show("Transaction Completed Successfully", "Record", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -1016,30 +1020,30 @@ namespace AccountsManagementSystem.UI
                     creditAGRelId2 = (rdr.GetString(1));
                 }
                 con.Close();
-                //if (creditAGRelId2 == "4")
-                //{
-                //    label7.Visible = true;
-                //    textBox2.Visible = true;
-                //    label7.Location = new Point(61, 189);
-                //    textBox2.Location = new Point(213, 189);
-                //    label12.Location = new Point(88, 237);
-                //    txt2Particulars.Location = new Point(213,234);
-                //    label13.Location = new Point(70, 368);
-                //    txt2Amount.Location = new Point(213, 365);
+                if (creditAGRelId2 == "4")
+                {
+                    label7.Visible = true;
+                    textBox2.Visible = true;
+                    label7.Location = new Point(61, 189);
+                    textBox2.Location = new Point(213, 189);
+                    label12.Location = new Point(88, 237);
+                    txt2Particulars.Location = new Point(213, 234);
+                    label13.Location = new Point(70, 368);
+                    txt2Amount.Location = new Point(213, 365);
 
-                //}
-                //else
-                //{
-                //    label7.Visible = false;
-                //    textBox2.Visible = false;
-                //    textBox2.Clear();
-                //    label7.Location = new Point(61, 368);
-                //    textBox2.Location = new Point(213, 365);
-                //    label12.Location = new Point(88, 189);
-                //    txt2Particulars.Location = new Point(213, 189);
-                //    label13.Location = new Point(70, 320);
-                //    txt2Amount.Location = new Point(213, 319);
-                //}
+                }
+                else
+                {
+                    label7.Visible = false;
+                    textBox2.Visible = false;
+                    textBox2.Clear();
+                    label7.Location = new Point(61, 368);
+                    textBox2.Location = new Point(213, 365);
+                    label12.Location = new Point(88, 189);
+                    txt2Particulars.Location = new Point(213, 189);
+                    label13.Location = new Point(70, 320);
+                    txt2Amount.Location = new Point(213, 319);
+                }
                 GetLId2();
                 txt2FundRequisition.Focus();
             }
@@ -1559,7 +1563,7 @@ namespace AccountsManagementSystem.UI
             SolidBrush drawBrush = new SolidBrush(Color.Black);
             if ((e.State & DrawItemState.Selected) == DrawItemState.Selected)
             {
-              //  toolTip1.Show(cmb1LedgerName.Items[e.Index].ToString(), this, p);
+                toolTip1.Show(cmb1LedgerName.Items[e.Index].ToString(), this, p);
             }
            
                 e.DrawBackground();
@@ -1574,7 +1578,7 @@ namespace AccountsManagementSystem.UI
             if ((e.State & DrawItemState.Selected) == DrawItemState.Selected)
             {
 
-               // toolTip2.Show(cmb2LedgerName.Items[e.Index].ToString(), this, p);
+                toolTip2.Show(cmb2LedgerName.Items[e.Index].ToString(), this, p);
 
             }
 
