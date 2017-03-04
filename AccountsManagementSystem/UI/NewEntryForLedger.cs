@@ -696,21 +696,21 @@ namespace AccountsManagementSystem.UI
         {
             try
             {
-                for (int p = 1; p<= max2; p++)
-                {
-                int creditContraId1 = cEntryId - max2 + p;
+                //for (int p = 1; p<= max2; p++)
+                //{
+               // int creditContraId1 = cEntryId - max2 + p;
                 con = new SqlConnection(cs.DBConn);
                 string query = "insert into LECLERelation(TransactionId,LedgerEntryId,CEntryId) values(@d1,@d2,@d3)";
                 cmd = new SqlCommand(query, con);
                 cmd.Parameters.AddWithValue("d1", iTransactionId);
                 cmd.Parameters.AddWithValue("d2", lEntryId);
-                cmd.Parameters.AddWithValue("d3", creditContraId1);
+                cmd.Parameters.AddWithValue("d3", cEntryId);
                 con.Open();
                 cmd.ExecuteReader();
                 con.Close(); 
-                }
+               // }
                
-                //SaveCreditContraLCLRelation();
+                SaveCreditContraLCLRelation();
 
 
             }
@@ -846,6 +846,8 @@ namespace AccountsManagementSystem.UI
 
                 else  if (takeSum == Convert.ToDecimal(txt1Amount.Text))
                 {
+                    //  Debit Entry Start here
+
                         SaveNewTransaction();
                         max2 = Convert.ToInt32(txtCEntryNo.Text);
                         SaveDebitLedgerBalance();
@@ -879,6 +881,7 @@ namespace AccountsManagementSystem.UI
 
 
                    //Credit Entry Start here
+
                     for (int i = 0; i <= listView1.Items.Count - 1; i++)
                     {                       
                                 con = new SqlConnection(cs.DBConn);
@@ -963,7 +966,8 @@ namespace AccountsManagementSystem.UI
                             cEntryId = (int) cmd.ExecuteScalar();
                             con.Close();
                             SaveLCLRelation();
-                    }                    
+                    } 
+                   
                     UpdateDebitVoucherStatus();
                     UpdateCreditVoucherStatus();
                     MessageBox.Show("Transaction Completed Successfully", "Record", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -1582,6 +1586,7 @@ namespace AccountsManagementSystem.UI
             if ((e.State & DrawItemState.Selected) == DrawItemState.Selected)
             {
                 toolTip2.Show(cmb2LedgerName.Items[e.Index].ToString(), this, p);
+
             }
 
             e.DrawBackground();
