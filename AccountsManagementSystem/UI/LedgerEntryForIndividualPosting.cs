@@ -510,7 +510,7 @@ namespace AccountsManagementSystem.UI
                 cmd.Parameters.AddWithValue("d7", lID2);
                 creditLedgerEntryId = (int)cmd.ExecuteScalar();
                 con.Close();
-                if (textBox2.Visible)
+                if (textBox2.Visible && !string.IsNullOrWhiteSpace(textBox2.Text))
                 {
                     con = new SqlConnection(cs.DBConn);
                     con.Open();
@@ -573,7 +573,7 @@ namespace AccountsManagementSystem.UI
                     con.Close();
                     SaveDebitContraEntry();
 
-                    if (textBox1.Visible)
+                    if (textBox1.Visible && !string.IsNullOrWhiteSpace(textBox1.Text))
                     {
                         con = new SqlConnection(cs.DBConn);
                         con.Open();
@@ -1049,14 +1049,15 @@ namespace AccountsManagementSystem.UI
 
         private void txtInd1Particulars_TextChanged(object sender, EventArgs e)
         {
-            if (textBox1.Visible && string.IsNullOrWhiteSpace(textBox1.Text))
-                {
-                    MessageBox.Show("Please Insert Bill Or Invoice No ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Hand);
-                    textBox1.Focus();
+            //if (textBox1.Visible && string.IsNullOrWhiteSpace(textBox1.Text))
+            //    {
+            //        MessageBox.Show("Please Insert Bill Or Invoice No ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+            //        textBox1.Focus();
                    
-                }
+            //    }
       
-            else if (string.IsNullOrWhiteSpace(cmbVoucherNoD.Text))
+            //else
+            if (string.IsNullOrWhiteSpace(cmbVoucherNoD.Text))
             {
                 MessageBox.Show("Please Type voucher No before Particulars", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 cmbVoucherNoD.Focus();
@@ -1066,14 +1067,15 @@ namespace AccountsManagementSystem.UI
 
         private void txtInd2Particulars_TextChanged(object sender, EventArgs e)
         {
-            if (textBox2.Visible && string.IsNullOrWhiteSpace(textBox2.Text))
-                {
-                    MessageBox.Show("Please Insert Bill Or Invoice No ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Hand);
-                    textBox2.Focus();
+            //if (textBox2.Visible && string.IsNullOrWhiteSpace(textBox2.Text))
+            //    {
+            //        MessageBox.Show("Please Insert Bill Or Invoice No ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+            //        textBox2.Focus();
                    
-                }
+            //    }
             
-            else if (string.IsNullOrWhiteSpace(cmbVoucherNoC.Text))
+            //else 
+            if (string.IsNullOrWhiteSpace(cmbVoucherNoC.Text))
             {
                 MessageBox.Show("Please Type voucher No before Particulars", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 cmbVoucherNoC.Focus();
@@ -1107,12 +1109,12 @@ namespace AccountsManagementSystem.UI
                 this.BeginInvoke(new ChangeFocusDelegate(changeFocus),cmbInd1LedgerName);
                
             }
-            else if (textBox1.Visible && string.IsNullOrWhiteSpace(textBox1.Text))
-                {
-                    MessageBox.Show("Please Insert Bill Or Invoice No ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Hand);
-                    this.BeginInvoke(new ChangeFocusDelegate(changeFocus),textBox1);
+            //else if (textBox1.Visible && string.IsNullOrWhiteSpace(textBox1.Text))
+            //    {
+            //        MessageBox.Show("Please Insert Bill Or Invoice No ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+            //        this.BeginInvoke(new ChangeFocusDelegate(changeFocus),textBox1);
                    
-                }
+            //    }
             
             else if (string.IsNullOrWhiteSpace(txtInd1Particulars.Text))
             {
@@ -1133,15 +1135,16 @@ namespace AccountsManagementSystem.UI
 
         private void txtIndCrdeitBalance_Enter(object sender, EventArgs e)
         {
-            if (textBox2.Visible && string.IsNullOrWhiteSpace(textBox2.Text))
-                {
-                    MessageBox.Show("Please Insert Bill Or Invoice No ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Hand);
-                    this.BeginInvoke(new ChangeFocusDelegate(changeFocus),textBox2);
+            //if (textBox2.Visible && string.IsNullOrWhiteSpace(textBox2.Text))
+            //    {
+            //        MessageBox.Show("Please Insert Bill Or Invoice No ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+            //        this.BeginInvoke(new ChangeFocusDelegate(changeFocus),textBox2);
                   
-                }
+            //    }
             
 
-            else if (string.IsNullOrWhiteSpace(txtInd2Particulars.Text))
+            //else 
+                if (string.IsNullOrWhiteSpace(txtInd2Particulars.Text))
             {
                 MessageBox.Show("Please Enter Debit Particulars", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 this.BeginInvoke(new ChangeFocusDelegate(changeFocus),txtInd2Particulars);

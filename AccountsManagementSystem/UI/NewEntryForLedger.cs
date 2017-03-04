@@ -508,12 +508,12 @@ namespace AccountsManagementSystem.UI
                 MessageBox.Show("Please Type or Select Voucher No.", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 this.BeginInvoke(new ChangeFocusDelegate(changeFocus), cmbVoucherNoC);
             }
-            else if (textBox2.Visible && string.IsNullOrWhiteSpace(textBox2.Text))
-            {
-                MessageBox.Show("Please Insert Bill Or Invoice No ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Hand);
-                this.BeginInvoke(new ChangeFocusDelegate(changeFocus), textBox2);
+            //else if (textBox2.Visible && string.IsNullOrWhiteSpace(textBox2.Text))
+            //{
+            //    MessageBox.Show("Please Insert Bill Or Invoice No ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+            //    this.BeginInvoke(new ChangeFocusDelegate(changeFocus), textBox2);
 
-            }
+            //}
             else if (string.IsNullOrWhiteSpace(txt2Particulars.Text))
             {
                 MessageBox.Show("Please type Particulars", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -566,7 +566,7 @@ namespace AccountsManagementSystem.UI
                         lst.SubItems.Add(cLID2);
                         creditAGRelId = Convert.ToString(creditAGRelId2);
                         lst.SubItems.Add(creditAGRelId);
-                        if (textBox2.Visible)
+                        if (textBox2.Visible && !string.IsNullOrWhiteSpace(textBox2.Text))
                         {
                             lst.SubItems.Add(textBox2.Text);
                         }
@@ -608,7 +608,7 @@ namespace AccountsManagementSystem.UI
                         lst1.SubItems.Add(cLID2);
                         creditAGRelId = Convert.ToString(creditAGRelId2);
                         lst1.SubItems.Add(creditAGRelId);
-                        if (textBox2.Visible)
+                        if (textBox2.Visible && !string.IsNullOrWhiteSpace(textBox2.Text))
                         {
                             lst1.SubItems.Add(textBox2.Text);
                         }
@@ -863,7 +863,7 @@ namespace AccountsManagementSystem.UI
                         cmd.Parameters.AddWithValue("@d7", dLId);
                         lEntryId = (int) cmd.ExecuteScalar();
                         con.Close();
-                        if (textBox1.Visible)
+                        if (textBox1.Visible && !string.IsNullOrWhiteSpace(textBox1.Text))
                         {
                             con = new SqlConnection(cs.DBConn);
                             con.Open();
@@ -942,7 +942,7 @@ namespace AccountsManagementSystem.UI
                             con.Open();
                             creditLedgerEntryId = (int) cmd.ExecuteScalar();
                             con.Close();
-                            if (listView1.Items[i].SubItems[8].Text == "4")
+                            if (listView1.Items[i].SubItems[8].Text == "4" && !string.IsNullOrWhiteSpace(listView1.Items[i].SubItems[9].Text))
                             {
                                 con = new SqlConnection(cs.DBConn);
                                 con.Open();
@@ -1016,30 +1016,30 @@ namespace AccountsManagementSystem.UI
                     creditAGRelId2 = (rdr.GetString(1));
                 }
                 con.Close();
-                //if (creditAGRelId2 == "4")
-                //{
-                //    label7.Visible = true;
-                //    textBox2.Visible = true;
-                //    label7.Location = new Point(61, 189);
-                //    textBox2.Location = new Point(213, 189);
-                //    label12.Location = new Point(88, 237);
-                //    txt2Particulars.Location = new Point(213,234);
-                //    label13.Location = new Point(70, 368);
-                //    txt2Amount.Location = new Point(213, 365);
+                if (creditAGRelId2 == "4")
+                {
+                    label7.Visible = true;
+                    textBox2.Visible = true;
+                    label7.Location = new Point(61, 189);
+                    textBox2.Location = new Point(213, 189);
+                    label12.Location = new Point(88, 237);
+                    txt2Particulars.Location = new Point(213, 234);
+                    label13.Location = new Point(70, 368);
+                    txt2Amount.Location = new Point(213, 365);
 
-                //}
-                //else
-                //{
-                //    label7.Visible = false;
-                //    textBox2.Visible = false;
-                //    textBox2.Clear();
-                //    label7.Location = new Point(61, 368);
-                //    textBox2.Location = new Point(213, 365);
-                //    label12.Location = new Point(88, 189);
-                //    txt2Particulars.Location = new Point(213, 189);
-                //    label13.Location = new Point(70, 320);
-                //    txt2Amount.Location = new Point(213, 319);
-                //}
+                }
+                else
+                {
+                    label7.Visible = false;
+                    textBox2.Visible = false;
+                    textBox2.Clear();
+                    label7.Location = new Point(61, 368);
+                    textBox2.Location = new Point(213, 365);
+                    label12.Location = new Point(88, 189);
+                    txt2Particulars.Location = new Point(213, 189);
+                    label13.Location = new Point(70, 320);
+                    txt2Amount.Location = new Point(213, 319);
+                }
                 GetLId2();
                 txt2FundRequisition.Focus();
             }
@@ -1335,11 +1335,6 @@ namespace AccountsManagementSystem.UI
             //}
         }
 
-        private void txt1Particulars_Enter(object sender, EventArgs e)
-        {
-           
-        }
-
         private void txt1Amount_Enter(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(cmb1LedgerName.Text))
@@ -1348,13 +1343,13 @@ namespace AccountsManagementSystem.UI
                 this.BeginInvoke(new ChangeFocusDelegate(changeFocus), cmb1LedgerName);
                
             }
-            else if (textBox1.Visible && string.IsNullOrWhiteSpace(textBox1.Text))
-            {
-                   MessageBox.Show("Please Insert Bill Or Invoice No ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Hand);
-                    this.BeginInvoke(new ChangeFocusDelegate(changeFocus), textBox1);
+            //else if (textBox1.Visible && string.IsNullOrWhiteSpace(textBox1.Text))
+            //{
+            //       MessageBox.Show("Please Insert Bill Or Invoice No ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+            //        this.BeginInvoke(new ChangeFocusDelegate(changeFocus), textBox1);
                     
                 
-            }
+            //}
             else if (string.IsNullOrWhiteSpace(txt1Particulars.Text))
             {
                 MessageBox.Show("Please enter Particulars", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -1386,7 +1381,18 @@ namespace AccountsManagementSystem.UI
 
         private void txt2Particulars_Enter(object sender, EventArgs e)
         {
-           
+            //if (textBox2.Visible && string.IsNullOrWhiteSpace(textBox2.Text))
+            //{
+            //    MessageBox.Show("Please Insert Bill Or Invoice No ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+            //    this.BeginInvoke(new ChangeFocusDelegate(changeFocus), textBox2);
+
+            //}
+            //else
+                if (string.IsNullOrWhiteSpace(cmbVoucherNoC.Text))
+            {
+                MessageBox.Show("Please Type Voucher No before Particulars", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.BeginInvoke(new ChangeFocusDelegate(changeFocus), cmbVoucherNoC);
+            }
         }
 
         private void txt2Amount_Enter(object sender, EventArgs e)
@@ -1397,12 +1403,12 @@ namespace AccountsManagementSystem.UI
                 this.BeginInvoke(new ChangeFocusDelegate(changeFocus), cmb2LedgerName);
                 
             }
-            else if (textBox2.Visible && string.IsNullOrWhiteSpace(textBox2.Text))
-                {
-                    MessageBox.Show("Please Insert Bill Or Invoice No ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Hand);
-                    this.BeginInvoke(new ChangeFocusDelegate(changeFocus), textBox2);
+            //else if (textBox2.Visible && string.IsNullOrWhiteSpace(textBox2.Text))
+            //    {
+            //        MessageBox.Show("Please Insert Bill Or Invoice No ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+            //        this.BeginInvoke(new ChangeFocusDelegate(changeFocus), textBox2);
                     
-            }
+            //}
             else if (string.IsNullOrWhiteSpace(txt2Particulars.Text))
             {
                 MessageBox.Show("Please enter Particulars", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -1504,25 +1510,25 @@ namespace AccountsManagementSystem.UI
 
         private void addButton_Enter(object sender, EventArgs e)
         {
-            //if (string.IsNullOrWhiteSpace(cmb2LedgerName.Text))
-            //{
-            //    MessageBox.Show("You must select a LedgerName.", "Input Error", MessageBoxButtons.OK,
-            //        MessageBoxIcon.Error);
-            //    this.BeginInvoke(new ChangeFocusDelegate(changeFocus), cmb2LedgerName);
-            //}
+            if (string.IsNullOrWhiteSpace(cmb2LedgerName.Text))
+            {
+                MessageBox.Show("You must select a LedgerName.", "Input Error", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                this.BeginInvoke(new ChangeFocusDelegate(changeFocus), cmb2LedgerName);
+            }
 
-            //else if (string.IsNullOrWhiteSpace(txt2Particulars.Text))
-            //{
-            //    MessageBox.Show("You must enter Particulars", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //    this.BeginInvoke(new ChangeFocusDelegate(changeFocus), txt2Particulars);
-            //}
+            else if (string.IsNullOrWhiteSpace(txt2Particulars.Text))
+            {
+                MessageBox.Show("You must enter Particulars", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.BeginInvoke(new ChangeFocusDelegate(changeFocus), txt2Particulars);
+            }
 
-            //else if (string.IsNullOrWhiteSpace(txt2Amount.Text))
-            //{
-            //    MessageBox.Show("Please enter  credit amount.", "Input Error", MessageBoxButtons.OK,
-            //        MessageBoxIcon.Error);
-            //    this.BeginInvoke(new ChangeFocusDelegate(changeFocus), txt2Amount);
-            //}
+            else if (string.IsNullOrWhiteSpace(txt2Amount.Text))
+            {
+                MessageBox.Show("Please enter  credit amount.", "Input Error", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                this.BeginInvoke(new ChangeFocusDelegate(changeFocus), txt2Amount);
+            }
         }
 
         private void NewEntryForLedger_FormClosed(object sender, FormClosedEventArgs e)
@@ -1534,6 +1540,8 @@ namespace AccountsManagementSystem.UI
         protected override void OnClosing(System.ComponentModel.CancelEventArgs e)
         {
             // Make sure the splash screen is closed
+            toolTip1.Dispose();
+            toolTip2.Dispose();
             CloseSplash();
             base.OnClosing(e);
         }
@@ -1559,7 +1567,7 @@ namespace AccountsManagementSystem.UI
             SolidBrush drawBrush = new SolidBrush(Color.Black);
             if ((e.State & DrawItemState.Selected) == DrawItemState.Selected)
             {
-              //  toolTip1.Show(cmb1LedgerName.Items[e.Index].ToString(), this, p);
+                toolTip1.Show(cmb1LedgerName.Items[e.Index].ToString(), this, p);
             }
            
                 e.DrawBackground();
@@ -1573,9 +1581,7 @@ namespace AccountsManagementSystem.UI
             Point p = new Point(cmb2LedgerName.Location.X + 200, cmb2LedgerName.Location.Y + cmb2LedgerName.Height + (30 + e.Index * 10));
             if ((e.State & DrawItemState.Selected) == DrawItemState.Selected)
             {
-
-               // toolTip2.Show(cmb2LedgerName.Items[e.Index].ToString(), this, p);
-
+                toolTip2.Show(cmb2LedgerName.Items[e.Index].ToString(), this, p);
             }
 
             e.DrawBackground();
@@ -1597,12 +1603,12 @@ namespace AccountsManagementSystem.UI
 
         private void cmb1LedgerName_Leave(object sender, EventArgs e)
         {
-            toolTip1.Dispose();
+            toolTip1.Hide(this);
         }
 
         private void cmb2LedgerName_Leave(object sender, EventArgs e)
         {
-            toolTip2.Dispose();
+            toolTip2.Hide(this);
         }
 
         private void toolTip2_Draw(object sender, DrawToolTipEventArgs e)
@@ -1616,6 +1622,23 @@ namespace AccountsManagementSystem.UI
         private void toolTip2_Popup(object sender, PopupEventArgs e)
         {
             e.ToolTipSize = TextRenderer.MeasureText(toolTip2.GetToolTip(e.AssociatedControl), new Font("Arial", 16.0f));
+        }
+
+        private void txt1Particulars_Enter(object sender, EventArgs e)
+        {
+            //if (textBox1.Visible && string.IsNullOrWhiteSpace(textBox1.Text))
+            //{
+            //    MessageBox.Show("Please Insert Bill Or Invoice No ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+            //    this.BeginInvoke(new ChangeFocusDelegate(changeFocus), textBox1);
+
+            //}
+
+            //else 
+                if (string.IsNullOrWhiteSpace(cmbVoucherNoD.Text))
+            {
+                MessageBox.Show("Please Select Voucher No before Particulars", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.BeginInvoke(new ChangeFocusDelegate(changeFocus), cmbVoucherNoD);
+            }
         }
       }
     }

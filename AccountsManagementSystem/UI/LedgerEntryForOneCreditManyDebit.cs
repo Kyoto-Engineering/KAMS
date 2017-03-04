@@ -435,11 +435,11 @@ namespace AccountsManagementSystem.UI
                 MessageBox.Show("You must select a LedgerName.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 cmbDebitLedgerName.Focus();               
             }
-            else if (textBox1.Visible &&string.IsNullOrWhiteSpace(textBox1.Text))
-            {
-                    MessageBox.Show("Please Insert Bill Or Invoice No ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Hand);
-                    textBox1.Focus();                    
-            }
+            //else if (textBox1.Visible &&string.IsNullOrWhiteSpace(textBox1.Text))
+            //{
+            //        MessageBox.Show("Please Insert Bill Or Invoice No ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+            //        textBox1.Focus();                    
+            //}
             else if (string.IsNullOrWhiteSpace(cmbVoucherNoD.Text))
             {
                 MessageBox.Show("Please Select Voucher No", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -480,7 +480,7 @@ namespace AccountsManagementSystem.UI
                         lst.SubItems.Add(dLId2);
                         aGRelId = Convert.ToString(debitAGRelId2);
                         lst.SubItems.Add(aGRelId);
-                        if (textBox1.Visible)
+                        if (textBox1.Visible && !string.IsNullOrWhiteSpace(textBox1.Text))
                         {
                             lst.SubItems.Add(textBox1.Text);
                         }
@@ -528,7 +528,7 @@ namespace AccountsManagementSystem.UI
                         lst1.SubItems.Add(dLId2);
                         aGRelId = Convert.ToString(debitAGRelId2);
                         lst1.SubItems.Add(aGRelId);
-                        if (textBox1.Visible)
+                        if (textBox1.Visible && !string.IsNullOrWhiteSpace(textBox1.Text))
                         {
                             lst1.SubItems.Add(textBox1.Text);
                         }
@@ -876,7 +876,7 @@ namespace AccountsManagementSystem.UI
                         cmd.Parameters.AddWithValue("@d7", cLId);
                         lEntryId = (int) cmd.ExecuteScalar();
                         con.Close();
-                        if (textBox2.Visible == true)
+                        if (textBox2.Visible && !string.IsNullOrWhiteSpace(textBox2.Text))
                         {
                             con = new SqlConnection(cs.DBConn);
                             con.Open();
@@ -975,7 +975,7 @@ namespace AccountsManagementSystem.UI
                             creditLedgerEntryId = (int) cmd.ExecuteScalar();
                             con.Close();
 
-                            if (listView1.Items[i].SubItems[8].Text == "5")
+                            if (listView1.Items[i].SubItems[8].Text == "5" && !string.IsNullOrWhiteSpace(listView1.Items[i].SubItems[9].Text))
                             {
                                 con = new SqlConnection(cs.DBConn);
                                 con.Open();
@@ -1264,12 +1264,13 @@ namespace AccountsManagementSystem.UI
                   
             //    }
             
-            //else   if (string.IsNullOrWhiteSpace(cmbVoucherNoD.Text))
-            //{
-            //    MessageBox.Show("Please Type Voucher No before Particulars", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //    this.BeginInvoke(new ChangeFocusDelegate(changeFocus),cmbVoucherNoD);
-               
-            //}
+            //else   
+            if (string.IsNullOrWhiteSpace(cmbVoucherNoD.Text))
+            {
+                MessageBox.Show("Please Type Voucher No before Particulars", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.BeginInvoke(new ChangeFocusDelegate(changeFocus), cmbVoucherNoD);
+
+            }
         }
 
         private void textBox2_Enter(object sender, EventArgs e)
@@ -1321,13 +1322,14 @@ namespace AccountsManagementSystem.UI
 
         private void txtC1DM1Particulars_Enter(object sender, EventArgs e)
         {
-            if (textBox1.Visible && string.IsNullOrWhiteSpace(textBox1.Text))
-                {
-                    MessageBox.Show("Please Insert Bill Or Invoice No ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Hand);
-                    this.BeginInvoke(new ChangeFocusDelegate(changeFocus),textBox1);
-                }
+            //if (textBox1.Visible && string.IsNullOrWhiteSpace(textBox1.Text))
+            //    {
+            //        MessageBox.Show("Please Insert Bill Or Invoice No ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+            //        this.BeginInvoke(new ChangeFocusDelegate(changeFocus),textBox1);
+            //    }
             
-            else if (string.IsNullOrWhiteSpace(cmbVoucherNoC.Text))
+            //else 
+                if (string.IsNullOrWhiteSpace(cmbVoucherNoC.Text))
             {
                 MessageBox.Show("Please Type Voucher No before Particulars", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 this.BeginInvoke(new ChangeFocusDelegate(changeFocus),cmbVoucherNoC);
