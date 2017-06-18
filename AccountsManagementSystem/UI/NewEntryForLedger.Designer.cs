@@ -267,6 +267,7 @@
             this.txt2Amount.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt2Amount.Location = new System.Drawing.Point(183, 319);
             this.txt2Amount.Name = "txt2Amount";
+            this.txt2Amount.ShortcutsEnabled = false;
             this.txt2Amount.Size = new System.Drawing.Size(275, 32);
             this.txt2Amount.TabIndex = 5;
             this.txt2Amount.TextChanged += new System.EventHandler(this.txt2Amount_TextChanged_1);
@@ -522,6 +523,7 @@
             this.txt1Amount.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt1Amount.Location = new System.Drawing.Point(195, 329);
             this.txt1Amount.Name = "txt1Amount";
+            this.txt1Amount.ShortcutsEnabled = false;
             this.txt1Amount.Size = new System.Drawing.Size(322, 29);
             this.txt1Amount.TabIndex = 6;
             this.txt1Amount.Enter += new System.EventHandler(this.txt1Amount_Enter);
