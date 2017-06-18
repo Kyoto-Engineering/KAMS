@@ -629,7 +629,8 @@ namespace AccountsManagementSystem.UI
                     txt1Particulars.Location = new Point(195, 175);
                     label4.Location = new Point(45, 290);
                     txt1DebitAmount.Location = new Point(195, 287);
-                }               
+                }   
+                toolTip1.Hide(this);
                 txt1RequisitionNo.Focus();
 
             }
@@ -696,6 +697,7 @@ namespace AccountsManagementSystem.UI
                     txt2CreditAmount.Location = new Point(213, 313);
 
                 }
+                toolTip2.Hide(this);
                 txt2FundRequisition.Focus();
             }
             catch (Exception ex)
@@ -1502,13 +1504,63 @@ namespace AccountsManagementSystem.UI
             ctl.Focus();
         }
 
-        private void listView2_SelectedIndexChanged(object sender, EventArgs e)
+        private void toolTip1_Draw(object sender, DrawToolTipEventArgs e)
         {
+            Font f = new Font("Arial", 16.0f);
+            e.DrawBackground();
+            e.DrawBorder();
+            e.Graphics.DrawString(e.ToolTipText, f, Brushes.Black, new PointF(2, 2)); 
 
+        }
 
+        private void toolTip1_Popup(object sender, PopupEventArgs e)
+        {
+            e.ToolTipSize = TextRenderer.MeasureText(toolTip1.GetToolTip(e.AssociatedControl), new Font("Arial", 16.0f));
+        }
 
+        private void cmb1LedgerName_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            if (e.Index == -1) { return; }
+            Point p = new Point(cmb1LedgerName.Location.X + 120, cmb1LedgerName.Location.Y + cmb1LedgerName.Height + (30 + e.Index * 10));
+            Font drawFont = new Font("Times New Roman", 16);
+            SolidBrush drawBrush = new SolidBrush(Color.Black);
+            if ((e.State & DrawItemState.Selected) == DrawItemState.Selected)
+            {
+                toolTip1.Show(cmb1LedgerName.Items[e.Index].ToString(), this, p);
+            }
 
+            e.DrawBackground();
+            e.Graphics.DrawString(cmb1LedgerName.Items[e.Index].ToString(), drawFont, Brushes.Black,
+                new Point(e.Bounds.X, e.Bounds.Y));
+        }
 
+        private void toolTip2_Draw(object sender, DrawToolTipEventArgs e)
+        {
+            Font f = new Font("Arial", 16.0f);
+            e.DrawBackground();
+            e.DrawBorder();
+            e.Graphics.DrawString(e.ToolTipText, f, Brushes.Black, new PointF(2, 2)); 
+        }
+
+        private void toolTip2_Popup(object sender, PopupEventArgs e)
+        {
+            e.ToolTipSize = TextRenderer.MeasureText(toolTip1.GetToolTip(e.AssociatedControl), new Font("Arial", 16.0f));
+        }
+
+        private void cmb2LedgerName_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            if (e.Index == -1) { return; }
+            Point p = new Point(cmb2LedgerName.Location.X + 120, cmb2LedgerName.Location.Y + cmb2LedgerName.Height + (30 + e.Index * 10));
+            Font drawFont = new Font("Times New Roman", 16);
+            SolidBrush drawBrush = new SolidBrush(Color.Black);
+            if ((e.State & DrawItemState.Selected) == DrawItemState.Selected)
+            {
+                toolTip1.Show(cmb2LedgerName.Items[e.Index].ToString(), this, p);
+            }
+
+            e.DrawBackground();
+            e.Graphics.DrawString(cmb2LedgerName.Items[e.Index].ToString(), drawFont, Brushes.Black,
+                new Point(e.Bounds.X, e.Bounds.Y));
         }
     }
 }

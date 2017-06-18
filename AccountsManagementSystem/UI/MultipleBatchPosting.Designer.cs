@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MultipleBatchPosting));
             this.label1 = new System.Windows.Forms.Label();
             this.group1 = new System.Windows.Forms.GroupBox();
@@ -92,6 +93,8 @@
             this.columnHeader18 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader19 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.txtTransactiondate = new System.Windows.Forms.DateTimePicker();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.toolTip2 = new System.Windows.Forms.ToolTip(this.components);
             this.group1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -214,6 +217,7 @@
             // 
             // cmb1LedgerName
             // 
+            this.cmb1LedgerName.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.cmb1LedgerName.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmb1LedgerName.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmb1LedgerName.FormattingEnabled = true;
@@ -221,6 +225,7 @@
             this.cmb1LedgerName.Name = "cmb1LedgerName";
             this.cmb1LedgerName.Size = new System.Drawing.Size(243, 30);
             this.cmb1LedgerName.TabIndex = 0;
+            this.cmb1LedgerName.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.cmb1LedgerName_DrawItem);
             this.cmb1LedgerName.SelectedIndexChanged += new System.EventHandler(this.cmb1LedgerName_SelectedIndexChanged);
             // 
             // label14
@@ -546,6 +551,7 @@
             // 
             // cmb2LedgerName
             // 
+            this.cmb2LedgerName.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.cmb2LedgerName.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmb2LedgerName.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmb2LedgerName.FormattingEnabled = true;
@@ -553,6 +559,7 @@
             this.cmb2LedgerName.Name = "cmb2LedgerName";
             this.cmb2LedgerName.Size = new System.Drawing.Size(282, 30);
             this.cmb2LedgerName.TabIndex = 0;
+            this.cmb2LedgerName.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.cmb2LedgerName_DrawItem);
             this.cmb2LedgerName.SelectedIndexChanged += new System.EventHandler(this.cmb2LedgerName_SelectedIndexChanged);
             // 
             // label5
@@ -587,7 +594,6 @@
             this.listView2.TabIndex = 61;
             this.listView2.UseCompatibleStateImageBehavior = false;
             this.listView2.View = System.Windows.Forms.View.Details;
-            this.listView2.SelectedIndexChanged += new System.EventHandler(this.listView2_SelectedIndexChanged);
             // 
             // columnHeader1
             // 
@@ -721,6 +727,17 @@
             this.txtTransactiondate.Size = new System.Drawing.Size(242, 29);
             this.txtTransactiondate.TabIndex = 0;
             // 
+            // toolTip1
+            // 
+            this.toolTip1.OwnerDraw = true;
+            this.toolTip1.Draw += new System.Windows.Forms.DrawToolTipEventHandler(this.toolTip1_Draw);
+            this.toolTip1.Popup += new System.Windows.Forms.PopupEventHandler(this.toolTip1_Popup);
+            // 
+            // toolTip2
+            // 
+            this.toolTip2.Draw += new System.Windows.Forms.DrawToolTipEventHandler(this.toolTip2_Draw);
+            this.toolTip2.Popup += new System.Windows.Forms.PopupEventHandler(this.toolTip2_Popup);
+            // 
             // MultipleBatchPosting
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -814,5 +831,7 @@
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.ColumnHeader columnHeader20;
         private System.Windows.Forms.ColumnHeader columnHeader19;
+        private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.ToolTip toolTip2;
     }
 }
