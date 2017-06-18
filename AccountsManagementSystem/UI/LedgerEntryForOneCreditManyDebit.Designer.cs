@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LedgerEntryForOneCreditManyDebit));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.listView1 = new System.Windows.Forms.ListView();
@@ -80,6 +81,8 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.toolTip2 = new System.Windows.Forms.ToolTip(this.components);
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.group1.SuspendLayout();
@@ -329,6 +332,7 @@
             this.txtC1DM2DebitBalance.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtC1DM2DebitBalance.Location = new System.Drawing.Point(200, 394);
             this.txtC1DM2DebitBalance.Name = "txtC1DM2DebitBalance";
+            this.txtC1DM2DebitBalance.ShortcutsEnabled = false;
             this.txtC1DM2DebitBalance.Size = new System.Drawing.Size(248, 29);
             this.txtC1DM2DebitBalance.TabIndex = 6;
             this.txtC1DM2DebitBalance.Enter += new System.EventHandler(this.txtC1DM2DebitBalance_Enter);
@@ -388,6 +392,7 @@
             // 
             // cmbDebitLedgerName
             // 
+            this.cmbDebitLedgerName.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.cmbDebitLedgerName.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbDebitLedgerName.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbDebitLedgerName.FormattingEnabled = true;
@@ -395,6 +400,7 @@
             this.cmbDebitLedgerName.Name = "cmbDebitLedgerName";
             this.cmbDebitLedgerName.Size = new System.Drawing.Size(249, 30);
             this.cmbDebitLedgerName.TabIndex = 1;
+            this.cmbDebitLedgerName.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.cmbDebitLedgerName_DrawItem);
             this.cmbDebitLedgerName.SelectedIndexChanged += new System.EventHandler(this.cmbC1DM2LedgerName_SelectedIndexChanged);
             // 
             // label1
@@ -540,6 +546,7 @@
             // 
             // cmbCreditLedgerName
             // 
+            this.cmbCreditLedgerName.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.cmbCreditLedgerName.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbCreditLedgerName.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbCreditLedgerName.FormattingEnabled = true;
@@ -547,6 +554,7 @@
             this.cmbCreditLedgerName.Name = "cmbCreditLedgerName";
             this.cmbCreditLedgerName.Size = new System.Drawing.Size(234, 30);
             this.cmbCreditLedgerName.TabIndex = 0;
+            this.cmbCreditLedgerName.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.cmbCreditLedgerName_DrawItem);
             this.cmbCreditLedgerName.SelectedIndexChanged += new System.EventHandler(this.cmbC1DM1LedgerName_SelectedIndexChanged);
             // 
             // label14
@@ -594,6 +602,7 @@
             this.txtC1DM1CreditBalance.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtC1DM1CreditBalance.Location = new System.Drawing.Point(202, 395);
             this.txtC1DM1CreditBalance.Name = "txtC1DM1CreditBalance";
+            this.txtC1DM1CreditBalance.ShortcutsEnabled = false;
             this.txtC1DM1CreditBalance.Size = new System.Drawing.Size(234, 29);
             this.txtC1DM1CreditBalance.TabIndex = 5;
             this.txtC1DM1CreditBalance.TextChanged += new System.EventHandler(this.txtC1DM1CreditBalance_TextChanged);
@@ -630,6 +639,18 @@
             this.label3.Size = new System.Drawing.Size(101, 22);
             this.label3.TabIndex = 51;
             this.label3.Text = "Particulars";
+            // 
+            // toolTip1
+            // 
+            this.toolTip1.OwnerDraw = true;
+            this.toolTip1.Draw += new System.Windows.Forms.DrawToolTipEventHandler(this.toolTip1_Draw);
+            this.toolTip1.Popup += new System.Windows.Forms.PopupEventHandler(this.toolTip1_Popup);
+            // 
+            // toolTip2
+            // 
+            this.toolTip2.OwnerDraw = true;
+            this.toolTip2.Draw += new System.Windows.Forms.DrawToolTipEventHandler(this.toolTip2_Draw);
+            this.toolTip2.Popup += new System.Windows.Forms.PopupEventHandler(this.toolTip2_Popup);
             // 
             // LedgerEntryForOneCreditManyDebit
             // 
@@ -705,6 +726,8 @@
         private System.Windows.Forms.RichTextBox txtC1DM2Particulars;
         private System.Windows.Forms.ColumnHeader columnHeader10;
         private System.Windows.Forms.RichTextBox txtC1DM1Particulars;
+        private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.ToolTip toolTip2;
 
     }
 }

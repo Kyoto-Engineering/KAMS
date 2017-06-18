@@ -327,6 +327,7 @@ namespace AccountsManagementSystem.UI
 
                 }
                 GetLId11();
+
                 //cmbCreditLedgerName.Text = cmbCreditLedgerName.Text.Trim();
                 //cmbDebitLedgerName.Items.Clear();
                 //cmbDebitLedgerName.Clear();
@@ -345,7 +346,8 @@ namespace AccountsManagementSystem.UI
                 //    cmbDebitLedgerName.Items.Add(rdr[0]);
                 //}
                 //con.Close();
-
+                toolTip2.Hide(this);
+                txtC1DM1RequisitionNo.Focus();
             }
 
             catch (Exception ex)
@@ -410,6 +412,7 @@ namespace AccountsManagementSystem.UI
 
                 }
                 GetLId22();
+                toolTip1.Hide(this);
                 txtc1DM2FundRequisition.Focus();
             }
             catch (Exception ex)
@@ -493,7 +496,9 @@ namespace AccountsManagementSystem.UI
                         cmbDebitLedgerName.SelectedIndex = -1;
                         cmbDebitLedgerName.SelectedIndexChanged += cmbC1DM2LedgerName_SelectedIndexChanged;
                         txtc1DM2FundRequisition.Clear();
+                        cmbVoucherNoD.SelectedIndexChanged -= cmbVoucherNoD_SelectedIndexChanged;
                         cmbVoucherNoD.SelectedIndex = -1;
+                        cmbVoucherNoD.SelectedIndexChanged += cmbVoucherNoD_SelectedIndexChanged;
                         txtC1DM2Particulars.Clear();
                         txtC1DM2DebitBalance.Clear();
                         if (textBox1.Visible)
@@ -553,7 +558,9 @@ namespace AccountsManagementSystem.UI
                         cmbDebitLedgerName.SelectedIndex = -1;
                         cmbDebitLedgerName.SelectedIndexChanged += cmbC1DM2LedgerName_SelectedIndexChanged;
                         txtc1DM2FundRequisition.Clear();
+                        cmbVoucherNoD.SelectedIndexChanged -= cmbVoucherNoD_SelectedIndexChanged;
                         cmbVoucherNoD.SelectedIndex = -1;
+                        cmbVoucherNoD.SelectedIndexChanged += cmbVoucherNoD_SelectedIndexChanged;
                         txtC1DM2Particulars.Clear();
                         txtC1DM2DebitBalance.Clear();
                         if ((listView1.Items.Count) < Convert.ToInt32(txtManyD.Text))
@@ -1376,6 +1383,64 @@ namespace AccountsManagementSystem.UI
         private void changeFocus(Control ctl)
         {
             ctl.Focus();
+        }
+
+        private void cmbDebitLedgerName_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            if (e.Index == -1) { return; }
+            Point p = new Point(cmbDebitLedgerName.Location.X + 120, cmbDebitLedgerName.Location.Y + cmbDebitLedgerName.Height + (30 + e.Index * 10));
+            Font drawFont = new Font("Times New Roman", 16);
+            SolidBrush drawBrush = new SolidBrush(Color.Black);
+            if ((e.State & DrawItemState.Selected) == DrawItemState.Selected)
+            {
+                toolTip1.Show(cmbDebitLedgerName.Items[e.Index].ToString(), this, p);
+            }
+
+            e.DrawBackground();
+            e.Graphics.DrawString(cmbDebitLedgerName.Items[e.Index].ToString(), drawFont, Brushes.Black,
+                new Point(e.Bounds.X, e.Bounds.Y));
+        }
+
+        private void cmbCreditLedgerName_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            if (e.Index == -1) { return; }
+            Point p = new Point(cmbCreditLedgerName.Location.X + 120, cmbCreditLedgerName.Location.Y + cmbCreditLedgerName.Height + (30 + e.Index * 10));
+            Font drawFont = new Font("Times New Roman", 16);
+            SolidBrush drawBrush = new SolidBrush(Color.Black);
+            if ((e.State & DrawItemState.Selected) == DrawItemState.Selected)
+            {
+                toolTip1.Show(cmbCreditLedgerName.Items[e.Index].ToString(), this, p);
+            }
+
+            e.DrawBackground();
+            e.Graphics.DrawString(cmbCreditLedgerName.Items[e.Index].ToString(), drawFont, Brushes.Black,
+                new Point(e.Bounds.X, e.Bounds.Y));
+        }
+
+        private void toolTip1_Draw(object sender, DrawToolTipEventArgs e)
+        {
+            Font f = new Font("Arial", 16.0f);
+            e.DrawBackground();
+            e.DrawBorder();
+            e.Graphics.DrawString(e.ToolTipText, f, Brushes.Black, new PointF(2, 2)); 
+        }
+
+        private void toolTip1_Popup(object sender, PopupEventArgs e)
+        {
+            e.ToolTipSize = TextRenderer.MeasureText(toolTip1.GetToolTip(e.AssociatedControl), new Font("Arial", 16.0f));
+        }
+
+        private void toolTip2_Draw(object sender, DrawToolTipEventArgs e)
+        {
+            Font f = new Font("Arial", 16.0f);
+            e.DrawBackground();
+            e.DrawBorder();
+            e.Graphics.DrawString(e.ToolTipText, f, Brushes.Black, new PointF(2, 2)); 
+        }
+
+        private void toolTip2_Popup(object sender, PopupEventArgs e)
+        {
+            e.ToolTipSize = TextRenderer.MeasureText(toolTip1.GetToolTip(e.AssociatedControl), new Font("Arial", 16.0f));
         }
         }
     }
