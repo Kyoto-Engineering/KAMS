@@ -229,6 +229,7 @@
             this.txtIndDebitBalance.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtIndDebitBalance.Location = new System.Drawing.Point(202, 400);
             this.txtIndDebitBalance.Name = "txtIndDebitBalance";
+            this.txtIndDebitBalance.ShortcutsEnabled = false;
             this.txtIndDebitBalance.Size = new System.Drawing.Size(234, 29);
             this.txtIndDebitBalance.TabIndex = 5;
             this.txtIndDebitBalance.Enter += new System.EventHandler(this.txtIndDebitBalance_Enter);
@@ -372,6 +373,7 @@
             this.txtIndCrdeitBalance.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtIndCrdeitBalance.Location = new System.Drawing.Point(198, 388);
             this.txtIndCrdeitBalance.Name = "txtIndCrdeitBalance";
+            this.txtIndCrdeitBalance.ShortcutsEnabled = false;
             this.txtIndCrdeitBalance.Size = new System.Drawing.Size(248, 29);
             this.txtIndCrdeitBalance.TabIndex = 4;
             this.txtIndCrdeitBalance.TextChanged += new System.EventHandler(this.txtDebitBalance_TextChanged);
