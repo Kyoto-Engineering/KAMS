@@ -22,8 +22,9 @@ namespace AccountsManagementSystem.UI
         private SqlCommand cmd;
         private SqlConnection con;
         ConnectionString cs=new ConnectionString();
-        private int ExpenseSid, EGId;
+        private int ExpenseSid, EGId,Lid;
         private int RevenueSid,RGId;
+        private decimal balance;
         public PRofitAndLoss()
         {
             InitializeComponent();
@@ -31,7 +32,7 @@ namespace AccountsManagementSystem.UI
 
         private void button1_Click(object sender, EventArgs e)
         {
-
+            DataGridViewRow dr=
         }
 
         private void PRofitAndLoss_Load(object sender, EventArgs e)
@@ -178,6 +179,14 @@ namespace AccountsManagementSystem.UI
                 where grups.GroupName == comboBox3.Text
                 select grups;
             EGId = eGid.FirstOrDefault().GId;
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            DataGridViewRow dr = dataGridView1.SelectedRows[0];
+            Lid = Convert.ToInt32(dr.Cells[0].Value);
+            textBox1.Text = dr.Cells[1].Value.ToString();
+            balance = Convert.ToDecimal(dr.Cells[2].Value);
         }
     }
 }
