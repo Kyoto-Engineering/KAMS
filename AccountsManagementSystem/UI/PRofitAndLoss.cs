@@ -22,17 +22,81 @@ namespace AccountsManagementSystem.UI
         private SqlCommand cmd;
         private SqlConnection con;
         ConnectionString cs=new ConnectionString();
+        private DataGridViewRow dr;
         private int ExpenseSid, EGId,Lid;
         private int RevenueSid,RGId;
-        private decimal balance;
+        private decimal balance,totalRevenue=0.0m,totalExpense=0.0m,profitorLoss=0.0m;
         public PRofitAndLoss()
         {
             InitializeComponent();
         }
-
+        
         private void button1_Click(object sender, EventArgs e)
         {
-            DataGridViewRow dr=
+            if (string.IsNullOrWhiteSpace(comboBox1.Text))
+            {
+                MessageBox.Show("Please Select Account Type");
+            }
+
+            else if (string.IsNullOrWhiteSpace(comboBox2.Text))
+            {
+                MessageBox.Show("Please Select Group");
+            }
+            else if (string.IsNullOrWhiteSpace(textBox1.Text))
+            {
+                MessageBox.Show("Please Select Ledger");
+            }
+            else
+            {
+                totalRevenue = totalRevenue + balance;
+                textBox3.Text = totalRevenue.ToString();
+                dataGridView3.Rows.Add(Lid, textBox1.Text, balance, RevenueSid, RGId);
+                ClearRevenues();
+                CalculatePNL();
+            }
+           
+        }
+
+        private void CalculatePNL()
+        {
+            if (totalRevenue > totalExpense)
+            {
+                label7.Text = "Profit";
+                textBox5.Text = (totalRevenue - totalExpense).ToString();
+            }
+            else if (totalRevenue < totalExpense)
+            {
+                label7.Text = "Loss";
+                textBox5.Text = (totalExpense - totalRevenue).ToString();
+            }
+            else
+            {
+                label7.Text = "No Profit or  Loss";
+                textBox5.Text = "0";
+            }
+        }
+
+        private void ClearExpenses()
+        {
+            dataGridView2.Rows.Remove(dr);
+            comboBox3.SelectedIndexChanged -= comboBox3_SelectedIndexChanged;
+            comboBox3.SelectedIndex = -1;
+            comboBox3.SelectedIndexChanged += comboBox3_SelectedIndexChanged;
+            comboBox4.SelectedIndexChanged -= comboBox4_SelectedIndexChanged;
+            comboBox4.SelectedIndex = -1;
+            comboBox4.SelectedIndexChanged += comboBox4_SelectedIndexChanged;
+            textBox2.Clear();
+        }
+        private void ClearRevenues()
+        {
+            dataGridView1.Rows.Remove(dr);
+            comboBox1.SelectedIndexChanged -= comboBox1_SelectedIndexChanged;
+            comboBox1.SelectedIndex = -1;
+            comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
+            comboBox2.SelectedIndexChanged -= comboBox2_SelectedIndexChanged;
+            comboBox2.SelectedIndex = -1;
+            comboBox2.SelectedIndexChanged += comboBox2_SelectedIndexChanged;
+            textBox1.Clear();
         }
 
         private void PRofitAndLoss_Load(object sender, EventArgs e)
@@ -183,10 +247,54 @@ namespace AccountsManagementSystem.UI
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            DataGridViewRow dr = dataGridView1.SelectedRows[0];
+           
+        }
+
+        private void textBox3_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dataGridView1_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+ dr = dataGridView1.SelectedRows[0];
             Lid = Convert.ToInt32(dr.Cells[0].Value);
             textBox1.Text = dr.Cells[1].Value.ToString();
             balance = Convert.ToDecimal(dr.Cells[2].Value);
+
+        }
+
+        private void dataGridView2_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            dr = dataGridView2.SelectedRows[0];
+            Lid = Convert.ToInt32(dr.Cells[0].Value);
+            textBox2.Text = dr.Cells[1].Value.ToString();
+            balance = Convert.ToDecimal(dr.Cells[2].Value);
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(comboBox3.Text))
+            {
+                MessageBox.Show("Please Select Account Type");
+            }
+
+            else if (string.IsNullOrWhiteSpace(comboBox4.Text))
+            {
+                MessageBox.Show("Please Select Group");
+            }
+            else if (string.IsNullOrWhiteSpace(textBox2.Text))
+            {
+                MessageBox.Show("Please Select Ledger");
+            }
+            else
+            {
+                totalExpense = totalExpense + balance;
+                textBox4.Text = totalExpense.ToString();
+                dataGridView4.Rows.Add(Lid, textBox2.Text, balance, ExpenseSid, EGId);
+                ClearExpenses();
+                CalculatePNL();
+            }
         }
     }
 }
