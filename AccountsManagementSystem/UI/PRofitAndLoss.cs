@@ -168,7 +168,7 @@ namespace AccountsManagementSystem.UI
             con = new SqlConnection(cs.DBConn);
             cmd = new SqlCommand();
             cmd.Connection = con;
-            string query = "SELECT BalanceFiscal.LId, Ledger.LedgerName, BalanceFiscal.Balance FROM Ledger INNER JOIN BalanceFiscal ON Ledger.LedgerId = BalanceFiscal.LedgerId INNER JOIN AGRel ON Ledger.AGRelId = AGRel.AGRelId WHERE AGRel.AccountType = 'Expense' and BalanceFiscal.FiscalId=17";
+            string query = "SELECT BalanceFiscal.LId, Ledger.LedgerName, BalanceFiscal.Balance FROM Ledger INNER JOIN BalanceFiscal ON Ledger.LedgerId = BalanceFiscal.LedgerId INNER JOIN AGRel ON Ledger.AGRelId = AGRel.AGRelId WHERE AGRel.AccountType = 'Expense' and BalanceFiscal.FiscalId='"+FiscalYear.phiscalYear+"'";
             con.Open();
             cmd.CommandText = query;
             rdr = cmd.ExecuteReader();
@@ -245,11 +245,6 @@ namespace AccountsManagementSystem.UI
             EGId = eGid.FirstOrDefault().GId;
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-           
-        }
-
         private void textBox3_TextChanged(object sender, EventArgs e)
         {
 
@@ -257,19 +252,34 @@ namespace AccountsManagementSystem.UI
 
         private void dataGridView1_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
- dr = dataGridView1.SelectedRows[0];
-            Lid = Convert.ToInt32(dr.Cells[0].Value);
-            textBox1.Text = dr.Cells[1].Value.ToString();
-            balance = Convert.ToDecimal(dr.Cells[2].Value);
+            if (dataGridView1.SelectedRows[0]==dataGridView1.Rows[dataGridView1.RowCount-1])
+            {
+                MessageBox.Show("Select a Valid Ledger");
+            }
+            else
+            {
+                dr = dataGridView1.SelectedRows[0];
+                Lid = Convert.ToInt32(dr.Cells[0].Value);
+                textBox1.Text = dr.Cells[1].Value.ToString();
+                balance = Convert.ToDecimal(dr.Cells[2].Value);
+            }
+            
 
         }
 
         private void dataGridView2_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            dr = dataGridView2.SelectedRows[0];
-            Lid = Convert.ToInt32(dr.Cells[0].Value);
-            textBox2.Text = dr.Cells[1].Value.ToString();
-            balance = Convert.ToDecimal(dr.Cells[2].Value);
+            if (dataGridView2.SelectedRows[0] == dataGridView2.Rows[dataGridView2.RowCount - 1])
+            {
+                MessageBox.Show("Select a Valid Ledger");
+            }
+            else
+            {
+                dr = dataGridView2.SelectedRows[0];
+                Lid = Convert.ToInt32(dr.Cells[0].Value);
+                textBox2.Text = dr.Cells[1].Value.ToString();
+                balance = Convert.ToDecimal(dr.Cells[2].Value);
+            }
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -294,6 +304,51 @@ namespace AccountsManagementSystem.UI
                 dataGridView4.Rows.Add(Lid, textBox2.Text, balance, ExpenseSid, EGId);
                 ClearExpenses();
                 CalculatePNL();
+            }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.RowCount-1 > 0)
+            {
+                MessageBox.Show("Revenue Items Left You can not complete PNL Now","Stop",MessageBoxButtons.OK,MessageBoxIcon.Stop);
+                dataGridView1.Focus();
+            }
+            else if (dataGridView2.RowCount-1 > 0)
+            {
+                MessageBox.Show("Expense Items Left You can not complete PNL Now", "Stop", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                dataGridView2.Focus();
+            }
+            else if (!string.IsNullOrWhiteSpace(textBox1.Text))
+            {
+                MessageBox.Show("You Forgot To Add Something On The List.You can not complete PNL Now", "Stop", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                textBox1.Focus();
+            }
+            else if (!string.IsNullOrWhiteSpace(textBox2.Text))
+            {
+                MessageBox.Show("You Forgot To Add Something On The List.You can not complete PNL Now", "Stop", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                textBox2.Focus();
+            }
+            else
+            {
+                con =new SqlConnection(cs.DBConn);
+                string query = "INSERT INTO GLRel (GId, LId) VALUES  (@d1,@d2)";
+                cmd.CommandText = query;
+                cmd.Connection = con;
+                con.Open();
+                for (int i = 0; i < dataGridView3.RowCount-1; i++)
+                {
+                    cmd.Parameters.AddWithValue("@d1", dataGridView3.Rows[i].Cells[0].Value);
+                    cmd.Parameters.AddWithValue("@d2", dataGridView3.Rows[i].Cells[4].Value);
+                    cmd.ExecuteNonQuery();
+                }
+                for (int i = 0; i <= dataGridView4.RowCount-1; i++)
+                {
+                    cmd.Parameters.AddWithValue("@d1", dataGridView4.Rows[i].Cells[0].Value);
+                    cmd.Parameters.AddWithValue("@d2", dataGridView4.Rows[i].Cells[4].Value);
+                    cmd.ExecuteNonQuery();
+                }
+                con.Close();
             }
         }
     }
