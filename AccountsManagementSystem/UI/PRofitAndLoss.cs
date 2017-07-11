@@ -332,7 +332,7 @@ namespace AccountsManagementSystem.UI
             else
             {
                 con =new SqlConnection(cs.DBConn);
-                string query = "INSERT INTO GLRel (GId, LId) VALUES  (@d1,@d2)";
+                string query = "INSERT INTO GLRel (LId, GId) VALUES  (@d1,@d2)";
                 cmd.CommandText = query;
                 cmd.Connection = con;
                 con.Open();
