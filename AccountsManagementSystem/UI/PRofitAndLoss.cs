@@ -338,12 +338,14 @@ namespace AccountsManagementSystem.UI
                 con.Open();
                 for (int i = 0; i < dataGridView3.RowCount-1; i++)
                 {
+                    cmd.Parameters.Clear();
                     cmd.Parameters.AddWithValue("@d1", dataGridView3.Rows[i].Cells[0].Value);
                     cmd.Parameters.AddWithValue("@d2", dataGridView3.Rows[i].Cells[4].Value);
                     cmd.ExecuteNonQuery();
                 }
                 for (int i = 0; i <= dataGridView4.RowCount-1; i++)
                 {
+                    cmd.Parameters.Clear();
                     cmd.Parameters.AddWithValue("@d1", dataGridView4.Rows[i].Cells[0].Value);
                     cmd.Parameters.AddWithValue("@d2", dataGridView4.Rows[i].Cells[4].Value);
                     cmd.ExecuteNonQuery();
