@@ -77,9 +77,9 @@ namespace AccountsManagementSystem.UI
         private void button1_Click(object sender, EventArgs e)
         {
             PRofitAndLoss fr =new PRofitAndLoss();
-            this.Visible = true;
-            fr.ShowDialog();
             this.Visible = false;
+            fr.ShowDialog();
+            this.Visible = true;
         }
     }
 }
