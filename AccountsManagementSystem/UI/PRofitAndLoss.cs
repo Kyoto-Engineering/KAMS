@@ -154,7 +154,7 @@ namespace AccountsManagementSystem.UI
             con = new SqlConnection(cs.DBConn);
             cmd = new SqlCommand();
             cmd.Connection = con;
-            string query = "SELECT BalanceFiscal.LId, Ledger.LedgerName, BalanceFiscal.Balance FROM Ledger INNER JOIN BalanceFiscal ON Ledger.LedgerId = BalanceFiscal.LedgerId INNER JOIN AGRel ON Ledger.AGRelId = AGRel.AGRelId WHERE AGRel.AccountType = 'Revenue' and BalanceFiscal.FiscalId=17";
+            string query = "SELECT BalanceFiscal.LId, Ledger.LedgerName, BalanceFiscal.Balance FROM Ledger INNER JOIN BalanceFiscal ON Ledger.LedgerId = BalanceFiscal.LedgerId INNER JOIN AGRel ON Ledger.AGRelId = AGRel.AGRelId WHERE AGRel.AccountType = 'Revenue' and BalanceFiscal.FiscalId='" + FiscalYear.phiscalYear + "'";
             con.Open();
             cmd.CommandText = query;
             rdr = cmd.ExecuteReader();
@@ -343,7 +343,7 @@ namespace AccountsManagementSystem.UI
                     cmd.Parameters.AddWithValue("@d2", dataGridView3.Rows[i].Cells[4].Value);
                     cmd.ExecuteNonQuery();
                 }
-                for (int i = 0; i <= dataGridView4.RowCount-1; i++)
+                for (int i = 0; i < dataGridView4.RowCount-1; i++)
                 {
                     cmd.Parameters.Clear();
                     cmd.Parameters.AddWithValue("@d1", dataGridView4.Rows[i].Cells[0].Value);
