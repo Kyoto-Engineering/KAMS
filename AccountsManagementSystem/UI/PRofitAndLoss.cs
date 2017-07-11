@@ -307,6 +307,21 @@ namespace AccountsManagementSystem.UI
             }
         }
 
+        private void ClearAfterDone()
+        {
+                textBox5.Clear();
+                textBox4.Clear();
+                textBox3.Clear();
+                dataGridView3.Rows.Clear();
+                dataGridView4.Rows.Clear();
+                comboBox1.Items.Clear();
+                comboBox2.Items.Clear();
+                comboBox4.Items.Clear();
+                comboBox3.Items.Clear();
+            dataGridView1.Rows.Clear();
+            dataGridView2.Rows.Clear();
+        }
+
         private void button3_Click(object sender, EventArgs e)
         {
             if (dataGridView1.RowCount-1 > 0)
@@ -351,6 +366,11 @@ namespace AccountsManagementSystem.UI
                     cmd.ExecuteNonQuery();
                 }
                 con.Close();
+                MessageBox.Show("Successfully Done");
+
+                ClearAfterDone();
+
+
             }
         }
     }
