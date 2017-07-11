@@ -73,5 +73,13 @@ namespace AccountsManagementSystem.UI
             endDateM = FiscalYear.endDate;
             mUUserType = frmLogin.userType;
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            PRofitAndLoss fr =new PRofitAndLoss();
+            this.Visible = true;
+            fr.ShowDialog();
+            this.Visible = false;
+        }
     }
 }

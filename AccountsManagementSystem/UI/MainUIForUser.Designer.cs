@@ -37,6 +37,7 @@
             this.ledgerEntryButton = new System.Windows.Forms.Button();
             this.logOutButton = new System.Windows.Forms.Button();
             this.lblUser2 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -55,6 +56,7 @@
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.groupBox1.Controls.Add(this.button1);
             this.groupBox1.Controls.Add(this.journalButton);
             this.groupBox1.Controls.Add(this.btnReports);
             this.groupBox1.Controls.Add(this.btnregistration);
@@ -141,6 +143,16 @@
             this.lblUser2.Text = "label2";
             this.lblUser2.Visible = false;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(29, 417);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 9;
+            this.button1.Text = "PNL";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // MainUIForUser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -173,5 +185,6 @@
         private System.Windows.Forms.Button ledgerEntryButton;
         private System.Windows.Forms.Button logOutButton;
         public  System.Windows.Forms.Label lblUser2;
+        private System.Windows.Forms.Button button1;
     }
 }
