@@ -104,6 +104,7 @@
             // 
             this.departmentTextBox.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.departmentTextBox.Location = new System.Drawing.Point(119, 173);
+            this.departmentTextBox.MaxLength = 50;
             this.departmentTextBox.Name = "departmentTextBox";
             this.departmentTextBox.Size = new System.Drawing.Size(281, 29);
             this.departmentTextBox.TabIndex = 5;
@@ -121,6 +122,7 @@
             // 
             this.designationTextBox.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.designationTextBox.Location = new System.Drawing.Point(119, 127);
+            this.designationTextBox.MaxLength = 50;
             this.designationTextBox.Name = "designationTextBox";
             this.designationTextBox.Size = new System.Drawing.Size(281, 32);
             this.designationTextBox.TabIndex = 4;
@@ -138,6 +140,7 @@
             // 
             this.txtEmail_Address.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtEmail_Address.Location = new System.Drawing.Point(119, 258);
+            this.txtEmail_Address.MaxLength = 50;
             this.txtEmail_Address.Name = "txtEmail_Address";
             this.txtEmail_Address.Size = new System.Drawing.Size(281, 29);
             this.txtEmail_Address.TabIndex = 7;
