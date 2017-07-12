@@ -143,6 +143,7 @@
             // txt1Particulars
             // 
             this.txt1Particulars.Location = new System.Drawing.Point(194, 176);
+            this.txt1Particulars.MaxLength = 300;
             this.txt1Particulars.Name = "txt1Particulars";
             this.txt1Particulars.Size = new System.Drawing.Size(244, 105);
             this.txt1Particulars.TabIndex = 4;
@@ -154,6 +155,7 @@
             // 
             this.billOrInvoiceNoD.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.billOrInvoiceNoD.Location = new System.Drawing.Point(195, 329);
+            this.billOrInvoiceNoD.MaxLength = 50;
             this.billOrInvoiceNoD.Name = "billOrInvoiceNoD";
             this.billOrInvoiceNoD.Size = new System.Drawing.Size(244, 29);
             this.billOrInvoiceNoD.TabIndex = 3;
@@ -274,6 +276,7 @@
             // 
             this.txt1RequisitionNo.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt1RequisitionNo.Location = new System.Drawing.Point(196, 99);
+            this.txt1RequisitionNo.MaxLength = 50;
             this.txt1RequisitionNo.Name = "txt1RequisitionNo";
             this.txt1RequisitionNo.Size = new System.Drawing.Size(242, 29);
             this.txt1RequisitionNo.TabIndex = 1;
@@ -377,6 +380,7 @@
             // txt2Particulars
             // 
             this.txt2Particulars.Location = new System.Drawing.Point(214, 189);
+            this.txt2Particulars.MaxLength = 300;
             this.txt2Particulars.Name = "txt2Particulars";
             this.txt2Particulars.Size = new System.Drawing.Size(282, 118);
             this.txt2Particulars.TabIndex = 4;
@@ -388,6 +392,7 @@
             // 
             this.billOrInvoiceNoForC.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.billOrInvoiceNoForC.Location = new System.Drawing.Point(217, 362);
+            this.billOrInvoiceNoForC.MaxLength = 50;
             this.billOrInvoiceNoForC.Name = "billOrInvoiceNoForC";
             this.billOrInvoiceNoForC.Size = new System.Drawing.Size(282, 29);
             this.billOrInvoiceNoForC.TabIndex = 3;
@@ -502,6 +507,7 @@
             // 
             this.txt2FundRequisition.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt2FundRequisition.Location = new System.Drawing.Point(213, 99);
+            this.txt2FundRequisition.MaxLength = 50;
             this.txt2FundRequisition.Name = "txt2FundRequisition";
             this.txt2FundRequisition.Size = new System.Drawing.Size(282, 32);
             this.txt2FundRequisition.TabIndex = 1;

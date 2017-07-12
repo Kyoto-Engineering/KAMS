@@ -158,6 +158,7 @@
             // 
             this.txtRequisitionNo.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtRequisitionNo.Location = new System.Drawing.Point(236, 165);
+            this.txtRequisitionNo.MaxLength = 50;
             this.txtRequisitionNo.Name = "txtRequisitionNo";
             this.txtRequisitionNo.Size = new System.Drawing.Size(268, 29);
             this.txtRequisitionNo.TabIndex = 3;
@@ -189,6 +190,7 @@
             // 
             this.txtParticulars.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtParticulars.Location = new System.Drawing.Point(236, 262);
+            this.txtParticulars.MaxLength = 300;
             this.txtParticulars.Multiline = true;
             this.txtParticulars.Name = "txtParticulars";
             this.txtParticulars.Size = new System.Drawing.Size(268, 99);

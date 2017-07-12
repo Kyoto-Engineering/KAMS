@@ -71,6 +71,7 @@
             // txtVoucherNo
             // 
             this.txtVoucherNo.Location = new System.Drawing.Point(243, 151);
+            this.txtVoucherNo.MaxLength = 50;
             this.txtVoucherNo.Name = "txtVoucherNo";
             this.txtVoucherNo.Size = new System.Drawing.Size(219, 29);
             this.txtVoucherNo.TabIndex = 2;
@@ -79,6 +80,7 @@
             // txtFundRequisition
             // 
             this.txtFundRequisition.Location = new System.Drawing.Point(243, 113);
+            this.txtFundRequisition.MaxLength = 50;
             this.txtFundRequisition.Name = "txtFundRequisition";
             this.txtFundRequisition.Size = new System.Drawing.Size(219, 29);
             this.txtFundRequisition.TabIndex = 1;
