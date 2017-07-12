@@ -367,6 +367,7 @@
             // 
             this.txtLedgerName.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtLedgerName.Location = new System.Drawing.Point(213, 171);
+            this.txtLedgerName.MaxLength = 200;
             this.txtLedgerName.Multiline = true;
             this.txtLedgerName.Name = "txtLedgerName";
             this.txtLedgerName.Size = new System.Drawing.Size(212, 148);
@@ -377,6 +378,7 @@
             // 
             this.txtPreviousLedgerId.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPreviousLedgerId.Location = new System.Drawing.Point(213, 132);
+            this.txtPreviousLedgerId.MaxLength = 50;
             this.txtPreviousLedgerId.Name = "txtPreviousLedgerId";
             this.txtPreviousLedgerId.Size = new System.Drawing.Size(212, 29);
             this.txtPreviousLedgerId.TabIndex = 6;

@@ -53,6 +53,7 @@
             // txtDepartment
             // 
             this.txtDepartment.Location = new System.Drawing.Point(119, 231);
+            this.txtDepartment.MaxLength = 50;
             this.txtDepartment.Name = "txtDepartment";
             this.txtDepartment.Size = new System.Drawing.Size(281, 26);
             this.txtDepartment.TabIndex = 5;
@@ -70,6 +71,7 @@
             // txtDesignation
             // 
             this.txtDesignation.Location = new System.Drawing.Point(119, 192);
+            this.txtDesignation.MaxLength = 50;
             this.txtDesignation.Name = "txtDesignation";
             this.txtDesignation.Size = new System.Drawing.Size(281, 26);
             this.txtDesignation.TabIndex = 4;
@@ -103,6 +105,7 @@
             // 
             this.txtEmail_Address.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtEmail_Address.Location = new System.Drawing.Point(119, 303);
+            this.txtEmail_Address.MaxLength = 50;
             this.txtEmail_Address.Name = "txtEmail_Address";
             this.txtEmail_Address.Size = new System.Drawing.Size(281, 26);
             this.txtEmail_Address.TabIndex = 7;
@@ -124,6 +127,7 @@
             // 
             this.txtName.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtName.Location = new System.Drawing.Point(119, 153);
+            this.txtName.MaxLength = 50;
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(281, 26);
             this.txtName.TabIndex = 3;
@@ -133,6 +137,7 @@
             // 
             this.txtPassword.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPassword.Location = new System.Drawing.Point(119, 117);
+            this.txtPassword.MaxLength = 50;
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '*';
             this.txtPassword.Size = new System.Drawing.Size(281, 26);
@@ -240,6 +245,7 @@
             // 
             this.txtUsername.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtUsername.Location = new System.Drawing.Point(119, 48);
+            this.txtUsername.MaxLength = 50;
             this.txtUsername.Name = "txtUsername";
             this.txtUsername.Size = new System.Drawing.Size(281, 26);
             this.txtUsername.TabIndex = 16;

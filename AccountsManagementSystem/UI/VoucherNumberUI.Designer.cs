@@ -54,6 +54,7 @@
             this.voucherNoEndPoint.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.voucherNoEndPoint.Location = new System.Drawing.Point(231, 153);
             this.voucherNoEndPoint.Margin = new System.Windows.Forms.Padding(5);
+            this.voucherNoEndPoint.MaxLength = 50;
             this.voucherNoEndPoint.Name = "voucherNoEndPoint";
             this.voucherNoEndPoint.Size = new System.Drawing.Size(233, 32);
             this.voucherNoEndPoint.TabIndex = 23;
@@ -75,6 +76,7 @@
             this.voucherNoStartPoint.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.voucherNoStartPoint.Location = new System.Drawing.Point(231, 105);
             this.voucherNoStartPoint.Margin = new System.Windows.Forms.Padding(5);
+            this.voucherNoStartPoint.MaxLength = 50;
             this.voucherNoStartPoint.Name = "voucherNoStartPoint";
             this.voucherNoStartPoint.Size = new System.Drawing.Size(233, 32);
             this.voucherNoStartPoint.TabIndex = 21;
@@ -105,6 +107,7 @@
             // 
             this.txtBookNumber.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtBookNumber.Location = new System.Drawing.Point(231, 49);
+            this.txtBookNumber.MaxLength = 50;
             this.txtBookNumber.Name = "txtBookNumber";
             this.txtBookNumber.Size = new System.Drawing.Size(233, 32);
             this.txtBookNumber.TabIndex = 25;

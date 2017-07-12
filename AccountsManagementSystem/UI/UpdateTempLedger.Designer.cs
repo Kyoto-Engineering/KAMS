@@ -102,6 +102,7 @@
             // 
             this.txtTempULedgerName.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTempULedgerName.Location = new System.Drawing.Point(232, 86);
+            this.txtTempULedgerName.MaxLength = 300;
             this.txtTempULedgerName.Name = "txtTempULedgerName";
             this.txtTempULedgerName.Size = new System.Drawing.Size(268, 32);
             this.txtTempULedgerName.TabIndex = 1;
@@ -133,6 +134,7 @@
             // 
             this.txtTUVoucherNo.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTUVoucherNo.Location = new System.Drawing.Point(232, 215);
+            this.txtTUVoucherNo.MaxLength = 200;
             this.txtTUVoucherNo.Name = "txtTUVoucherNo";
             this.txtTUVoucherNo.Size = new System.Drawing.Size(268, 29);
             this.txtTUVoucherNo.TabIndex = 4;
@@ -163,6 +165,7 @@
             // 
             this.txtTUFundRequisitionNo.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTUFundRequisitionNo.Location = new System.Drawing.Point(232, 174);
+            this.txtTUFundRequisitionNo.MaxLength = 200;
             this.txtTUFundRequisitionNo.Name = "txtTUFundRequisitionNo";
             this.txtTUFundRequisitionNo.Size = new System.Drawing.Size(268, 29);
             this.txtTUFundRequisitionNo.TabIndex = 3;
@@ -192,6 +195,7 @@
             // 
             this.txtTUParticulars.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTUParticulars.Location = new System.Drawing.Point(232, 257);
+            this.txtTUParticulars.MaxLength = 300;
             this.txtTUParticulars.Name = "txtTUParticulars";
             this.txtTUParticulars.Size = new System.Drawing.Size(268, 29);
             this.txtTUParticulars.TabIndex = 5;

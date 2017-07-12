@@ -148,6 +148,7 @@
             // txt2Particulars
             // 
             this.txt2Particulars.Location = new System.Drawing.Point(183, 189);
+            this.txt2Particulars.MaxLength = 300;
             this.txt2Particulars.Name = "txt2Particulars";
             this.txt2Particulars.Size = new System.Drawing.Size(275, 116);
             this.txt2Particulars.TabIndex = 4;
@@ -159,6 +160,7 @@
             // 
             this.textBox2.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox2.Location = new System.Drawing.Point(183, 365);
+            this.textBox2.MaxLength = 50;
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(275, 29);
             this.textBox2.TabIndex = 3;
@@ -279,6 +281,7 @@
             // 
             this.txt2FundRequisition.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt2FundRequisition.Location = new System.Drawing.Point(183, 99);
+            this.txt2FundRequisition.MaxLength = 50;
             this.txt2FundRequisition.Name = "txt2FundRequisition";
             this.txt2FundRequisition.Size = new System.Drawing.Size(275, 32);
             this.txt2FundRequisition.TabIndex = 1;
@@ -392,6 +395,7 @@
             // txt1Particulars
             // 
             this.txt1Particulars.Location = new System.Drawing.Point(196, 203);
+            this.txt1Particulars.MaxLength = 300;
             this.txt1Particulars.Name = "txt1Particulars";
             this.txt1Particulars.Size = new System.Drawing.Size(321, 120);
             this.txt1Particulars.TabIndex = 5;
@@ -403,6 +407,7 @@
             // 
             this.textBox1.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox1.Location = new System.Drawing.Point(195, 368);
+            this.textBox1.MaxLength = 50;
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(322, 29);
             this.textBox1.TabIndex = 4;
@@ -511,6 +516,7 @@
             // 
             this.txt1RequisitionNo.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt1RequisitionNo.Location = new System.Drawing.Point(196, 126);
+            this.txt1RequisitionNo.MaxLength = 50;
             this.txt1RequisitionNo.Name = "txt1RequisitionNo";
             this.txt1RequisitionNo.Size = new System.Drawing.Size(321, 29);
             this.txt1RequisitionNo.TabIndex = 2;
@@ -586,7 +592,7 @@
             this.listView1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listView1.FullRowSelect = true;
             this.listView1.GridLines = true;
-            this.listView1.Location = new System.Drawing.Point(12, 435);
+            this.listView1.Location = new System.Drawing.Point(6, 433);
             this.listView1.Name = "listView1";
             this.listView1.Size = new System.Drawing.Size(1026, 227);
             this.listView1.TabIndex = 47;

@@ -102,6 +102,7 @@
             // 
             this.txtSVoucherNo.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSVoucherNo.Location = new System.Drawing.Point(232, 162);
+            this.txtSVoucherNo.MaxLength = 50;
             this.txtSVoucherNo.Name = "txtSVoucherNo";
             this.txtSVoucherNo.Size = new System.Drawing.Size(268, 29);
             this.txtSVoucherNo.TabIndex = 3;
@@ -131,6 +132,7 @@
             // 
             this.txtFundRequisitionNo.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtFundRequisitionNo.Location = new System.Drawing.Point(232, 121);
+            this.txtFundRequisitionNo.MaxLength = 50;
             this.txtFundRequisitionNo.Name = "txtFundRequisitionNo";
             this.txtFundRequisitionNo.Size = new System.Drawing.Size(268, 29);
             this.txtFundRequisitionNo.TabIndex = 2;
@@ -160,6 +162,7 @@
             // 
             this.txtSParticulars.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSParticulars.Location = new System.Drawing.Point(232, 204);
+            this.txtSParticulars.MaxLength = 300;
             this.txtSParticulars.Name = "txtSParticulars";
             this.txtSParticulars.Size = new System.Drawing.Size(268, 29);
             this.txtSParticulars.TabIndex = 4;

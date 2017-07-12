@@ -159,6 +159,7 @@
             // 
             this.txtUPreviousSubLedgerId.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtUPreviousSubLedgerId.Location = new System.Drawing.Point(275, 194);
+            this.txtUPreviousSubLedgerId.MaxLength = 50;
             this.txtUPreviousSubLedgerId.Name = "txtUPreviousSubLedgerId";
             this.txtUPreviousSubLedgerId.Size = new System.Drawing.Size(240, 29);
             this.txtUPreviousSubLedgerId.TabIndex = 2;
@@ -168,6 +169,7 @@
             // 
             this.txtUSubLedgerName.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtUSubLedgerName.Location = new System.Drawing.Point(275, 243);
+            this.txtUSubLedgerName.MaxLength = 200;
             this.txtUSubLedgerName.Multiline = true;
             this.txtUSubLedgerName.Name = "txtUSubLedgerName";
             this.txtUSubLedgerName.Size = new System.Drawing.Size(240, 135);
