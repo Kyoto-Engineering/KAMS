@@ -216,6 +216,18 @@
       <DependentUpon>LedgerListN.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Reports\PNLRevenue.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PNLRevenue.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\PNLTotal.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PNLTotal.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Reports\ReportsUI.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -532,6 +544,14 @@
     <EmbeddedResource Include="Reports\LedgerListN.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>LedgerListN.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\PNLRevenue.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>PNLRevenue.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\PNLTotal.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>PNLTotal.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\ReportsUI.resx">
       <DependentUpon>ReportsUI.cs</DependentUpon>
