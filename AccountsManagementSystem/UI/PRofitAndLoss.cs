@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using AccountsManagementSystem.DbGateway;
+using AccountsManagementSystem.LogInUI;
 using AccountsManagementSystem.Models;
 
 namespace AccountsManagementSystem.UI
@@ -346,16 +347,28 @@ namespace AccountsManagementSystem.UI
             }
             else
             {
-                con =new SqlConnection(cs.DBConn);
-                string query = "INSERT INTO GLRel (LId, GId) VALUES  (@d1,@d2)";
-                cmd.CommandText = query;
+                con = new SqlConnection(cs.DBConn);
+                string query1 = "INSERT INTO PNLEvent (EntryDate, UserId, PL, Balance, FiscalId) VALUES (@d1,@d2,@d3,@d4,@d5) SELECT CONVERT(int, SCOPE_IDENTITY());";
                 cmd.Connection = con;
+                cmd.CommandText = query1;
+                cmd.Parameters.AddWithValue("@d1",DateTime.UtcNow.ToLocalTime());
+                cmd.Parameters.AddWithValue("@d2",frmLogin.uId );
+                cmd.Parameters.AddWithValue("@d3", label7.Text);
+                cmd.Parameters.AddWithValue("@d4", textBox5.Text);
+                cmd.Parameters.AddWithValue("@d5", FiscalYear.phiscalYear);
+                con.Open();
+                int Pid = (int) cmd.ExecuteScalar();
+                con.Close();
+                string query = "INSERT INTO GLRel (LId, GId,Balance,PId) VALUES  (@d1,@d2,@d3,"+Pid+")";
+                cmd.CommandText = query;
+               
                 con.Open();
                 for (int i = 0; i < dataGridView3.RowCount-1; i++)
                 {
                     cmd.Parameters.Clear();
                     cmd.Parameters.AddWithValue("@d1", dataGridView3.Rows[i].Cells[0].Value);
                     cmd.Parameters.AddWithValue("@d2", dataGridView3.Rows[i].Cells[4].Value);
+                    cmd.Parameters.AddWithValue("@d3", dataGridView3.Rows[i].Cells[2].Value);
                     cmd.ExecuteNonQuery();
                 }
                 for (int i = 0; i < dataGridView4.RowCount-1; i++)
@@ -363,6 +376,7 @@ namespace AccountsManagementSystem.UI
                     cmd.Parameters.Clear();
                     cmd.Parameters.AddWithValue("@d1", dataGridView4.Rows[i].Cells[0].Value);
                     cmd.Parameters.AddWithValue("@d2", dataGridView4.Rows[i].Cells[4].Value);
+                    cmd.Parameters.AddWithValue("@d3", dataGridView3.Rows[i].Cells[2].Value);
                     cmd.ExecuteNonQuery();
                 }
                 con.Close();
