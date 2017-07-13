@@ -376,7 +376,7 @@ namespace AccountsManagementSystem.UI
                     cmd.Parameters.Clear();
                     cmd.Parameters.AddWithValue("@d1", dataGridView4.Rows[i].Cells[0].Value);
                     cmd.Parameters.AddWithValue("@d2", dataGridView4.Rows[i].Cells[4].Value);
-                    cmd.Parameters.AddWithValue("@d3", dataGridView3.Rows[i].Cells[2].Value);
+                    cmd.Parameters.AddWithValue("@d3", dataGridView4.Rows[i].Cells[2].Value);
                     cmd.ExecuteNonQuery();
                 }
                 con.Close();
