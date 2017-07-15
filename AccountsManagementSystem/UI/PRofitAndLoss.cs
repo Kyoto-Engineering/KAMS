@@ -353,7 +353,7 @@ namespace AccountsManagementSystem.UI
                 cmd.CommandText = query1;
                 cmd.Parameters.AddWithValue("@d1",DateTime.UtcNow.ToLocalTime());
                 cmd.Parameters.AddWithValue("@d2",frmLogin.uId );
-                cmd.Parameters.AddWithValue("@d3", label7.Text);
+                cmd.Parameters.AddWithValue("@d3", label7.Text.Trim());
                 cmd.Parameters.AddWithValue("@d4", textBox5.Text);
                 cmd.Parameters.AddWithValue("@d5", FiscalYear.phiscalYear);
                 con.Open();
