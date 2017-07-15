@@ -117,7 +117,7 @@ namespace AccountsManagementSystem.UI
                 comboBox4.Items.Add(subaccounttypes);
             }
         }
-private void LoadPNL()
+        private void LoadPNL()
         {
             con = new SqlConnection(cs.DBConn);
             cmd = new SqlCommand();
