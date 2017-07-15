@@ -92,7 +92,7 @@ namespace AccountsManagementSystem.UI
         }
         private void ClearEquity()
         {
-            dataGridView4.Rows.Remove(dr);
+            dataGridView5.Rows.Remove(dr);
             comboBox6.SelectedIndexChanged -= comboBox6_SelectedIndexChanged;
             comboBox6.SelectedIndex = -1;
             comboBox6.SelectedIndexChanged += comboBox6_SelectedIndexChanged;
@@ -561,7 +561,7 @@ namespace AccountsManagementSystem.UI
                 totalEquity = totalEquity + balance;
                 totalCredit = totalCredit + totalEquity;
                 textBox5.Text = totalEquity.ToString();
-                dataGridView6.Rows.Add(Lid, textBox2.Text, balance, ExpenseSid, EGId);
+                dataGridView6.Rows.Add(Lid, textBox6.Text, balance, ExpenseSid, EGId);
                 ClearEquity();
                 CalculateBS();
             }
