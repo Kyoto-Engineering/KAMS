@@ -528,7 +528,7 @@ namespace AccountsManagementSystem.UI
 
         private void dataGridView5_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            if (dataGridView5.SelectedRows[0] == dataGridView5.Rows[dataGridView2.RowCount - 1])
+            if (dataGridView5.SelectedRows[0] == dataGridView5.Rows[dataGridView5.RowCount - 1])
             {
                 MessageBox.Show("Select a Valid Ledger");
             }
