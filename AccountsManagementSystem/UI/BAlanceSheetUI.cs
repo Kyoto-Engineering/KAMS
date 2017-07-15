@@ -265,11 +265,11 @@ namespace AccountsManagementSystem.UI
             rdr = cmd.ExecuteReader();
             while (rdr.Read())
             {
-                dataGridView1.Rows.Add(rdr[0], rdr[1], rdr[2]);
+                dataGridView5.Rows.Add(rdr[0], rdr[1], rdr[2]);
             }
             if (LossOrProfit.Trim() == "Profit")
             {
-                dataGridView1.Rows.Add(0, "Profit In Current Year", profitorLoss);
+                dataGridView5.Rows.Add(0, "Profit In Current Year", profitorLoss);
             }
         }
         private void LoadSubAccountTypes()
