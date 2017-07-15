@@ -25,10 +25,13 @@ namespace AccountsManagementSystem.UI
         ConnectionString cs=new ConnectionString();
         private DataGridViewRow dr;
         private int ExpenseSid, EGId,Lid;
-        private int RevenueSid,RGId;
-        private decimal balance,totalRevenue=0.0m,totalExpense=0.0m,profitorLoss=0.0m;
+        private int asetSid,agId;
+        private decimal balance, totalAsset = 0.0m, totalLiability = 0.0m, profitorLoss = 0.0m, totalEquity=0.0m,totalCredit=0.0m;
         private DateTime pnlDateTime;
         private string LossOrProfit;
+        private int _eqGId;
+        private int _eqSid;
+
         public BAlanceSheetUI()
         {
             InitializeComponent();
@@ -51,34 +54,31 @@ namespace AccountsManagementSystem.UI
             }
             else
             {
-                totalRevenue = totalRevenue + balance;
-                textBox3.Text = totalRevenue.ToString();
-                dataGridView3.Rows.Add(Lid, textBox1.Text, balance, RevenueSid, RGId);
+                totalAsset = totalAsset + balance;
+                textBox3.Text = totalAsset.ToString();
+                dataGridView3.Rows.Add(Lid, textBox1.Text, balance, asetSid, agId);
                 ClearRevenues();
-                CalculatePNL();
+                CalculateBS();
             }
            
         }
 
-        private void CalculatePNL()
+        private void CalculateBS()
         {
-            if (totalRevenue > totalExpense)
+            if (totalAsset > totalCredit)
             {
-                label7.Text = "Profit";
-                textBox5.Text = (totalRevenue - totalExpense).ToString();
+                label7.Text = "Aset is Greater";
+                
             }
-            else if (totalRevenue < totalExpense)
+            else if (totalAsset < totalCredit)
             {
-                label7.Text = "Loss";
-                textBox5.Text = (totalExpense - totalRevenue).ToString();
+                label7.Text = "Aset is Lesser";
             }
             else
             {
-                label7.Text = "No Profit or  Loss";
-                textBox5.Text = "0";
+                label7.Text = "Balance Sheet is Balanced";
             }
         }
-
         private void ClearExpenses()
         {
             dataGridView2.Rows.Remove(dr);
@@ -89,6 +89,17 @@ namespace AccountsManagementSystem.UI
             comboBox4.SelectedIndex = -1;
             comboBox4.SelectedIndexChanged += comboBox4_SelectedIndexChanged;
             textBox2.Clear();
+        }
+        private void ClearEquity()
+        {
+            dataGridView4.Rows.Remove(dr);
+            comboBox6.SelectedIndexChanged -= comboBox6_SelectedIndexChanged;
+            comboBox6.SelectedIndex = -1;
+            comboBox6.SelectedIndexChanged += comboBox6_SelectedIndexChanged;
+            comboBox5.SelectedIndexChanged -= comboBox5_SelectedIndexChanged;
+            comboBox5.SelectedIndex = -1;
+            comboBox5.SelectedIndexChanged += comboBox5_SelectedIndexChanged;
+            textBox6.Clear();
         }
         private void ClearRevenues()
         {
@@ -122,8 +133,8 @@ namespace AccountsManagementSystem.UI
             con = new SqlConnection(cs.DBConn);
             cmd = new SqlCommand();
             cmd.Connection = con;
-            string query = "select * from PNLEvent where FiscalId="+ 17;
-            //FiscalYear.phiscalYear;
+            string query = "select * from PNLEvent where FiscalId=" + FiscalYear.phiscalYear;
+          
             con.Open();
             cmd.CommandText = query;
             rdr = cmd.ExecuteReader();
@@ -137,7 +148,7 @@ namespace AccountsManagementSystem.UI
             {
                 con.Close();
                 string query2 =
-                    "declare  @d1 as int; set @d1=(select MAX(PId) from PNLEvent where FiscalId=17);select * from PNLEvent where PId= @d1;";
+                    "declare  @d1 as int; set @d1=(select MAX(PId) from PNLEvent where FiscalId="+ FiscalYear.phiscalYear+");select * from PNLEvent where PId= @d1;";
                 con.Open();
                 rdr = cmd.ExecuteReader();
                 while (rdr.Read())
@@ -162,6 +173,7 @@ namespace AccountsManagementSystem.UI
                         LoadEquityAccountTypes();
                         LoadGridOne();
                         LoadGridTwo();
+                        LoadGridThree();
                     }
                     else
                     {
@@ -215,7 +227,7 @@ namespace AccountsManagementSystem.UI
             con = new SqlConnection(cs.DBConn);
             cmd = new SqlCommand();
             cmd.Connection = con;
-            string query = "SELECT BalanceFiscal.LId, Ledger.LedgerName, BalanceFiscal.Balance FROM Ledger INNER JOIN BalanceFiscal ON Ledger.LedgerId = BalanceFiscal.LedgerId INNER JOIN AGRel ON Ledger.AGRelId = AGRel.AGRelId WHERE AGRel.AccountType = 'Revenue' and BalanceFiscal.FiscalId='" + FiscalYear.phiscalYear + "'";
+            string query = "SELECT BalanceFiscal.LId, Ledger.LedgerName, BalanceFiscal.Balance FROM Ledger INNER JOIN BalanceFiscal ON Ledger.LedgerId = BalanceFiscal.LedgerId INNER JOIN AGRel ON Ledger.AGRelId = AGRel.AGRelId WHERE (AGRel.AccountType = 'Asset' or AGRel.AccountType = 'Pre Opening Expense' ) and BalanceFiscal.FiscalId='" + FiscalYear.phiscalYear + "'";
             con.Open();
             cmd.CommandText = query;
             rdr = cmd.ExecuteReader();
@@ -223,19 +235,41 @@ namespace AccountsManagementSystem.UI
             {
                 dataGridView1.Rows.Add(rdr[0], rdr[1], rdr[2]);
             }
+            if (LossOrProfit.Trim()=="Loss")
+            {
+                dataGridView1.Rows.Add(0, "Loss In Current Year", profitorLoss);
+            }
         }
         private void LoadGridTwo()
         {
             con = new SqlConnection(cs.DBConn);
             cmd = new SqlCommand();
             cmd.Connection = con;
-            string query = "SELECT BalanceFiscal.LId, Ledger.LedgerName, BalanceFiscal.Balance FROM Ledger INNER JOIN BalanceFiscal ON Ledger.LedgerId = BalanceFiscal.LedgerId INNER JOIN AGRel ON Ledger.AGRelId = AGRel.AGRelId WHERE AGRel.AccountType = 'Expense' and BalanceFiscal.FiscalId='"+FiscalYear.phiscalYear+"'";
+            string query = "SELECT BalanceFiscal.LId, Ledger.LedgerName, BalanceFiscal.Balance FROM Ledger INNER JOIN BalanceFiscal ON Ledger.LedgerId = BalanceFiscal.LedgerId INNER JOIN AGRel ON Ledger.AGRelId = AGRel.AGRelId WHERE AGRel.AccountType = 'Liability' and BalanceFiscal.FiscalId='" + FiscalYear.phiscalYear + "'";
             con.Open();
             cmd.CommandText = query;
             rdr = cmd.ExecuteReader();
             while (rdr.Read())
             {
                 dataGridView2.Rows.Add(rdr[0], rdr[1], rdr[2]);
+            }
+        }
+        private void LoadGridThree()
+        {
+            con = new SqlConnection(cs.DBConn);
+            cmd = new SqlCommand();
+            cmd.Connection = con;
+            string query = "SELECT BalanceFiscal.LId, Ledger.LedgerName, BalanceFiscal.Balance FROM Ledger INNER JOIN BalanceFiscal ON Ledger.LedgerId = BalanceFiscal.LedgerId INNER JOIN AGRel ON Ledger.AGRelId = AGRel.AGRelId WHERE AGRel.AccountType = 'Equity' and BalanceFiscal.FiscalId='" + FiscalYear.phiscalYear + "'";
+            con.Open();
+            cmd.CommandText = query;
+            rdr = cmd.ExecuteReader();
+            while (rdr.Read())
+            {
+                dataGridView1.Rows.Add(rdr[0], rdr[1], rdr[2]);
+            }
+            if (LossOrProfit.Trim() == "Profit")
+            {
+                dataGridView1.Rows.Add(0, "Profit In Current Year", profitorLoss);
             }
         }
         private void LoadSubAccountTypes()
@@ -263,7 +297,7 @@ namespace AccountsManagementSystem.UI
             var revenueSid = from SubAccountTypes in SubAccountTypesList
                 where SubAccountTypes.SName == comboBox1.Text
                 select SubAccountTypes;
-            RevenueSid = revenueSid.FirstOrDefault().SId;
+            asetSid = revenueSid.FirstOrDefault().SId;
             var groups = from Groups in GroupList
                 where Groups.Stype == comboBox1.Text
                 select Groups.GroupName;
@@ -295,7 +329,7 @@ namespace AccountsManagementSystem.UI
             var rGid = from grups in GroupList
                 where grups.GroupName == comboBox2.Text
                 select grups;
-            RGId = rGid.FirstOrDefault().GId;
+            agId = rGid.FirstOrDefault().GId;
         }
 
         private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
@@ -345,12 +379,12 @@ namespace AccountsManagementSystem.UI
 
         private void button2_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(comboBox3.Text))
+            if (string.IsNullOrWhiteSpace(comboBox4.Text))
             {
                 MessageBox.Show("Please Select Account Type");
             }
 
-            else if (string.IsNullOrWhiteSpace(comboBox4.Text))
+            else if (string.IsNullOrWhiteSpace(comboBox3.Text))
             {
                 MessageBox.Show("Please Select Group");
             }
@@ -360,11 +394,12 @@ namespace AccountsManagementSystem.UI
             }
             else
             {
-                totalExpense = totalExpense + balance;
-                textBox4.Text = totalExpense.ToString();
+                totalLiability = totalLiability + balance;
+                textBox4.Text = totalLiability.ToString();
                 dataGridView4.Rows.Add(Lid, textBox2.Text, balance, ExpenseSid, EGId);
                 ClearExpenses();
-                CalculatePNL();
+                totalCredit = totalCredit + totalLiability;
+                CalculateBS();
             }
         }
 
@@ -387,39 +422,47 @@ namespace AccountsManagementSystem.UI
         {
             if (dataGridView1.RowCount-1 > 0)
             {
-                MessageBox.Show("Revenue Items Left You can not complete PNL Now","Stop",MessageBoxButtons.OK,MessageBoxIcon.Stop);
+                MessageBox.Show("Asset Items Left You can not complete Balance Sheet Now","Stop",MessageBoxButtons.OK,MessageBoxIcon.Stop);
                 dataGridView1.Focus();
             }
             else if (dataGridView2.RowCount-1 > 0)
             {
-                MessageBox.Show("Expense Items Left You can not complete PNL Now", "Stop", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                MessageBox.Show("Liability Items Left You can not complete Balance Sheet Now", "Stop", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                 dataGridView2.Focus();
+            }
+            else if (dataGridView5.RowCount - 1 > 0)
+            {
+                MessageBox.Show("Equity Items Left You can not complete Balance Sheet Now", "Stop", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                dataGridView5.Focus();
             }
             else if (!string.IsNullOrWhiteSpace(textBox1.Text))
             {
-                MessageBox.Show("You Forgot To Add Something On The List.You can not complete PNL Now", "Stop", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                MessageBox.Show("You Forgot To Add Something On The List.You can not complete Balance Sheet Now", "Stop", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                 textBox1.Focus();
             }
             else if (!string.IsNullOrWhiteSpace(textBox2.Text))
             {
-                MessageBox.Show("You Forgot To Add Something On The List.You can not complete PNL Now", "Stop", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                MessageBox.Show("You Forgot To Add Something On The List.You can not complete Balance Sheet Now", "Stop", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                 textBox2.Focus();
+            }
+            else if (!string.IsNullOrWhiteSpace(textBox6.Text))
+            {
+                MessageBox.Show("You Forgot To Add Something On The List.You can not complete Balance Sheet Now", "Stop", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                textBox6.Focus();
             }
             else
             {
                 con = new SqlConnection(cs.DBConn);
-                string query1 = "INSERT INTO PNLEvent (EntryDate, UserId, PL, Balance, FiscalId) VALUES (@d1,@d2,@d3,@d4,@d5) SELECT CONVERT(int, SCOPE_IDENTITY());";
+                string query1 = "INSERT INTO BSEvent (EntryDate, UserId, FiscalId) VALUES (@d1,@d2,@d5) SELECT CONVERT(int, SCOPE_IDENTITY());";
                 cmd.Connection = con;
                 cmd.CommandText = query1;
                 cmd.Parameters.AddWithValue("@d1",DateTime.UtcNow.ToLocalTime());
                 cmd.Parameters.AddWithValue("@d2",frmLogin.uId );
-                cmd.Parameters.AddWithValue("@d3", label7.Text);
-                cmd.Parameters.AddWithValue("@d4", textBox5.Text);
                 cmd.Parameters.AddWithValue("@d5", FiscalYear.phiscalYear);
                 con.Open();
                 int Pid = (int) cmd.ExecuteScalar();
                 con.Close();
-                string query = "INSERT INTO GLRel (LId, GId,Balance,PId) VALUES  (@d1,@d2,@d3,"+Pid+")";
+                string query = "INSERT INTO BSRel (LId, GId,Balance,BId,LedgerName) VALUES  (@d1,@d2,@d3," + Pid + ",@d4)";
                 cmd.CommandText = query;
                
                 con.Open();
@@ -429,6 +472,7 @@ namespace AccountsManagementSystem.UI
                     cmd.Parameters.AddWithValue("@d1", dataGridView3.Rows[i].Cells[0].Value);
                     cmd.Parameters.AddWithValue("@d2", dataGridView3.Rows[i].Cells[4].Value);
                     cmd.Parameters.AddWithValue("@d3", dataGridView3.Rows[i].Cells[2].Value);
+                    cmd.Parameters.AddWithValue("@d4", dataGridView3.Rows[i].Cells[1].Value);
                     cmd.ExecuteNonQuery();
                 }
                 for (int i = 0; i < dataGridView4.RowCount-1; i++)
@@ -437,6 +481,16 @@ namespace AccountsManagementSystem.UI
                     cmd.Parameters.AddWithValue("@d1", dataGridView4.Rows[i].Cells[0].Value);
                     cmd.Parameters.AddWithValue("@d2", dataGridView4.Rows[i].Cells[4].Value);
                     cmd.Parameters.AddWithValue("@d3", dataGridView4.Rows[i].Cells[2].Value);
+                    cmd.Parameters.AddWithValue("@d4", dataGridView4.Rows[i].Cells[1].Value);
+                    cmd.ExecuteNonQuery();
+                }
+                for (int i = 0; i < dataGridView6.RowCount - 1; i++)
+                {
+                    cmd.Parameters.Clear();
+                    cmd.Parameters.AddWithValue("@d1", dataGridView6.Rows[i].Cells[0].Value);
+                    cmd.Parameters.AddWithValue("@d2", dataGridView6.Rows[i].Cells[4].Value);
+                    cmd.Parameters.AddWithValue("@d3", dataGridView6.Rows[i].Cells[2].Value);
+                    cmd.Parameters.AddWithValue("@d4", dataGridView6.Rows[i].Cells[1].Value);
                     cmd.ExecuteNonQuery();
                 }
                 con.Close();
@@ -450,7 +504,67 @@ namespace AccountsManagementSystem.UI
 
         private void comboBox5_SelectedIndexChanged(object sender, EventArgs e)
         {
+            var eGid = from grups in GroupList
+                where grups.GroupName == comboBox5.Text
+                select grups;
+            _eqGId = eGid.FirstOrDefault().GId;
+        }
 
+        private void comboBox6_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            comboBox5.Items.Clear();
+            var expenseSid = from SubAccountTypes in SubAccountTypesList
+                where SubAccountTypes.SName == comboBox6.Text
+                select SubAccountTypes;
+             _eqSid = expenseSid.FirstOrDefault().SId;
+            var groups = from Groups in GroupList
+                where Groups.Stype == comboBox6.Text
+                select Groups.GroupName;
+            foreach (string grGroup in groups)
+            {
+                comboBox5.Items.Add(grGroup);
+            }
+        }
+
+        private void dataGridView5_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (dataGridView5.SelectedRows[0] == dataGridView5.Rows[dataGridView2.RowCount - 1])
+            {
+                MessageBox.Show("Select a Valid Ledger");
+            }
+            else
+            {
+                dr = dataGridView5.SelectedRows[0];
+                Lid = Convert.ToInt32(dr.Cells[0].Value);
+                textBox6.Text = dr.Cells[1].Value.ToString();
+                balance = Convert.ToDecimal(dr.Cells[2].Value);
+            }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(comboBox6.Text))
+            {
+                MessageBox.Show("Please Select Account Type");
+            }
+
+            else if (string.IsNullOrWhiteSpace(comboBox5.Text))
+            {
+                MessageBox.Show("Please Select Group");
+            }
+            else if (string.IsNullOrWhiteSpace(textBox6.Text))
+            {
+                MessageBox.Show("Please Select Ledger");
+            }
+            else
+            {
+                totalEquity = totalEquity + balance;
+                totalCredit = totalCredit + totalEquity;
+                textBox5.Text = totalEquity.ToString();
+                dataGridView6.Rows.Add(Lid, textBox2.Text, balance, ExpenseSid, EGId);
+                ClearEquity();
+                CalculateBS();
+            }
         }
     }
 }

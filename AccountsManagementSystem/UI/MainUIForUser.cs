@@ -81,5 +81,13 @@ namespace AccountsManagementSystem.UI
             fr.ShowDialog();
             this.Visible = true;
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            BAlanceSheetUI fr = new BAlanceSheetUI();
+            this.Visible = false;
+            fr.ShowDialog();
+            this.Visible = true;
+        }
     }
 }

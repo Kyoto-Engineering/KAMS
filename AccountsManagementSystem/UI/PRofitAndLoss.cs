@@ -285,12 +285,12 @@ namespace AccountsManagementSystem.UI
 
         private void button2_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(comboBox3.Text))
+            if (string.IsNullOrWhiteSpace(comboBox4.Text))
             {
                 MessageBox.Show("Please Select Account Type");
             }
 
-            else if (string.IsNullOrWhiteSpace(comboBox4.Text))
+            else if (string.IsNullOrWhiteSpace(comboBox3.Text))
             {
                 MessageBox.Show("Please Select Group");
             }
