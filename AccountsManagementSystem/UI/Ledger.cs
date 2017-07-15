@@ -195,13 +195,14 @@ namespace AccountsManagementSystem.UI
                 {
                     con = new SqlConnection(cs.DBConn);
                     con.Open();
-                    string cb = "Update Ledger set PreviousLedgerId=@d1,LedgerName=@d2,UpdatedBy=@d3,DateUpdated=@d4 where Ledger.LedgerId='" + txtLedgerId.Text + "'";
+                    string cb = "Update Ledger set PreviousLedgerId=@d1,LedgerName=@d2,UpdatedBy=@d3,DateUpdated=@d4,AGRelId=@d5 where Ledger.LedgerId='" + txtLedgerId.Text + "'";
                     cmd = new SqlCommand(cb);
                     cmd.Connection = con;
                     cmd.Parameters.AddWithValue("@d1", txtPreviousLedgerId.Text);
                     cmd.Parameters.AddWithValue("@d2", txtLedgerName.Text);
                     cmd.Parameters.AddWithValue("@d3", userId);
                     cmd.Parameters.AddWithValue("@d4", Convert.ToDateTime(System.DateTime.Today, System.Globalization.CultureInfo.GetCultureInfo("hi-IN").DateTimeFormat));
+                    cmd.Parameters.AddWithValue("@d5", AGRelId1);
                     rdr = cmd.ExecuteReader();
                     con.Close();
 
