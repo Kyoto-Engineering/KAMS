@@ -561,7 +561,7 @@ namespace AccountsManagementSystem.UI
                 totalEquity = totalEquity + balance;
                 totalCredit = totalCredit + totalEquity;
                 textBox5.Text = totalEquity.ToString();
-                dataGridView6.Rows.Add(Lid, textBox6.Text, balance, ExpenseSid, EGId);
+                dataGridView6.Rows.Add(Lid, textBox6.Text, balance, _eqSid, _eqGId);
                 ClearEquity();
                 CalculateBS();
             }
