@@ -416,6 +416,14 @@ namespace AccountsManagementSystem.UI
                 comboBox3.Items.Clear();
             dataGridView1.Rows.Clear();
             dataGridView2.Rows.Clear();
+            dataGridView5.Rows.Clear();
+            dataGridView6.Rows.Clear();
+           // LoadAssetAccountTypes();
+            //LoadLiabilityAccountTypes();
+            //LoadEquityAccountTypes();
+            
+
+
         }
 
         private void button3_Click(object sender, EventArgs e)
