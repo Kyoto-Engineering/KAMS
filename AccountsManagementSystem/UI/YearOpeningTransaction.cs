@@ -49,14 +49,14 @@ namespace AccountsManagementSystem.UI
                 txt1DebitAmount.Focus();
                 return;
             }
-            decimal debitAmount = Convert.ToDecimal(txt1DebitAmount.Text);
-            if (debitAmount == 0)
-            {
-                MessageBox.Show("Items Can not be Added with zero values.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txt1DebitAmount.Clear();
-                txt1DebitAmount.Focus();
-                return;
-            }
+            //decimal debitAmount = Convert.ToDecimal(txt1DebitAmount.Text);
+            //if (debitAmount == 0)
+            //{
+            //    MessageBox.Show("Items Can not be Added with zero values.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //    txt1DebitAmount.Clear();
+            //    txt1DebitAmount.Focus();
+            //    return;
+            //}
 
             try
             {
@@ -223,13 +223,13 @@ namespace AccountsManagementSystem.UI
                 return;
             }
             decimal creditAmount = Convert.ToDecimal(txt2CreditAmount.Text);
-            if (creditAmount == 0)
-            {
-                MessageBox.Show("Items Can not be Added with zero values.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txt2CreditAmount.Clear();
-                txt2CreditAmount.Focus();
-                return;
-            }
+            //if (creditAmount == 0)
+            //{
+            //    MessageBox.Show("Items Can not be Added with zero values.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //    txt2CreditAmount.Clear();
+            //    txt2CreditAmount.Focus();
+            //    return;
+            //}
 
             try
             {
