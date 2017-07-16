@@ -11,6 +11,10 @@ using System.Windows.Forms;
 using AccountsManagementSystem.DbGateway;
 using AccountsManagementSystem.LogInUI;
 using AccountsManagementSystem.Models;
+using AccountsManagementSystem.Reports;
+using CrystalDecisions.CrystalReports.Engine;
+using CrystalDecisions.Shared;
+using Groups = AccountsManagementSystem.Models.Groups;
 
 namespace AccountsManagementSystem.UI
 {
@@ -323,6 +327,62 @@ namespace AccountsManagementSystem.UI
             dataGridView2.Rows.Clear();
         }
 
+        private int _pid;
+        private void Report()
+        {
+
+            ParameterField parameterFieldPN = new ParameterField();
+
+            ParameterFields parameterFieldsPN = new ParameterFields();
+
+            ParameterDiscreteValue parameterDiscreteValuePN = new ParameterDiscreteValue();
+
+
+            parameterFieldPN.Name = "id";
+
+            parameterDiscreteValuePN.Value = _pid;
+
+            parameterFieldPN.CurrentValues.Add(parameterDiscreteValuePN);
+
+            parameterFieldsPN.Add(parameterFieldPN);
+
+            ReportViewer rv = new ReportViewer();
+          // TableLogOnInfos reprtLogOnInfos = new TableLogOnInfos();
+            TableLogOnInfos reportLogonInfos = new TableLogOnInfos();
+            TableLogOnInfo reportLogonInfo = new TableLogOnInfo();
+            ConnectionInfo reportConInfo = new ConnectionInfo();
+            Tables tables = default(Tables);
+           
+            
+            var with1 = reportConInfo;
+            with1.ServerName = "tcp:KyotoServer,49172";
+            with1.DatabaseName = "AccountDb_new2";
+            with1.UserID = "sa";
+            with1.Password = "SystemAdministrator";
+
+
+           PNLTotalX cr = new PNLTotalX();
+
+            tables = cr.Database.Tables;
+            foreach (Table table in tables)
+            {
+                reportLogonInfo = table.LogOnInfo;
+                reportLogonInfo.ConnectionInfo = reportConInfo;
+                table.ApplyLogOnInfo(reportLogonInfo);
+            }
+
+            rv.crystalReportViewer1.ParameterFieldInfo = parameterFieldsPN;
+            rv.crystalReportViewer1.ReportSource = cr;
+
+            this.Visible = false;
+
+            rv.ShowDialog();
+            this.Visible = true;
+
+     }
+
+
+
         private void button3_Click(object sender, EventArgs e)
         {
             if (dataGridView1.RowCount-1 > 0)
@@ -357,9 +417,9 @@ namespace AccountsManagementSystem.UI
                 cmd.Parameters.AddWithValue("@d4", textBox5.Text);
                 cmd.Parameters.AddWithValue("@d5", FiscalYear.phiscalYear);
                 con.Open();
-                int Pid = (int) cmd.ExecuteScalar();
+                _pid = (int) cmd.ExecuteScalar();
                 con.Close();
-                string query = "INSERT INTO GLRel (LId, GId,Balance,PId) VALUES  (@d1,@d2,@d3,"+Pid+")";
+                string query = "INSERT INTO GLRel (LId, GId,Balance,PId) VALUES  (@d1,@d2,@d3,"+_pid+")";
                 cmd.CommandText = query;
                
                 con.Open();
@@ -381,8 +441,10 @@ namespace AccountsManagementSystem.UI
                 }
                 con.Close();
                 MessageBox.Show("Successfully Done");
-
+                
+                Report();
                 ClearAfterDone();
+                
 
 
             }
