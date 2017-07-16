@@ -24,7 +24,7 @@ namespace AccountsManagementSystem.UI
         private SqlConnection con;
         ConnectionString cs=new ConnectionString();
         private DataGridViewRow dr;
-        private int ExpenseSid, EGId,Lid;
+        private int ExpenseSid, EGId,Lid,pnlId;
         private int asetSid,agId;
         private decimal balance, totalAsset = 0.0m, totalLiability = 0.0m, profitorLoss = 0.0m, totalEquity=0.0m,totalCredit=0.0m;
         private DateTime pnlDateTime;
@@ -154,6 +154,7 @@ namespace AccountsManagementSystem.UI
                 rdr = cmd.ExecuteReader();
                 while (rdr.Read())
                 {
+                    pnlId = rdr.GetInt32(0);
                     pnlDateTime = rdr.GetDateTime(1);
                     LossOrProfit = rdr.GetString(3);
                     profitorLoss = rdr.GetDecimal(4);
@@ -465,7 +466,7 @@ namespace AccountsManagementSystem.UI
             else
             {
                 con = new SqlConnection(cs.DBConn);
-                string query1 = "INSERT INTO BSEvent (EntryDate, UserId, FiscalId) VALUES (@d1,@d2,@d5) SELECT CONVERT(int, SCOPE_IDENTITY());";
+                string query1 = "INSERT INTO BSEvent (EntryDate, UserId, FiscalId,PId) VALUES (@d1,@d2,@d5,"+pnlId+") SELECT CONVERT(int, SCOPE_IDENTITY());";
                 cmd.Connection = con;
                 cmd.CommandText = query1;
                 cmd.Parameters.AddWithValue("@d1",DateTime.UtcNow.ToLocalTime());
