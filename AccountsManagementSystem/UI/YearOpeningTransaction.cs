@@ -189,8 +189,8 @@ namespace AccountsManagementSystem.UI
             txtTotalDebitBalance.Text = totalDebit.ToString();
 
 
-            cmb1LedgerName.Items.Add(listView1.SelectedItems[0].SubItems[0].Text);
-            cmb2LedgerName.Items.Add(listView1.SelectedItems[0].SubItems[0].Text);
+            cmb1LedgerName.Items.Add(listView1.SelectedItems[0].SubItems[1].Text);
+            cmb2LedgerName.Items.Add(listView1.SelectedItems[0].SubItems[1].Text);
             for (int i = listView1.Items.Count - 1; i >= 0; i--)
             {
                 if (listView1.Items[i].Selected)
@@ -321,7 +321,7 @@ namespace AccountsManagementSystem.UI
             totalCredit = totalCredit - takeRemove2;
             txtTotalCreditBalance.Text = totalCredit.ToString();
 
-            cmb2LedgerName.Items.Add(listView2.SelectedItems[0].SubItems[0].Text);
+            cmb2LedgerName.Items.Add(listView2.SelectedItems[0].SubItems[1].Text);
             for (int i = listView2.Items.Count - 1; i >= 0; i--)
             {
                 if (listView2.Items[i].Selected)
