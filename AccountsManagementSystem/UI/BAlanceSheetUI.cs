@@ -11,6 +11,10 @@ using System.Windows.Forms;
 using AccountsManagementSystem.DbGateway;
 using AccountsManagementSystem.LogInUI;
 using AccountsManagementSystem.Models;
+using AccountsManagementSystem.Reports;
+using CrystalDecisions.CrystalReports.Engine;
+using CrystalDecisions.Shared;
+using Groups = AccountsManagementSystem.Models.Groups;
 
 namespace AccountsManagementSystem.UI
 {
@@ -31,6 +35,7 @@ namespace AccountsManagementSystem.UI
         private string LossOrProfit;
         private int _eqGId;
         private int _eqSid;
+        private int _bId;
 
         public BAlanceSheetUI()
         {
@@ -439,6 +444,107 @@ namespace AccountsManagementSystem.UI
 
         }
 
+        private void Report()
+        {
+            ParameterField parameterField1 = new ParameterField();
+
+            ParameterFields parameterFields1 = new ParameterFields();
+            
+            ParameterDiscreteValue parameterDiscreteValue1 = new ParameterDiscreteValue();
+
+            parameterField1.Name = "id";
+
+            parameterDiscreteValue1.Value = _bId;
+
+            parameterField1.CurrentValues.Add(parameterDiscreteValue1);
+
+            parameterFields1.Add(parameterField1);
+
+            ReportViewer f1 = new ReportViewer();
+            TableLogOnInfos reportLogonInfos = new TableLogOnInfos();
+            TableLogOnInfo reportLogonInfo = new TableLogOnInfo();
+            ConnectionInfo reportConInfo = new ConnectionInfo();
+            Tables tables = default(Tables);
+
+            var with1 = reportConInfo;
+            with1.ServerName = "tcp:KyotoServer,49172";
+            with1.DatabaseName = "AccountDb_new2";
+            with1.UserID = "sa";
+            with1.Password = "SystemAdministrator";
+
+            BSTotalX cr = new BSTotalX();
+
+            tables = cr.Database.Tables;
+            foreach (Table table in tables)
+            {
+                reportLogonInfo = table.LogOnInfo;
+                reportLogonInfo.ConnectionInfo = reportConInfo;
+                table.ApplyLogOnInfo(reportLogonInfo);
+            }
+
+            f1.crystalReportViewer1.ParameterFieldInfo = parameterFields1;
+            f1.crystalReportViewer1.ReportSource = cr;
+
+            this.Visible = false;
+
+            f1.ShowDialog();
+            this.Visible = true;
+
+
+
+        }
+
+        private void Report1()
+        {
+            ParameterField parameterField1 = new ParameterField();
+
+            ParameterFields parameterFields1 = new ParameterFields();
+
+            ParameterDiscreteValue parameterDiscreteValue1 = new ParameterDiscreteValue();
+
+            parameterField1.Name = "id";
+
+            parameterDiscreteValue1.Value = _bId;
+
+            parameterField1.CurrentValues.Add(parameterDiscreteValue1);
+
+            parameterFields1.Add(parameterField1);
+
+            ReportViewer f1 = new ReportViewer();
+            TableLogOnInfos reportLogonInfos = new TableLogOnInfos();
+            TableLogOnInfo reportLogonInfo = new TableLogOnInfo();
+            ConnectionInfo reportConInfo = new ConnectionInfo();
+            Tables tables = default(Tables);
+
+            var with1 = reportConInfo;
+            with1.ServerName = "tcp:KyotoServer,49172";
+            with1.DatabaseName = "AccountDb_new2";
+            with1.UserID = "sa";
+            with1.Password = "SystemAdministrator";
+
+            Equity cr = new Equity();
+
+            tables = cr.Database.Tables;
+            foreach (Table table in tables)
+            {
+                reportLogonInfo = table.LogOnInfo;
+                reportLogonInfo.ConnectionInfo = reportConInfo;
+                table.ApplyLogOnInfo(reportLogonInfo);
+            }
+
+            f1.crystalReportViewer1.ParameterFieldInfo = parameterFields1;
+            f1.crystalReportViewer1.ReportSource = cr;
+
+            this.Visible = false;
+
+            f1.ShowDialog();
+            this.Visible = true;
+
+
+
+        }
+
+
         private void button3_Click(object sender, EventArgs e)
         {
             if (dataGridView1.RowCount-1 > 0)
@@ -481,9 +587,9 @@ namespace AccountsManagementSystem.UI
                 cmd.Parameters.AddWithValue("@d2",frmLogin.uId );
                 cmd.Parameters.AddWithValue("@d5", FiscalYear.phiscalYear);
                 con.Open();
-                int Pid = (int) cmd.ExecuteScalar();
+                _bId = (int) cmd.ExecuteScalar();
                 con.Close();
-                string query = "INSERT INTO BSRel (LId, GId,Balance,BId,LedgerName) VALUES  (@d1,@d2,@d3," + Pid + ",@d4)";
+                string query = "INSERT INTO BSRel (LId, GId,Balance,BId,LedgerName) VALUES  (@d1,@d2,@d3," + _bId + ",@d4)";
                 cmd.CommandText = query;
                
                 con.Open();
@@ -517,11 +623,15 @@ namespace AccountsManagementSystem.UI
                 con.Close();
                 MessageBox.Show("Successfully Done");
 
+                Report();
+                Report1();
                 ClearAfterDone();
 
 
             }
         }
+
+
 
         private void comboBox5_SelectedIndexChanged(object sender, EventArgs e)
         {
