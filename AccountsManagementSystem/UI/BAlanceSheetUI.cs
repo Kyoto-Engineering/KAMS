@@ -149,6 +149,7 @@ namespace AccountsManagementSystem.UI
                 con.Close();
                 string query2 =
                     "declare  @d1 as int; set @d1=(select MAX(PId) from PNLEvent where FiscalId="+ FiscalYear.phiscalYear+");select * from PNLEvent where PId= @d1;";
+                cmd.CommandText = query2;
                 con.Open();
                 rdr = cmd.ExecuteReader();
                 while (rdr.Read())
@@ -179,6 +180,17 @@ namespace AccountsManagementSystem.UI
                     {
                         this.Close();
                     }
+                }
+                else
+                {
+                    LoadSubAccountTypes();
+                    LoadGroups();
+                    LoadAssetAccountTypes();
+                    LoadLiabilityAccountTypes();
+                    LoadEquityAccountTypes();
+                    LoadGridOne();
+                    LoadGridTwo();
+                    LoadGridThree();
                 }
             }
 
