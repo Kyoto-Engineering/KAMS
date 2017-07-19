@@ -186,6 +186,7 @@
             this.txtSExpence.Size = new System.Drawing.Size(268, 29);
             this.txtSExpence.TabIndex = 7;
             this.txtSExpence.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSExpence_KeyDown);
+            this.txtSExpence.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSExpence_KeyPress);
             // 
             // txtSReceive
             // 
@@ -195,6 +196,7 @@
             this.txtSReceive.Size = new System.Drawing.Size(268, 29);
             this.txtSReceive.TabIndex = 6;
             this.txtSReceive.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSReceive_KeyDown);
+            this.txtSReceive.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSReceive_KeyPress);
             // 
             // txtSParticulars
             // 
