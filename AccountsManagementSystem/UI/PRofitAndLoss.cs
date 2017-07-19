@@ -405,6 +405,11 @@ namespace AccountsManagementSystem.UI
                 MessageBox.Show("You Forgot To Add Something On The List.You can not complete PNL Now", "Stop", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                 textBox2.Focus();
             }
+            else if (dataGridView3.RowCount - 1 == 0 && dataGridView4.RowCount - 1 == 0)
+            {
+                MessageBox.Show(@"Nothing to Entry ", "Stop", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                
+            }
             else
             {
                 con = new SqlConnection(cs.DBConn);
