@@ -168,6 +168,7 @@
             this.dataGridViewk.DefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridViewk.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
             this.dataGridViewk.Location = new System.Drawing.Point(21, 107);
+            this.dataGridViewk.MultiSelect = false;
             this.dataGridViewk.Name = "dataGridViewk";
             this.dataGridViewk.ReadOnly = true;
             this.dataGridViewk.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToDisplayedHeaders;

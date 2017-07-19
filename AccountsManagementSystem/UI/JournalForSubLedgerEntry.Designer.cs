@@ -79,6 +79,7 @@
             this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView1.GridColor = System.Drawing.Color.Blue;
             this.dataGridView1.Location = new System.Drawing.Point(20, 19);
+            this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(866, 437);
             this.dataGridView1.TabIndex = 0;

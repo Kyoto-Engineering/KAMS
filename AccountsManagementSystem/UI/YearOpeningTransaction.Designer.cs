@@ -41,6 +41,7 @@
             this.label13 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.group1 = new System.Windows.Forms.GroupBox();
+            this.buttonDebitComplete = new System.Windows.Forms.Button();
             this.txt1TransactionType = new System.Windows.Forms.TextBox();
             this.cmb1LedgerName = new System.Windows.Forms.ComboBox();
             this.label14 = new System.Windows.Forms.Label();
@@ -69,7 +70,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.txtTotalCreditBalance = new System.Windows.Forms.TextBox();
-            this.buttonDebitComplete = new System.Windows.Forms.Button();
             this.group1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -165,6 +165,7 @@
             this.txt2CreditAmount.Name = "txt2CreditAmount";
             this.txt2CreditAmount.Size = new System.Drawing.Size(323, 32);
             this.txt2CreditAmount.TabIndex = 4;
+            this.txt2CreditAmount.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt2CreditAmount_KeyPress);
             // 
             // creditLedgerAddButton
             // 
@@ -222,6 +223,18 @@
             this.group1.TabStop = false;
             this.group1.Text = "Ledger Details";
             // 
+            // buttonDebitComplete
+            // 
+            this.buttonDebitComplete.Font = new System.Drawing.Font("Times New Roman", 10.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonDebitComplete.ForeColor = System.Drawing.Color.Blue;
+            this.buttonDebitComplete.Location = new System.Drawing.Point(554, 114);
+            this.buttonDebitComplete.Name = "buttonDebitComplete";
+            this.buttonDebitComplete.Size = new System.Drawing.Size(91, 47);
+            this.buttonDebitComplete.TabIndex = 95;
+            this.buttonDebitComplete.Text = "Debit Complete";
+            this.buttonDebitComplete.UseVisualStyleBackColor = true;
+            this.buttonDebitComplete.Click += new System.EventHandler(this.buttonDebitComplete_Click);
+            // 
             // txt1TransactionType
             // 
             this.txt1TransactionType.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
@@ -271,6 +284,7 @@
             this.txt1DebitAmount.Name = "txt1DebitAmount";
             this.txt1DebitAmount.Size = new System.Drawing.Size(295, 29);
             this.txt1DebitAmount.TabIndex = 4;
+            this.txt1DebitAmount.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt1DebitAmount_KeyPress);
             // 
             // label4
             // 
@@ -346,6 +360,7 @@
             this.listView1.FullRowSelect = true;
             this.listView1.GridLines = true;
             this.listView1.Location = new System.Drawing.Point(12, 308);
+            this.listView1.MultiSelect = false;
             this.listView1.Name = "listView1";
             this.listView1.Size = new System.Drawing.Size(645, 259);
             this.listView1.TabIndex = 89;
@@ -393,6 +408,7 @@
             this.listView2.FullRowSelect = true;
             this.listView2.GridLines = true;
             this.listView2.Location = new System.Drawing.Point(669, 308);
+            this.listView2.MultiSelect = false;
             this.listView2.Name = "listView2";
             this.listView2.Size = new System.Drawing.Size(669, 257);
             this.listView2.TabIndex = 90;
@@ -469,18 +485,6 @@
             this.txtTotalCreditBalance.ReadOnly = true;
             this.txtTotalCreditBalance.Size = new System.Drawing.Size(186, 29);
             this.txtTotalCreditBalance.TabIndex = 93;
-            // 
-            // buttonDebitComplete
-            // 
-            this.buttonDebitComplete.Font = new System.Drawing.Font("Times New Roman", 10.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonDebitComplete.ForeColor = System.Drawing.Color.Blue;
-            this.buttonDebitComplete.Location = new System.Drawing.Point(554, 114);
-            this.buttonDebitComplete.Name = "buttonDebitComplete";
-            this.buttonDebitComplete.Size = new System.Drawing.Size(91, 47);
-            this.buttonDebitComplete.TabIndex = 95;
-            this.buttonDebitComplete.Text = "Debit Complete";
-            this.buttonDebitComplete.UseVisualStyleBackColor = true;
-            this.buttonDebitComplete.Click += new System.EventHandler(this.buttonDebitComplete_Click);
             // 
             // YearOpeningTransaction
             // 

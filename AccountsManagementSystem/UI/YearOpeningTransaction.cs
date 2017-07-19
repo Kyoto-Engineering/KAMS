@@ -182,21 +182,33 @@ namespace AccountsManagementSystem.UI
 
         private void button1_Click(object sender, EventArgs e)
         {
-            takeRemove1 = Convert.ToDecimal(listView1.SelectedItems[0].SubItems[3].Text);
-            totalDebit = Convert.ToDecimal(txtTotalDebitBalance.Text);
-            takeSum1 = takeSum1 - takeRemove1;
-            totalDebit = totalDebit - takeRemove1;
-            txtTotalDebitBalance.Text = totalDebit.ToString();
-
-
-            cmb1LedgerName.Items.Add(listView1.SelectedItems[0].SubItems[1].Text);
-            cmb2LedgerName.Items.Add(listView1.SelectedItems[0].SubItems[1].Text);
-            for (int i = listView1.Items.Count - 1; i >= 0; i--)
+            if (listView1.SelectedItems.Count < 1)
             {
-                if (listView1.Items[i].Selected)
+                MessageBox.Show("Please Select a row from the list which you  want to remove", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+
+            }
+
+            else
+            {
+
+                takeRemove1 = Convert.ToDecimal(listView1.SelectedItems[0].SubItems[3].Text);
+                totalDebit = Convert.ToDecimal(txtTotalDebitBalance.Text);
+                takeSum1 = takeSum1 - takeRemove1;
+                totalDebit = totalDebit - takeRemove1;
+                txtTotalDebitBalance.Text = totalDebit.ToString();
+
+
+                cmb1LedgerName.Items.Add(listView1.SelectedItems[0].SubItems[1].Text);
+                cmb2LedgerName.Items.Add(listView1.SelectedItems[0].SubItems[1].Text);
+                for (int i = listView1.Items.Count - 1; i >= 0; i--)
                 {
-                    listView1.Items[i].Remove();
+                    if (listView1.Items[i].Selected)
+                    {
+                        listView1.Items[i].Remove();
+                    }
                 }
+
             }
         }
 
@@ -315,18 +327,29 @@ namespace AccountsManagementSystem.UI
 
         private void creditLedgerRemoveButton_Click(object sender, EventArgs e)
         {
-            takeRemove2 = Convert.ToDecimal(listView2.SelectedItems[0].SubItems[3].Text);
-            totalCredit = Convert.ToDecimal(txtTotalCreditBalance.Text);
-            takeSum2 = takeSum2 - takeRemove2;
-            totalCredit = totalCredit - takeRemove2;
-            txtTotalCreditBalance.Text = totalCredit.ToString();
-
-            cmb2LedgerName.Items.Add(listView2.SelectedItems[0].SubItems[1].Text);
-            for (int i = listView2.Items.Count - 1; i >= 0; i--)
+            if (listView2.SelectedItems.Count < 1)
             {
-                if (listView2.Items[i].Selected)
+                MessageBox.Show("Please Select a row from the list which you  want to remove", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+
+            }
+
+            else
+            {
+
+                takeRemove2 = Convert.ToDecimal(listView2.SelectedItems[0].SubItems[3].Text);
+                totalCredit = Convert.ToDecimal(txtTotalCreditBalance.Text);
+                takeSum2 = takeSum2 - takeRemove2;
+                totalCredit = totalCredit - takeRemove2;
+                txtTotalCreditBalance.Text = totalCredit.ToString();
+
+                cmb2LedgerName.Items.Add(listView2.SelectedItems[0].SubItems[1].Text);
+                for (int i = listView2.Items.Count - 1; i >= 0; i--)
                 {
-                    listView2.Items[i].Remove();
+                    if (listView2.Items[i].Selected)
+                    {
+                        listView2.Items[i].Remove();
+                    }
                 }
             }
         }
@@ -608,6 +631,32 @@ namespace AccountsManagementSystem.UI
         {
             group1.Enabled = false;
             groupBox2.Enabled = true;
+        }
+
+        private void txt1DebitAmount_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != '.')
+            {
+                e.Handled = true;
+            }
+
+            if (e.KeyChar == '.' && (sender as TextBox).Text.IndexOf('.') > -1)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txt2CreditAmount_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != '.')
+            {
+                e.Handled = true;
+            }
+
+            if (e.KeyChar == '.' && (sender as TextBox).Text.IndexOf('.') > -1)
+            {
+                e.Handled = true;
+            }
         }
     }
 }
