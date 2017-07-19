@@ -468,7 +468,7 @@ namespace AccountsManagementSystem.UI
 
             var with1 = reportConInfo;
             with1.ServerName = "tcp:KyotoServer,49172";
-            with1.DatabaseName = "AccountDb_new2";
+            with1.DatabaseName = "AccountDb_new";
             with1.UserID = "sa";
             with1.Password = "SystemAdministrator";
 
@@ -518,7 +518,7 @@ namespace AccountsManagementSystem.UI
 
             var with1 = reportConInfo;
             with1.ServerName = "tcp:KyotoServer,49172";
-            with1.DatabaseName = "AccountDb_new2";
+            with1.DatabaseName = "AccountDb_new";
             with1.UserID = "sa";
             with1.Password = "SystemAdministrator";
 
@@ -631,6 +631,7 @@ namespace AccountsManagementSystem.UI
                 Report();
                 Report1();
                 ClearAfterDone();
+                this.Close();
 
 
             }
