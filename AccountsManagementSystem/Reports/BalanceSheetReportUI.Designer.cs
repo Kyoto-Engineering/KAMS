@@ -63,6 +63,7 @@
             this.BSIdComboBox.Name = "BSIdComboBox";
             this.BSIdComboBox.Size = new System.Drawing.Size(172, 21);
             this.BSIdComboBox.TabIndex = 4;
+            this.BSIdComboBox.SelectedIndexChanged += new System.EventHandler(this.BSIdComboBox_SelectedIndexChanged);
             // 
             // GetButton
             // 
