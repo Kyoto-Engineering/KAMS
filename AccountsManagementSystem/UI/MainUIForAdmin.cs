@@ -138,6 +138,24 @@ namespace AccountsManagementSystem.UI
             dr.ShowDialog();
             this.Visible = true;
         }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            PRofitAndLoss fr = new PRofitAndLoss();
+            this.Visible = false;
+            fr.ShowDialog();
+            this.Visible = true;
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            BAlanceSheetUI fr = new BAlanceSheetUI();
+            this.Visible = false;
+            fr.ShowDialog();
+            this.Visible = true;
+        }
+
+
         }
     
 }

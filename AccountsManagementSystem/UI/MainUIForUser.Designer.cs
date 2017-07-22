@@ -31,14 +31,12 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainUIForUser));
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
             this.journalButton = new System.Windows.Forms.Button();
             this.btnReports = new System.Windows.Forms.Button();
             this.btnregistration = new System.Windows.Forms.Button();
             this.ledgerEntryButton = new System.Windows.Forms.Button();
             this.logOutButton = new System.Windows.Forms.Button();
             this.lblUser2 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -57,8 +55,6 @@
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.groupBox1.Controls.Add(this.button2);
-            this.groupBox1.Controls.Add(this.button1);
             this.groupBox1.Controls.Add(this.journalButton);
             this.groupBox1.Controls.Add(this.btnReports);
             this.groupBox1.Controls.Add(this.btnregistration);
@@ -68,16 +64,6 @@
             this.groupBox1.Size = new System.Drawing.Size(148, 623);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(29, 417);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 9;
-            this.button1.Text = "PNL";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // journalButton
             // 
@@ -155,16 +141,6 @@
             this.lblUser2.Text = "label2";
             this.lblUser2.Visible = false;
             // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(29, 478);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 54);
-            this.button2.TabIndex = 10;
-            this.button2.Text = "Balance Sheet";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
             // MainUIForUser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -196,8 +172,6 @@
         private System.Windows.Forms.Button btnregistration;
         private System.Windows.Forms.Button ledgerEntryButton;
         private System.Windows.Forms.Button logOutButton;
-        public  System.Windows.Forms.Label lblUser2;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        public System.Windows.Forms.Label lblUser2;
     }
 }
