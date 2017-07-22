@@ -11,15 +11,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using AccountsManagementSystem.UI;
 
 namespace AccountsManagementSystem.Reports
-{   public partial class PNLReportUI : Form
+{
+    public partial class PNLReportUI : Form
     {
         private SqlConnection con;
         private SqlCommand cmd;
         private SqlDataReader rdr;
         ConnectionString cs = new ConnectionString();
         private int id;
+        public int PId, FiscalId;
+        public static string pyear;
         public PNLReportUI()
         {
             InitializeComponent();
@@ -42,7 +46,7 @@ namespace AccountsManagementSystem.Reports
             paramField1.Name = "id";
 
             //set the parameter value
-            paramDiscreteValue1.Value = PNLIdComboBox.Text;
+            paramDiscreteValue1.Value = PId;
 
             //add the parameter value in the ParameterField object
             paramField1.CurrentValues.Add(paramDiscreteValue1);
@@ -76,7 +80,9 @@ namespace AccountsManagementSystem.Reports
             f2.ShowDialog();
             this.Visible = true;
             GetButton.Enabled = true;
+            PNLIdComboBox.SelectedIndexChanged -= PNLIdComboBox_SelectedIndexChanged;
             PNLIdComboBox.SelectedIndex = -1;
+            PNLIdComboBox.SelectedIndexChanged += PNLIdComboBox_SelectedIndexChanged;
         }
 
         private void groupBox1_Enter(object sender, EventArgs e)
@@ -86,12 +92,13 @@ namespace AccountsManagementSystem.Reports
 
         private void PNLReportUI_Load(object sender, EventArgs e)
         {
+            pyear = FiscalYear.phiscalYear.ToString();
             try
             {
 
                 con = new SqlConnection(cs.DBConn);
                 con.Open();
-                string ct = "SELECT PId FROM PNLEvent ORDER BY PId";
+                string ct = "select (Convert(varchar(10),PNLEvent.FiscalId)+'-'+ Convert(varchar(10),PNLEvent.PId)) from PNLEvent where PNLEvent.FiscalId='" + pyear +"'";
                 cmd = new SqlCommand(ct);
                 cmd.Connection = con;
                 rdr = cmd.ExecuteReader();
@@ -108,5 +115,27 @@ namespace AccountsManagementSystem.Reports
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-    }
+
+        private void PNLIdComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string[] splitterArray = PNLIdComboBox.Text.Split('-');
+            PId = Convert.ToInt32(splitterArray[1]);
+            FiscalId = Convert.ToInt32(splitterArray[0]);
+            
+            string qry =
+                "SELECT PNLEvent.PId, FiscalYears.FiscalId FROM PNLEvent INNER JOIN FiscalYears ON PNLEvent.FiscalId = FiscalYears.FiscalId where PNLEvent.FiscalId='" + FiscalId + "'";
+            con = new SqlConnection(cs.DBConn);
+            cmd.CommandText = qry;
+            cmd.Connection = con;
+            con.Open();
+            rdr = cmd.ExecuteReader();
+            while (rdr.Read())
+            {
+                PId = (rdr.GetInt32(0));
+                FiscalId = (rdr.GetInt32(1));
+                
+            }
+            con.Close();
+        }
+  }
 }
