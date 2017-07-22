@@ -35,6 +35,8 @@
             this.button4 = new System.Windows.Forms.Button();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.button5 = new System.Windows.Forms.Button();
+            this.button6 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // button3
@@ -83,7 +85,7 @@
             // 
             // progressBar1
             // 
-            this.progressBar1.Location = new System.Drawing.Point(168, 245);
+            this.progressBar1.Location = new System.Drawing.Point(168, 345);
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(181, 23);
             this.progressBar1.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
@@ -94,12 +96,36 @@
             // 
             this.backgroundWorker1.WorkerSupportsCancellation = true;
             // 
+            // button5
+            // 
+            this.button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button5.Location = new System.Drawing.Point(183, 232);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(150, 43);
+            this.button5.TabIndex = 8;
+            this.button5.Text = "PNL Sheet";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click_1);
+            // 
+            // button6
+            // 
+            this.button6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button6.Location = new System.Drawing.Point(183, 284);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(150, 39);
+            this.button6.TabIndex = 9;
+            this.button6.Text = "Balance Sheet";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
+            // 
             // ReportsUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Wheat;
-            this.ClientSize = new System.Drawing.Size(517, 329);
+            this.ClientSize = new System.Drawing.Size(555, 395);
+            this.Controls.Add(this.button6);
+            this.Controls.Add(this.button5);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
@@ -121,5 +147,7 @@
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button button6;
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace AccountsManagementSystem.Reports
 {
-    partial class PNLReportUI
+    partial class BalanceSheetReportUI
     {
         /// <summary>
         /// Required designer variable.
@@ -29,62 +29,61 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.PNLIdComboBox = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.BSIdComboBox = new System.Windows.Forms.ComboBox();
             this.GetButton = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.GetButton);
-            this.groupBox1.Controls.Add(this.PNLIdComboBox);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Location = new System.Drawing.Point(12, 14);
+            this.groupBox1.Controls.Add(this.BSIdComboBox);
+            this.groupBox1.Controls.Add(this.GetButton);
+            this.groupBox1.Location = new System.Drawing.Point(12, 23);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(395, 287);
+            this.groupBox1.Size = new System.Drawing.Size(491, 281);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
-            // 
-            // PNLIdComboBox
-            // 
-            this.PNLIdComboBox.FormattingEnabled = true;
-            this.PNLIdComboBox.Location = new System.Drawing.Point(144, 38);
-            this.PNLIdComboBox.Name = "PNLIdComboBox";
-            this.PNLIdComboBox.Size = new System.Drawing.Size(185, 21);
-            this.PNLIdComboBox.TabIndex = 1;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(49, 39);
+            this.label1.Location = new System.Drawing.Point(67, 44);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(93, 17);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "PNL ID      :";
+            this.label1.Size = new System.Drawing.Size(133, 17);
+            this.label1.TabIndex = 5;
+            this.label1.Text = "BS ID                :";
+            // 
+            // BSIdComboBox
+            // 
+            this.BSIdComboBox.FormattingEnabled = true;
+            this.BSIdComboBox.Location = new System.Drawing.Point(200, 44);
+            this.BSIdComboBox.Name = "BSIdComboBox";
+            this.BSIdComboBox.Size = new System.Drawing.Size(172, 21);
+            this.BSIdComboBox.TabIndex = 4;
             // 
             // GetButton
             // 
             this.GetButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.GetButton.Location = new System.Drawing.Point(185, 229);
+            this.GetButton.Location = new System.Drawing.Point(240, 201);
             this.GetButton.Name = "GetButton";
-            this.GetButton.Size = new System.Drawing.Size(81, 33);
-            this.GetButton.TabIndex = 2;
+            this.GetButton.Size = new System.Drawing.Size(91, 35);
+            this.GetButton.TabIndex = 3;
             this.GetButton.Text = "GET";
             this.GetButton.UseVisualStyleBackColor = true;
             this.GetButton.Click += new System.EventHandler(this.GetButton_Click);
             // 
-            // PNLReportUI
+            // BalanceSheetReportUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(421, 313);
+            this.ClientSize = new System.Drawing.Size(515, 316);
             this.Controls.Add(this.groupBox1);
-            this.Name = "PNLReportUI";
-            this.Text = "PNLReportUI";
-            this.Load += new System.EventHandler(this.PNLReportUI_Load);
+            this.Name = "BalanceSheetReportUI";
+            this.Text = "BalanceSheetReportUI";
+            this.Load += new System.EventHandler(this.BalanceSheetReportUI_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -95,7 +94,8 @@
 
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox PNLIdComboBox;
+        private System.Windows.Forms.ComboBox BSIdComboBox;
         private System.Windows.Forms.Button GetButton;
+
     }
 }

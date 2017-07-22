@@ -13,14 +13,15 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace AccountsManagementSystem.Reports
-{   public partial class PNLReportUI : Form
+{
+    public partial class BalanceSheetReportUI : Form
     {
         private SqlConnection con;
         private SqlCommand cmd;
         private SqlDataReader rdr;
         ConnectionString cs = new ConnectionString();
         private int id;
-        public PNLReportUI()
+        public BalanceSheetReportUI()
         {
             InitializeComponent();
         }
@@ -42,7 +43,7 @@ namespace AccountsManagementSystem.Reports
             paramField1.Name = "id";
 
             //set the parameter value
-            paramDiscreteValue1.Value = PNLIdComboBox.Text;
+            paramDiscreteValue1.Value = BSIdComboBox.Text;
 
             //add the parameter value in the ParameterField object
             paramField1.CurrentValues.Add(paramDiscreteValue1);
@@ -60,7 +61,7 @@ namespace AccountsManagementSystem.Reports
             with1.DatabaseName = "AccountDb";
             with1.UserID = "sa";
             with1.Password = "SystemAdministrator";
-            PNLTotalX cr = new PNLTotalX();
+            BSTotalX cr = new BSTotalX();
             tables = cr.Database.Tables;
             foreach (Table table in tables)
             {
@@ -76,29 +77,24 @@ namespace AccountsManagementSystem.Reports
             f2.ShowDialog();
             this.Visible = true;
             GetButton.Enabled = true;
-            PNLIdComboBox.SelectedIndex = -1;
+            BSIdComboBox.SelectedIndex = -1;
         }
 
-        private void groupBox1_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void PNLReportUI_Load(object sender, EventArgs e)
+        private void BalanceSheetReportUI_Load(object sender, EventArgs e)
         {
             try
             {
 
                 con = new SqlConnection(cs.DBConn);
                 con.Open();
-                string ct = "SELECT PId FROM PNLEvent ORDER BY PId";
+                string ct = "SELECT BId FROM BSEvent ORDER BY BId";
                 cmd = new SqlCommand(ct);
                 cmd.Connection = con;
                 rdr = cmd.ExecuteReader();
 
                 while (rdr.Read())
                 {
-                    PNLIdComboBox.Items.Add(rdr[0]);
+                    BSIdComboBox.Items.Add(rdr[0]);
                 }
                 con.Close();
 

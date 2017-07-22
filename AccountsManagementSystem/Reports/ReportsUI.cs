@@ -319,6 +319,22 @@ namespace AccountsManagementSystem.Reports
         {
             x= FiscalYear.phiscalYear;
         }
+
+        private void button5_Click_1(object sender, EventArgs e)
+        {
+            PNLReportUI f2 = new PNLReportUI();
+            this.Visible = false;
+            f2.ShowDialog();
+            this.Visible = true;
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            BalanceSheetReportUI f2 = new BalanceSheetReportUI();
+            this.Visible = false;
+            f2.ShowDialog();
+            this.Visible = true;
+        }
     }
    
 
