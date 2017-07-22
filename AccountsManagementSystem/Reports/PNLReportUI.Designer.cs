@@ -29,46 +29,62 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.PNLIdComboBox = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.GetButton = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.comboBox1);
+            this.groupBox1.Controls.Add(this.GetButton);
+            this.groupBox1.Controls.Add(this.PNLIdComboBox);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(12, 14);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(583, 350);
+            this.groupBox1.Size = new System.Drawing.Size(395, 287);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
+            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
+            // 
+            // PNLIdComboBox
+            // 
+            this.PNLIdComboBox.FormattingEnabled = true;
+            this.PNLIdComboBox.Location = new System.Drawing.Point(144, 38);
+            this.PNLIdComboBox.Name = "PNLIdComboBox";
+            this.PNLIdComboBox.Size = new System.Drawing.Size(185, 21);
+            this.PNLIdComboBox.TabIndex = 1;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(49, 39);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 13);
+            this.label1.Size = new System.Drawing.Size(93, 17);
             this.label1.TabIndex = 0;
-            this.label1.Text = "label1";
+            this.label1.Text = "PNL ID      :";
             // 
-            // comboBox1
+            // GetButton
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(162, 43);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 21);
-            this.comboBox1.TabIndex = 1;
+            this.GetButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.GetButton.Location = new System.Drawing.Point(185, 229);
+            this.GetButton.Name = "GetButton";
+            this.GetButton.Size = new System.Drawing.Size(81, 33);
+            this.GetButton.TabIndex = 2;
+            this.GetButton.Text = "GET";
+            this.GetButton.UseVisualStyleBackColor = true;
+            this.GetButton.Click += new System.EventHandler(this.GetButton_Click);
             // 
             // PNLReportUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(607, 376);
+            this.ClientSize = new System.Drawing.Size(421, 313);
             this.Controls.Add(this.groupBox1);
             this.Name = "PNLReportUI";
             this.Text = "PNLReportUI";
+            this.Load += new System.EventHandler(this.PNLReportUI_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -79,6 +95,7 @@
 
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox PNLIdComboBox;
+        private System.Windows.Forms.Button GetButton;
     }
 }
