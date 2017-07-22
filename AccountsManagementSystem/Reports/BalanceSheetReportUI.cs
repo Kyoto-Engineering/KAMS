@@ -1,4 +1,5 @@
 ﻿using AccountsManagementSystem.DbGateway;
+using AccountsManagementSystem.UI;
 using CrystalDecisions.CrystalReports.Engine;
 using CrystalDecisions.Shared;
 using System;
@@ -21,6 +22,8 @@ namespace AccountsManagementSystem.Reports
         private SqlDataReader rdr;
         ConnectionString cs = new ConnectionString();
         private int id;
+        public int BId, FiscalId;
+        public static string pyear;
         public BalanceSheetReportUI()
         {
             InitializeComponent();
@@ -43,7 +46,7 @@ namespace AccountsManagementSystem.Reports
             paramField1.Name = "id";
 
             //set the parameter value
-            paramDiscreteValue1.Value = BSIdComboBox.Text;
+            paramDiscreteValue1.Value = BId;
 
             //add the parameter value in the ParameterField object
             paramField1.CurrentValues.Add(paramDiscreteValue1);
@@ -77,17 +80,20 @@ namespace AccountsManagementSystem.Reports
             f2.ShowDialog();
             this.Visible = true;
             GetButton.Enabled = true;
+            BSIdComboBox.SelectedIndexChanged -= BSIdComboBox_SelectedIndexChanged;
             BSIdComboBox.SelectedIndex = -1;
+            BSIdComboBox.SelectedIndexChanged += BSIdComboBox_SelectedIndexChanged;
         }
 
         private void BalanceSheetReportUI_Load(object sender, EventArgs e)
         {
+            pyear = FiscalYear.phiscalYear.ToString();
             try
             {
 
                 con = new SqlConnection(cs.DBConn);
                 con.Open();
-                string ct = "SELECT BId FROM BSEvent ORDER BY BId";
+                string ct = "select (Convert(varchar(10),BSEvent.FiscalId)+'-'+ Convert(varchar(10),BSEvent.BId)) from BSEvent where BSEvent.FiscalId='" + pyear + "'";
                 cmd = new SqlCommand(ct);
                 cmd.Connection = con;
                 rdr = cmd.ExecuteReader();
@@ -103,6 +109,28 @@ namespace AccountsManagementSystem.Reports
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void BSIdComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string[] splitterArray = BSIdComboBox.Text.Split('-');
+            
+            BId = Convert.ToInt32(splitterArray[1]);
+            FiscalId = Convert.ToInt32(splitterArray[0]);
+            string qry =
+                "SELECT BSEvent.BId, FiscalYears.FiscalId FROM BSEvent INNER JOIN FiscalYears ON BSEvent.FiscalId = FiscalYears.FiscalId where BSEvent.FiscalId='" + FiscalId + "'";
+            con = new SqlConnection(cs.DBConn);
+            cmd.CommandText = qry;
+            cmd.Connection = con;
+            con.Open();
+            rdr = cmd.ExecuteReader();
+            while (rdr.Read())
+            {
+                BId = (rdr.GetInt32(0));
+                FiscalId = (rdr.GetInt32(1));
+               
+            }
+            con.Close();
         }
     }
 }
