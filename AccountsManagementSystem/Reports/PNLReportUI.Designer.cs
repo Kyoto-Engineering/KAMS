@@ -54,6 +54,7 @@
             this.PNLIdComboBox.Name = "PNLIdComboBox";
             this.PNLIdComboBox.Size = new System.Drawing.Size(185, 21);
             this.PNLIdComboBox.TabIndex = 1;
+            this.PNLIdComboBox.SelectedIndexChanged += new System.EventHandler(this.PNLIdComboBox_SelectedIndexChanged);
             // 
             // label1
             // 
