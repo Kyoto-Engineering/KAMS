@@ -156,6 +156,12 @@
     <Compile Include="Models\SubAccountTypes.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reports\BalanceSheetReportUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\BalanceSheetReportUI.Designer.cs">
+      <DependentUpon>BalanceSheetReportUI.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reports\BSTotalX.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -534,6 +540,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Reports\BalanceSheetReportUI.resx">
+      <DependentUpon>BalanceSheetReportUI.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\BSTotalX.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>BSTotalX.cs</LastGenOutput>
