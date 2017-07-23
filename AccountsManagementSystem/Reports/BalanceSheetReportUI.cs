@@ -29,42 +29,36 @@ namespace AccountsManagementSystem.Reports
             InitializeComponent();
         }
 
-        private void GetButton_Click(object sender, EventArgs e)
+        private void Report()
         {
-            GetButton.Enabled = false;
+            ParameterField parameterField1 = new ParameterField();
 
-            ParameterField paramField1 = new ParameterField();
+            ParameterFields parameterFields1 = new ParameterFields();
 
+            ParameterDiscreteValue parameterDiscreteValue1 = new ParameterDiscreteValue();
 
-            //creating an object of ParameterFields class
-            ParameterFields paramFields1 = new ParameterFields();
+            parameterField1.Name = "id";
 
-            //creating an object of ParameterDiscreteValue class
-            ParameterDiscreteValue paramDiscreteValue1 = new ParameterDiscreteValue();
+            parameterDiscreteValue1.Value = BId;
 
-            //set the parameter field name
-            paramField1.Name = "id";
+            parameterField1.CurrentValues.Add(parameterDiscreteValue1);
 
-            //set the parameter value
-            paramDiscreteValue1.Value = BId;
+            parameterFields1.Add(parameterField1);
 
-            //add the parameter value in the ParameterField object
-            paramField1.CurrentValues.Add(paramDiscreteValue1);
-
-            //add the parameter in the ParameterFields object
-            paramFields1.Add(paramField1);
-            ReportViewer f2 = new ReportViewer();
+            ReportViewer f1 = new ReportViewer();
             TableLogOnInfos reportLogonInfos = new TableLogOnInfos();
             TableLogOnInfo reportLogonInfo = new TableLogOnInfo();
             ConnectionInfo reportConInfo = new ConnectionInfo();
             Tables tables = default(Tables);
-            //	Table table = default(Table);
+
             var with1 = reportConInfo;
             with1.ServerName = "tcp:KyotoServer,49172";
             with1.DatabaseName = "AccountDb";
             with1.UserID = "sa";
             with1.Password = "SystemAdministrator";
+
             BSTotalX cr = new BSTotalX();
+
             tables = cr.Database.Tables;
             foreach (Table table in tables)
             {
@@ -73,16 +67,118 @@ namespace AccountsManagementSystem.Reports
                 table.ApplyLogOnInfo(reportLogonInfo);
             }
 
-            f2.crystalReportViewer1.ParameterFieldInfo = paramFields1;
-            f2.crystalReportViewer1.ReportSource = cr;
+            f1.crystalReportViewer1.ParameterFieldInfo = parameterFields1;
+            f1.crystalReportViewer1.ReportSource = cr;
+
             this.Visible = false;
 
-            f2.ShowDialog();
+            f1.ShowDialog();
             this.Visible = true;
+        }
+
+        private void Report1()
+        {
+            ParameterField parameterField1 = new ParameterField();
+
+            ParameterFields parameterFields1 = new ParameterFields();
+
+            ParameterDiscreteValue parameterDiscreteValue1 = new ParameterDiscreteValue();
+
+            parameterField1.Name = "id";
+
+            parameterDiscreteValue1.Value = BId;
+
+            parameterField1.CurrentValues.Add(parameterDiscreteValue1);
+
+            parameterFields1.Add(parameterField1);
+
+            ReportViewer f1 = new ReportViewer();
+            TableLogOnInfos reportLogonInfos = new TableLogOnInfos();
+            TableLogOnInfo reportLogonInfo = new TableLogOnInfo();
+            ConnectionInfo reportConInfo = new ConnectionInfo();
+            Tables tables = default(Tables);
+
+            var with1 = reportConInfo;
+            with1.ServerName = "tcp:KyotoServer,49172";
+            with1.DatabaseName = "AccountDb";
+            with1.UserID = "sa";
+            with1.Password = "SystemAdministrator";
+
+            Equity cr = new Equity();
+
+            tables = cr.Database.Tables;
+            foreach (Table table in tables)
+            {
+                reportLogonInfo = table.LogOnInfo;
+                reportLogonInfo.ConnectionInfo = reportConInfo;
+                table.ApplyLogOnInfo(reportLogonInfo);
+            }
+
+            f1.crystalReportViewer1.ParameterFieldInfo = parameterFields1;
+            f1.crystalReportViewer1.ReportSource = cr;
+
+            this.Visible = false;
+
+            f1.ShowDialog();
+            this.Visible = true;
+        }
+
+        private void GetButton_Click(object sender, EventArgs e)
+        {
+            GetButton.Enabled = false;
+
+            //ParameterField paramField1 = new ParameterField();
+
+
+            ////creating an object of ParameterFields class
+            //ParameterFields paramFields1 = new ParameterFields();
+
+            ////creating an object of ParameterDiscreteValue class
+            //ParameterDiscreteValue paramDiscreteValue1 = new ParameterDiscreteValue();
+
+            ////set the parameter field name
+            //paramField1.Name = "id";
+
+            ////set the parameter value
+            //paramDiscreteValue1.Value = BId;
+
+            ////add the parameter value in the ParameterField object
+            //paramField1.CurrentValues.Add(paramDiscreteValue1);
+
+            ////add the parameter in the ParameterFields object
+            //paramFields1.Add(paramField1);
+            //ReportViewer f2 = new ReportViewer();
+            //TableLogOnInfos reportLogonInfos = new TableLogOnInfos();
+            //TableLogOnInfo reportLogonInfo = new TableLogOnInfo();
+            //ConnectionInfo reportConInfo = new ConnectionInfo();
+            //Tables tables = default(Tables);
+            ////	Table table = default(Table);
+            //var with1 = reportConInfo;
+            //with1.ServerName = "tcp:KyotoServer,49172";
+            //with1.DatabaseName = "AccountDb";
+            //with1.UserID = "sa";
+            //with1.Password = "SystemAdministrator";
+            //BSTotalX cr = new BSTotalX();
+            //tables = cr.Database.Tables;
+            //foreach (Table table in tables)
+            //{
+            //    reportLogonInfo = table.LogOnInfo;
+            //    reportLogonInfo.ConnectionInfo = reportConInfo;
+            //    table.ApplyLogOnInfo(reportLogonInfo);
+            //}
+
+            //f2.crystalReportViewer1.ParameterFieldInfo = paramFields1;
+            //f2.crystalReportViewer1.ReportSource = cr;
+            //this.Visible = false;
+
+            //f2.ShowDialog();
+            //this.Visible = true;
             GetButton.Enabled = true;
             BSIdComboBox.SelectedIndexChanged -= BSIdComboBox_SelectedIndexChanged;
             BSIdComboBox.SelectedIndex = -1;
             BSIdComboBox.SelectedIndexChanged += BSIdComboBox_SelectedIndexChanged;
+            Report();
+            Report1();
         }
 
         private void BalanceSheetReportUI_Load(object sender, EventArgs e)
