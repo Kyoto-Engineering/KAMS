@@ -1011,17 +1011,17 @@ namespace AccountsManagementSystem.UI
                             //con.Open();
                             cmd.ExecuteNonQuery();
                             //con.Close();
-
+                            //UpdateDebitVoucherStatus();
+                            //con = new SqlConnection(cs.DBConn);
+                            //con.Open();
+                            string queryuv = "Update VoucherNumber Set  Statuss='Written' where  VoucherNo='" + listView1.Items[i].SubItems[4].Text + "' ";
+                            cmd = new SqlCommand(queryuv, con, trans);
+                            cmd.ExecuteNonQuery();
+                            //con.Close();
                         }
 
                     }
-                    //UpdateDebitVoucherStatus();
-                    //con = new SqlConnection(cs.DBConn);
-                    //con.Open();
-                    string queryuv = "Update VoucherNumber Set  Statuss='Written' where  VoucherNo='" + cmbVoucherNoD.Text + "' ";
-                    cmd = new SqlCommand(queryuv, con,trans);
-                    cmd.ExecuteNonQuery();
-                    //con.Close();
+                   
                     //UpdateCreditVoucherStatus();
                     //con = new SqlConnection(cs.DBConn);
                     //con.Open();

@@ -20,7 +20,9 @@ namespace AccountsManagementSystem.UI
         const int kMinAmountOfSplashTime_ms = 800;
         private SqlCommand cmd;
         private SqlConnection con;
+        private SqlConnection rdrCon;
         private SqlDataReader rdr;
+        private SqlTransaction trans;
         ConnectionString cs = new ConnectionString();
         public int  iTransactionId = 0, lEntryId, cEntryId, k, genericOTypeId,creditLedgerEntryId,debitContraEntryId;
         public string contraLedgerName, conTraLedgerId, cmb11LedgerName, ledgerId1, ledgerId2, userId, secondLedgerId, fullName, lGenericType, debitAGRelId1, creditAGRelId2,creditAGRelId,cLID2,voucherNoD;
@@ -657,14 +659,7 @@ namespace AccountsManagementSystem.UI
         {
             try
             {
-                con = new SqlConnection(cs.DBConn);
-                string query = "insert into ContraEntry(ContraLName,ContraLId) values(@d1,@d2)" + "SELECT CONVERT(int, SCOPE_IDENTITY())";
-                cmd = new SqlCommand(query, con);
-                cmd.Parameters.AddWithValue("d1", cmb1LedgerName.Text);
-                cmd.Parameters.AddWithValue("d2", ledgerId1);
-                con.Open();
-                debitContraEntryId = (int) cmd.ExecuteScalar();
-                con.Close();
+               
             }
             catch (Exception ex)
             {
@@ -677,15 +672,7 @@ namespace AccountsManagementSystem.UI
         {
             try
             {
-                con = new SqlConnection(cs.DBConn);
-                string q1 = "insert into LECLERelation(TransactionId,LedgerEntryId,CEntryId) values(@d1,@d2,@d3)";
-                cmd = new SqlCommand(q1, con);
-                cmd.Parameters.AddWithValue("d1", iTransactionId);
-                cmd.Parameters.AddWithValue("d2", creditLedgerEntryId);
-                cmd.Parameters.AddWithValue("d3", debitContraEntryId);
-                con.Open();
-                cmd.ExecuteReader();
-                con.Close();
+               
             }
             catch (Exception ex)
             {
@@ -699,18 +686,7 @@ namespace AccountsManagementSystem.UI
                 //for (int p = 1; p<= max2; p++)
                 //{
                // int creditContraId1 = cEntryId - max2 + p;
-                con = new SqlConnection(cs.DBConn);
-                string query = "insert into LECLERelation(TransactionId,LedgerEntryId,CEntryId) values(@d1,@d2,@d3)";
-                cmd = new SqlCommand(query, con);
-                cmd.Parameters.AddWithValue("d1", iTransactionId);
-                cmd.Parameters.AddWithValue("d2", lEntryId);
-                cmd.Parameters.AddWithValue("d3", cEntryId);
-                con.Open();
-                cmd.ExecuteReader();
-                con.Close(); 
-               // }
-               
-                SaveCreditContraLCLRelation();
+
 
 
             }
@@ -721,16 +697,7 @@ namespace AccountsManagementSystem.UI
         }
         private void SaveNewTransaction()
         {
-            con = new SqlConnection(cs.DBConn);
-            con.Open();
-            string cb = "insert into TransactionRecord(TransactionDate,EntryDateTime,InputBy) VALUES (@d1,@d2,@d3)" + "SELECT CONVERT(int, SCOPE_IDENTITY())";
-            cmd = new SqlCommand(cb);
-            cmd.Connection = con;
-            cmd.Parameters.AddWithValue("@d1", Convert.ToDateTime(txt1Entrydate.Value, System.Globalization.CultureInfo.GetCultureInfo("hi-IN").DateTimeFormat));
-            cmd.Parameters.AddWithValue("@d2",DateTime.UtcNow.ToLocalTime());
-            cmd.Parameters.AddWithValue("@d3", userId);
-            iTransactionId = (int)cmd.ExecuteScalar();
-            con.Close();
+
 
         }
 
@@ -738,56 +705,7 @@ namespace AccountsManagementSystem.UI
         {
             try
             {
-                con = new SqlConnection(cs.DBConn);
-                con.Open();
-                string ct = "select Balance from BalanceFiscal where  BalanceFiscal.LedgerId='" + ledgerId1 + "' and BalanceFiscal.LId='" + dLId + "'";
-                cmd = new SqlCommand(ct);
-                cmd.Connection = con;
-                rdr = cmd.ExecuteReader();
-                if (rdr.Read())
-                {
-                    debitBalance = (rdr.GetDecimal(0));      
-                }
-                con.Close();
-
-                con = new SqlConnection(cs.DBConn);
-                con.Open();
-                string query = "select AccountType from AGRel where AGRel.AGRelId='" + debitAGRelId1 + "'";
-                cmd = new SqlCommand(query, con);
-                rdr = cmd.ExecuteReader();
-                if (rdr.Read())
-                {
-                    accountOTypeD = (rdr.GetString(0));
-
-                }
-                con.Close();
-
-                if (accountOTypeD == "Asset" || accountOTypeD == "Expense" || accountOTypeD == "Pre Opening Expense")
-                {
-                    decimal a = decimal.Parse(txt1Amount.Text);
-                    lDBalance = debitBalance + a;
-                    con = new SqlConnection(cs.DBConn);
-                    con.Open();
-                    string cb2 = "Update BalanceFiscal set Balance=" + lDBalance + " where BalanceFiscal.LedgerId ='" + ledgerId1 + "' and BalanceFiscal.LId='" + dLId + "' ";
-                    cmd = new SqlCommand(cb2);
-                    cmd.Connection = con;
-                    cmd.ExecuteReader();
-                    con.Close();
-
-                }
-                if (accountOTypeD == "Liability" || accountOTypeD == "Equity" || accountOTypeD == "Revenue")
-                {
-                    decimal b = decimal.Parse(txt1Amount.Text);
-                    lDBalance = debitBalance - b;
-                    con = new SqlConnection(cs.DBConn);
-                    con.Open();
-                    string cb2 = "Update BalanceFiscal set Balance=" + lDBalance + " where BalanceFiscal.LedgerId ='" + ledgerId1 + "' and BalanceFiscal.LId='" + dLId + "' ";
-                    cmd = new SqlCommand(cb2);
-                    cmd.Connection = con;
-                    cmd.ExecuteReader();
-                    con.Close();
-
-                }
+               
 
             }
             catch (Exception ex)
@@ -799,12 +717,7 @@ namespace AccountsManagementSystem.UI
         {
             try
             {
-                con = new SqlConnection(cs.DBConn);
-                con.Open();
-                string query = "Update VoucherNumber Set  Statuss='Written' where  VoucherNo='" + cmbVoucherNoD.Text + "' ";
-                cmd = new SqlCommand(query, con);
-                cmd.ExecuteReader();
-                con.Close();
+               
             }
             catch (Exception ex)
             {
@@ -815,12 +728,7 @@ namespace AccountsManagementSystem.UI
         {
             try
             {
-                con = new SqlConnection(cs.DBConn);
-                con.Open();
-                string query = "Update VoucherNumber Set  Statuss='Written' where  VoucherNo='" + cmbVoucherNoC.Text + "' ";
-                cmd = new SqlCommand(query, con);
-                cmd.ExecuteReader();
-                con.Close();
+                
             }
             catch (Exception ex)
             {
@@ -848,14 +756,76 @@ namespace AccountsManagementSystem.UI
                 {
                     //  Debit Entry Start here
 
-                        SaveNewTransaction();
+                        //SaveNewTransaction();
+                    con = new SqlConnection(cs.DBConn);
+                    con.Open();
+                    trans = con.BeginTransaction();
+                    string cb1 = "insert into TransactionRecord(TransactionDate,EntryDateTime,InputBy) VALUES (@d1,@d2,@d3)" + "SELECT CONVERT(int, SCOPE_IDENTITY())";
+                    cmd = new SqlCommand(cb1);
+                    cmd.Connection = con;
+                    cmd.Transaction = trans;
+                    cmd.Parameters.AddWithValue("@d1", Convert.ToDateTime(txt1Entrydate.Value, System.Globalization.CultureInfo.GetCultureInfo("hi-IN").DateTimeFormat));
+                    cmd.Parameters.AddWithValue("@d2", DateTime.UtcNow.ToLocalTime());
+                    cmd.Parameters.AddWithValue("@d3", userId);
+                    iTransactionId = (int)cmd.ExecuteScalar();
+                    //con.Close();
                         max2 = Convert.ToInt32(txtCEntryNo.Text);
-                        SaveDebitLedgerBalance();
-                        con = new SqlConnection(cs.DBConn);
-                        con.Open();
+                        //SaveDebitLedgerBalance();
+                    rdrCon = new SqlConnection(cs.DBConn);
+                    rdrCon.Open();
+                    string ct1 = "select Balance from BalanceFiscal where  BalanceFiscal.LedgerId='" + ledgerId1 + "' and BalanceFiscal.LId='" + dLId + "'";
+                    cmd = new SqlCommand(ct1);
+                    cmd.Connection = rdrCon;
+                    rdr = cmd.ExecuteReader();
+                    if (rdr.Read())
+                    {
+                        debitBalance = (rdr.GetDecimal(0));
+                    }
+                    rdrCon.Close();
+
+                    rdrCon = new SqlConnection(cs.DBConn);
+                    rdrCon.Open();
+                    string query1 = "select AccountType from AGRel where AGRel.AGRelId='" + debitAGRelId1 + "'";
+                    cmd = new SqlCommand(query1, rdrCon);
+                    rdr = cmd.ExecuteReader();
+                    if (rdr.Read())
+                    {
+                        accountOTypeD = (rdr.GetString(0));
+
+                    }
+                    rdrCon.Close();
+
+                    if (accountOTypeD == "Asset" || accountOTypeD == "Expense" || accountOTypeD == "Pre Opening Expense")
+                    {
+                        decimal a = decimal.Parse(txt1Amount.Text);
+                        lDBalance = debitBalance + a;
+                        //con = new SqlConnection(cs.DBConn);
+                        //con.Open();
+                        string cb2 = "Update BalanceFiscal set Balance=" + lDBalance + " where BalanceFiscal.LedgerId ='" + ledgerId1 + "' and BalanceFiscal.LId='" + dLId + "' ";
+                        cmd = new SqlCommand(cb2,con,trans);
+                        //cmd.Connection = con;
+                        cmd.ExecuteNonQuery();
+                        //con.Close();
+
+                    }
+                    if (accountOTypeD == "Liability" || accountOTypeD == "Equity" || accountOTypeD == "Revenue")
+                    {
+                        decimal b = decimal.Parse(txt1Amount.Text);
+                        lDBalance = debitBalance - b;
+                        //con = new SqlConnection(cs.DBConn);
+                        //con.Open();
+                        string cb2 = "Update BalanceFiscal set Balance=" + lDBalance + " where BalanceFiscal.LedgerId ='" + ledgerId1 + "' and BalanceFiscal.LId='" + dLId + "' ";
+                        cmd = new SqlCommand(cb2,con,trans);
+                        //cmd.Connection = con;
+                        cmd.ExecuteNonQuery();
+                        //con.Close();
+
+                    }
+                        //con = new SqlConnection(cs.DBConn);
+                        //con.Open();
                         string qry = "insert into LedgerEntry(FundRequisitionNo,VoucherNo,Particulars,Debit,Balances,TransactionId,LId) VALUES (@d1,@d2,@d3,@d4,@d5,@d6,@d7)" + "SELECT CONVERT(int, SCOPE_IDENTITY())";
-                        cmd = new SqlCommand(qry);
-                        cmd.Connection = con;                       
+                        cmd = new SqlCommand(qry,con,trans);
+                        //cmd.Connection = con;                       
                         cmd.Parameters.AddWithValue("@d1", txt1RequisitionNo.Text);
                         cmd.Parameters.AddWithValue("@d2", cmbVoucherNoD.Text);
                         cmd.Parameters.AddWithValue("@d3", txt1Particulars.Text);
@@ -864,77 +834,88 @@ namespace AccountsManagementSystem.UI
                         cmd.Parameters.AddWithValue("@d6", iTransactionId);
                         cmd.Parameters.AddWithValue("@d7", dLId);
                         lEntryId = (int) cmd.ExecuteScalar();
-                        con.Close();
+                        //con.Close();
                         if (textBox1.Visible && !string.IsNullOrWhiteSpace(textBox1.Text))
                         {
-                            con = new SqlConnection(cs.DBConn);
-                            con.Open();
+                            //con = new SqlConnection(cs.DBConn);
+                            //con.Open();
                             string X = "INSERT INTO BillInfo (BillNo,LedgerEntryId)VALUES(@d1,@d2)";
-                            cmd = new SqlCommand(X);
-                            cmd.Connection = con;
+                            cmd = new SqlCommand(X,con,trans);
+                            //cmd.Connection = con;
                             cmd.Parameters.AddWithValue("@d1", textBox1.Text);
                             cmd.Parameters.AddWithValue("@d2", lEntryId);
                             cmd.ExecuteNonQuery();
-                            con.Close();
+                            //con.Close();
                         }
-                        SaveDebitContraEntry();
+                        //SaveDebitContraEntry();
+                    //con = new SqlConnection(cs.DBConn);
+                    string query2 = "insert into ContraEntry(ContraLName,ContraLId) values(@d1,@d2)" + "SELECT CONVERT(int, SCOPE_IDENTITY())";
+                    cmd = new SqlCommand(query2, con,trans);
+                    cmd.Parameters.AddWithValue("d1", cmb1LedgerName.Text);
+                    cmd.Parameters.AddWithValue("d2", ledgerId1);
+                    //con.Open();
+                    debitContraEntryId = (int)cmd.ExecuteScalar();
+                    //con.Close();
 
 
                    //Credit Entry Start here
 
                     for (int i = 0; i <= listView1.Items.Count - 1; i++)
                     {                       
-                                con = new SqlConnection(cs.DBConn);
-                                con.Open();
+                                rdrCon = new SqlConnection(cs.DBConn);
+                        rdrCon.Open();
                                 string ct = "select Balance from BalanceFiscal where  BalanceFiscal.LedgerId='" + listView1.Items[i].SubItems[2].Text + "' and BalanceFiscal.LId='" + listView1.Items[i].SubItems[7].Text + "' ";
                                 cmd = new SqlCommand(ct);
-                                cmd.Connection = con;
+                                cmd.Connection = rdrCon;
                                 rdr = cmd.ExecuteReader();
                                 if (rdr.Read())
                                 {
                                     creditBalance = (rdr.GetDecimal(0));                                    
                                 }
-                                con.Close();
-                                con = new SqlConnection(cs.DBConn);
-                                con.Open();
+                        rdrCon.Close();
+                        rdrCon = new SqlConnection(cs.DBConn);
+                        rdrCon.Open();
                                 string q1 = "Select RTRIM(AGRel.AccountType) from AGRel where AGRel.AGRelId='" +listView1.Items[i].SubItems[8].Text + "'";
-                                cmd = new SqlCommand(q1, con);
+                                cmd = new SqlCommand(q1, rdrCon);
                                 rdr = cmd.ExecuteReader();
                                 if (rdr.Read())
                                 {
                                     accountOType = (rdr.GetString(0));                                    
                                 }
-                                con.Close();
+                        rdrCon.Close();
                                 //if (genericOTypeId == 1)
                                 if (accountOType == "Asset" || accountOType == "Expense" || accountOType == "Pre Opening Expense")                                
                                 {
                                     decimal x = decimal.Parse(listView1.Items[i].SubItems[6].Text);
                                     lCBalance = creditBalance - x;
-                                    con = new SqlConnection(cs.DBConn);
-                                    con.Open();
+                                    //con = new SqlConnection(cs.DBConn);
+                                    //con.Open();
                                     string cb2 = "Update BalanceFiscal set Balance=" + lCBalance + " where BalanceFiscal.LedgerId='" + listView1.Items[i].SubItems[2].Text + "' and BalanceFiscal.LId ='" + listView1.Items[i].SubItems[7].Text + "'";
                                     cmd = new SqlCommand(cb2);
                                     cmd.Connection = con;
-                                    cmd.ExecuteReader();
-                                    con.Close();
+                                    cmd.Transaction = trans;
+                                    cmd.ExecuteNonQuery();
+                                    //con.Close();
                                 }
                                 // if (genericOTypeId == 2)
                                  if (accountOType == "Liability" || accountOType == "Equity" || accountOType == "Revenue")                              
                                 {
                                     decimal y = decimal.Parse(listView1.Items[i].SubItems[6].Text);
                                     lCBalance = creditBalance + y;
-                                    con = new SqlConnection(cs.DBConn);
-                                    con.Open();
+                                    //con = new SqlConnection(cs.DBConn);
+                                    //con.Open();
                                     string cb2 = "Update BalanceFiscal set Balance=" + lCBalance + " where BalanceFiscal.LedgerId='" + listView1.Items[i].SubItems[2].Text + "'and BalanceFiscal.LId ='" + listView1.Items[i].SubItems[7].Text + "'";
                                     cmd = new SqlCommand(cb2);
                                     cmd.Connection = con;
-                                    cmd.ExecuteReader();
-                                    con.Close();
+                                    cmd.Transaction = trans;
+                                    cmd.ExecuteNonQuery();
+                                    //con.Close();
                                 }
-                            con = new SqlConnection(cs.DBConn);
+                            //con = new SqlConnection(cs.DBConn);
                             string cb = "insert into LedgerEntry(FundRequisitionNo,VoucherNo,Particulars,Credit,Balances,TransactionId,LId) VALUES (@d1,@d2,@d3,@d4,@d5,@d6,@d7)" + "SELECT CONVERT(int, SCOPE_IDENTITY())";
                             cmd = new SqlCommand(cb);
                             cmd.Connection = con;
+                        cmd.Transaction = trans;
                             cmd.Parameters.AddWithValue("d1", listView1.Items[i].SubItems[3].Text);
                             cmd.Parameters.AddWithValue("d2", listView1.Items[i].SubItems[4].Text);
                             cmd.Parameters.AddWithValue("d3", listView1.Items[i].SubItems[5].Text);
@@ -942,46 +923,84 @@ namespace AccountsManagementSystem.UI
                             cmd.Parameters.AddWithValue("d5", lCBalance);
                             cmd.Parameters.AddWithValue("d6", iTransactionId);
                             cmd.Parameters.AddWithValue("d7", listView1.Items[i].SubItems[7].Text);
-                            con.Open();
+                            //con.Open();
                             creditLedgerEntryId = (int) cmd.ExecuteScalar();
-                            con.Close();
+                            //con.Close();
                             if (listView1.Items[i].SubItems[8].Text == "4" && !string.IsNullOrWhiteSpace(listView1.Items[i].SubItems[9].Text))
                             {
-                                con = new SqlConnection(cs.DBConn);
-                                con.Open();
+                                //con = new SqlConnection(cs.DBConn);
+                                //con.Open();
                                 string Y = "INSERT INTO BillInfo (BillNo,LedgerEntryId)VALUES(@d1,@d2)";
                                 cmd = new SqlCommand(Y);
                                 cmd.Connection = con;
+                                cmd.Transaction = trans;
                                 cmd.Parameters.AddWithValue("@d1", listView1.Items[i].SubItems[9].Text);
                                 cmd.Parameters.AddWithValue("@d2", creditLedgerEntryId);
                                 cmd.ExecuteNonQuery();
-                                con.Close();
+                                //con.Close();
                             }
-                            con = new SqlConnection(cs.DBConn);
+                            //con = new SqlConnection(cs.DBConn);
                             string query = "insert into ContraEntry(ContraLName,ContraLId) values(@d1,@d2)" + "SELECT CONVERT(int, SCOPE_IDENTITY())";
                             cmd = new SqlCommand(query, con);
                             cmd.Parameters.AddWithValue("d1", listView1.Items[i].SubItems[1].Text);
                             cmd.Parameters.AddWithValue("d2", listView1.Items[i].SubItems[2].Text);
-                            con.Open();
+                            //con.Open();
                             cEntryId = (int) cmd.ExecuteScalar();
-                            con.Close();
-                            SaveLCLRelation();
+                            //con.Close();
+                            //SaveLCLRelation();
+                        //con = new SqlConnection(cs.DBConn);
+                        string query3 = "insert into LECLERelation(TransactionId,LedgerEntryId,CEntryId) values(@d1,@d2,@d3)";
+                        cmd = new SqlCommand(query3, con,trans);
+                        cmd.Parameters.AddWithValue("d1", iTransactionId);
+                        cmd.Parameters.AddWithValue("d2", lEntryId);
+                        cmd.Parameters.AddWithValue("d3", cEntryId);
+                        //con.Open();
+                        cmd.ExecuteNonQuery();
+                        //con.Close();
+                        // }
+
+                        //SaveCreditContraLCLRelation();
+                        con = new SqlConnection(cs.DBConn);
+                        string q1l = "insert into LECLERelation(TransactionId,LedgerEntryId,CEntryId) values(@d1,@d2,@d3)";
+                        cmd = new SqlCommand(q1l, con,trans);
+                        cmd.Parameters.AddWithValue("d1", iTransactionId);
+                        cmd.Parameters.AddWithValue("d2", creditLedgerEntryId);
+                        cmd.Parameters.AddWithValue("d3", debitContraEntryId);
+                        //con.Open();
+                        cmd.ExecuteNonQuery();
+                        //con.Close();
+                        //UpdateCreditVoucherStatus();
+                        //con = new SqlConnection(cs.DBConn);
+                        //con.Open();
+                        string queryzz = "Update VoucherNumber Set  Statuss='Written' where  VoucherNo='" + listView1.Items[i].SubItems[4].Text + "' ";
+                        cmd = new SqlCommand(queryzz, con,trans);
+                        cmd.ExecuteNonQuery();
+                        //con.Close();
                     } 
                    
-                    UpdateDebitVoucherStatus();
-                    UpdateCreditVoucherStatus();
+                    //UpdateDebitVoucherStatus();
+                    //con = new SqlConnection(cs.DBConn);
+                    //con.Open();
+                    string queryz = "Update VoucherNumber Set  Statuss='Written' where  VoucherNo='" + cmbVoucherNoD.Text + "' ";
+                    cmd = new SqlCommand(queryz, con,trans);
+                    cmd.ExecuteNonQuery();
+                    //con.Close();
+                   cmd.Transaction.Commit();
                     MessageBox.Show("Transaction Completed Successfully", "Record", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.Close();
                     Reset();
-                    this.Hide();
                     PreliStepsOfLedgerEntry frmk = new PreliStepsOfLedgerEntry();
+                    this.Close();
+                    
                     frmk.Show();
                     
                 }
               }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                MessageBox.Show(ex.Message, "Error but we are rollbacking", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                cmd.Transaction.Rollback();
             }
         }
 
