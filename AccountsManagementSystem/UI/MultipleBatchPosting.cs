@@ -1167,16 +1167,20 @@ namespace AccountsManagementSystem.UI
                         }
 
                     }
+                    cmd.Transaction.Commit();
+                    MessageBox.Show("Transaction Completed Successfully", "Record", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.Close();
                 }
              
              
 
-             MessageBox.Show("Transaction Completed Successfully", "Record", MessageBoxButtons.OK, MessageBoxIcon.Information);                                       
-            this.Close();
+             
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "Error But We Are Rollebacking", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                cmd.Transaction.Rollback();
+                con.Close();
             }
         }
         private void Reset()

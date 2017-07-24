@@ -591,6 +591,7 @@ namespace AccountsManagementSystem.UI
             {
                 MessageBox.Show(ex.Message, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 cmd.Transaction.Rollback();
+                con.Close();
             }
 
         }

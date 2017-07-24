@@ -986,8 +986,9 @@ namespace AccountsManagementSystem.UI
                     cmd.ExecuteNonQuery();
                     //con.Close();
                    cmd.Transaction.Commit();
+                    con.Close();
                     MessageBox.Show("Transaction Completed Successfully", "Record", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    this.Close();
+                    //this.Close();
                     Reset();
                     PreliStepsOfLedgerEntry frmk = new PreliStepsOfLedgerEntry();
                     this.Close();
@@ -998,9 +999,10 @@ namespace AccountsManagementSystem.UI
               }
             catch (Exception ex)
             {
-
+                
                 MessageBox.Show(ex.Message, "Error but we are rollbacking", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 cmd.Transaction.Rollback();
+                con.Close();
             }
         }
 

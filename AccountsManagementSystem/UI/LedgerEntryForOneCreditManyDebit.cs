@@ -1042,9 +1042,10 @@ namespace AccountsManagementSystem.UI
             }
             catch (Exception ex)
             {
-                con.Close();
+                
                 MessageBox.Show(ex.Message, " Error But We are Roll Backing", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
+               cmd.Transaction.Rollback();
+                con.Close();
             }
 
         }
