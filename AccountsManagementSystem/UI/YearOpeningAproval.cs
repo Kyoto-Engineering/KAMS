@@ -16,6 +16,7 @@ namespace AccountsManagementSystem.UI
 {
     public partial class YearOpeningAproval : Form
     {
+        private SqlTransaction trans;
         private SqlConnection con;
         private SqlConnection rdrCon;
         private SqlCommand cmd;
@@ -433,7 +434,7 @@ namespace AccountsManagementSystem.UI
                     cmd.Parameters.AddWithValue("@d2", DateTime.UtcNow.ToLocalTime());
                     cmd.ExecuteNonQuery();
                     //con.Close();
-                    cmd.Transaction.Commit();
+                    trans.Commit();
                     con.Close();
                     MessageBox.Show("Successfully  Approved", "Record", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     listView1.Items.Clear();
@@ -447,7 +448,7 @@ namespace AccountsManagementSystem.UI
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error but we are Rollbacking", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                cmd.Transaction.Rollback();
+                trans.Rollback();
                 con.Close();
             }
         }

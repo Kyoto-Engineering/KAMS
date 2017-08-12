@@ -580,7 +580,7 @@ namespace AccountsManagementSystem.UI
                 string queryu2 = "Update VoucherNumber Set  Statuss='Written' where  VoucherNo='" + cmbVoucherNoD.Text + "' ";
                 cmd = new SqlCommand(queryu2, con,trans);
                 cmd.ExecuteNonQuery();
-                cmd.Transaction.Commit();
+                trans.Commit();
                 con.Close();
                 MessageBox.Show("Transaction Completed Successfully", "Record", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 Reset();
@@ -590,7 +590,7 @@ namespace AccountsManagementSystem.UI
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                cmd.Transaction.Rollback();
+                trans.Rollback();
                 con.Close();
             }
 
