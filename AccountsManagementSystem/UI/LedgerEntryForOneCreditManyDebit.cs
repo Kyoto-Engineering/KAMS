@@ -1028,7 +1028,7 @@ namespace AccountsManagementSystem.UI
                     string queryuvc = "Update VoucherNumber Set  Statuss='Written' where  VoucherNo='" + cmbVoucherNoC.Text + "' ";
                     cmd = new SqlCommand(queryuvc, con,trans);
                     cmd.ExecuteNonQuery();
-                    cmd.Transaction.Commit();
+                    trans.Commit();
                     con.Close();
                     MessageBox.Show("Transaction Completed Successfully", "Record", MessageBoxButtons.OK, MessageBoxIcon.Information);                   
                     this.Close();
@@ -1044,7 +1044,7 @@ namespace AccountsManagementSystem.UI
             {
                 
                 MessageBox.Show(ex.Message, " Error But We are Roll Backing", MessageBoxButtons.OK, MessageBoxIcon.Error);
-               cmd.Transaction.Rollback();
+               trans.Rollback();
                 con.Close();
             }
 

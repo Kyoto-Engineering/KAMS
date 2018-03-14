@@ -1167,7 +1167,7 @@ namespace AccountsManagementSystem.UI
                         }
 
                     }
-                    cmd.Transaction.Commit();
+                    trans.Commit();
                     MessageBox.Show("Transaction Completed Successfully", "Record", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.Close();
                 }
@@ -1179,7 +1179,7 @@ namespace AccountsManagementSystem.UI
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error But We Are Rollebacking", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                cmd.Transaction.Rollback();
+                trans.Rollback();
                 con.Close();
             }
         }

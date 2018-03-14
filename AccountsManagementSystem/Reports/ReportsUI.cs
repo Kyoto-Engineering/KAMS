@@ -73,7 +73,7 @@ namespace AccountsManagementSystem.Reports
             //	Table table = default(Table);
             var with1 = reportConInfo;
             with1.ServerName = "tcp:KyotoServer,49172";
-            with1.DatabaseName = "AccountDb";
+            with1.DatabaseName = "AccountDb_new";
             with1.UserID = "sa";
             with1.Password = "SystemAdministrator";
             LedgerListN cr = new LedgerListN();
@@ -126,7 +126,7 @@ namespace AccountsManagementSystem.Reports
             //	Table table = default(Table);
             var with1 = reportConInfo;
             with1.ServerName = "tcp:KyotoServer,49172";
-            with1.DatabaseName = "AccountDb";
+            with1.DatabaseName = "AccountDb_new";
             with1.UserID = "sa";
             with1.Password = "SystemAdministrator";
             CrystalReportN cr = new CrystalReportN();
@@ -179,7 +179,7 @@ namespace AccountsManagementSystem.Reports
             //	Table table = default(Table);
             var with1 = reportConInfo;
             with1.ServerName = "tcp:KyotoServer,49172";
-            with1.DatabaseName = "AccountDb";
+            with1.DatabaseName = "AccountDb_new";
             with1.UserID = "sa";
             with1.Password = "SystemAdministrator";
             JournalReportN cr = new JournalReportN();
@@ -232,7 +232,7 @@ namespace AccountsManagementSystem.Reports
             //	Table table = default(Table);
             var with1 = reportConInfo;
             with1.ServerName = "tcp:KyotoServer,49172";
-            with1.DatabaseName = "AccountDb";
+            with1.DatabaseName = "AccountDb_new";
             with1.UserID = "sa";
             with1.Password = "SystemAdministrator";
             TrialBalanceN cr = new TrialBalanceN();
@@ -296,7 +296,7 @@ namespace AccountsManagementSystem.Reports
             //	Table table = default(Table);
             var with1 = reportConInfo;
             with1.ServerName = "tcp:KyotoServer,49172";
-            with1.DatabaseName = "AccountDb";
+            with1.DatabaseName = "AccountDb_new";
             with1.UserID = "sa";
             with1.Password = "SystemAdministrator";
             CrystalReportNX cr = new CrystalReportNX();
